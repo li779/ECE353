@@ -37,7 +37,8 @@ main(void)
   put_string("******************************\n\r");    
 
   hw3_main();
-                    
+               
+  put_string("Game over!!!");
   // Reach infinite loop after the game is over.
   while(1){};
 }

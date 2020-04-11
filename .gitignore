@@ -1,0 +1,8 @@
+
+*.db
+*.opendb
+*.ipch
+*.json
+*.sqlite
+HW3/.vs/HW3/v16/.suo
+*.Marvi

@@ -6,7 +6,7 @@ volatile uint16_t INVADER_X_COORD = 50;
 volatile uint16_t INVADER_Y_COORD = 40;
 volatile bool ALERT_SPACE_SHIP = true;
 volatile bool ALERT_INVADER = true;
-char STUDENT_NAME[] = "";
+char STUDENT_NAME[] = "Yichen Li and Marvin Zhang";
 
 typedef struct
 {
@@ -28,7 +28,60 @@ bool contact_edge(
     uint8_t image_width
 )
 {
-
+    /*
+    switch (direction)
+    {
+        case PS2_DIR_LEFT:
+            if (x_coord - 1 < image_width / 2)
+                return true;
+            else
+                move_image(direction, &x_coord, &y_coord, image_height, image_width);
+            break;
+        case PS2_DIR_RIGHT:
+            if (x_coord + 1 > COLS - image_width / 2)
+                return true;
+            else
+                move_image(direction, &x_coord, &y_coord, image_height, image_width);
+            break;
+        case PS2_DIR_UP:
+            if (y_coord - 1 < image_height / 2)
+                return true;
+            else 
+                move_image(direction, &x_coord, &y_coord, image_height, image_width);
+            break;
+        case PS2_DIR_DOWN:
+            if (y_coord + 1 > ROWS - image_height / 2)
+                return true;
+            else
+                move_image(direction, &x_coord, &y_coord, image_height, image_width);
+            break;
+        default:
+            return false;
+    }
+    */
+    switch (direction)
+    {
+    case PS2_DIR_LEFT:
+        if (x_coord - 1 < image_width / 2)
+            return true;
+        break;
+    case PS2_DIR_RIGHT:
+        if (x_coord + 1 > COLS - image_width / 2)
+            return true;
+       
+        break;
+    case PS2_DIR_UP:
+        if (y_coord - 1 < image_height / 2)
+            return true;
+        break;
+    case PS2_DIR_DOWN:
+        if (y_coord + 1 > ROWS - image_height / 2)
+            return true;
+        break;
+    default:
+        return false;
+    }
+    return false;
 }
 
 //*****************************************************************************
@@ -44,7 +97,25 @@ void move_image(
         uint8_t image_width
 )
 {
-   
+    switch (direction)
+    {
+        case PS2_DIR_LEFT:
+            (*x_coord)--;
+            break;
+        case PS2_DIR_RIGHT:
+            (*x_coord)++;
+            break;
+        case PS2_DIR_UP:
+            (*y_coord)--;
+            break;
+        case PS2_DIR_DOWN:
+            (*y_coord)++;
+            break;
+        default:
+            break;
+    }
+
+    return;
 }
 
 //*****************************************************************************
@@ -65,7 +136,18 @@ bool check_game_over(
         uint8_t invader_width
 )
 {
+  bool left_margin = (int)(ship_x_coord - ship_width / 2) > (int)(invader_x_coord - invader_width / 2)
+      && (int)(ship_x_coord - ship_width / 2) < (int)(invader_x_coord + invader_width / 2);
+  bool right_margin = (int)(ship_x_coord + ship_width / 2) < (int)(invader_x_coord + invader_width / 2)
+      && (int)(ship_x_coord + ship_width / 2) > (int)(invader_x_coord - invader_width / 2);
+  bool up_margin = (int)(ship_y_coord + ship_height /2) < (int)(invader_y_coord + invader_height/2) 
+      && (int)(ship_y_coord + ship_height / 2) > (int)(invader_y_coord - invader_height / 2);
+  bool down_margin = (int)(ship_y_coord - ship_height /2) > (int)(invader_y_coord - invader_height/2) 
+      && (int)(ship_y_coord - ship_height / 2) < (int)(invader_y_coord + invader_height / 2);
 
+  bool over = (left_margin) ? up_margin | down_margin : (right_margin) ? up_margin | down_margin : false;
+
+  return over;
   
 }
 
