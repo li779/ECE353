@@ -12,6 +12,7 @@ static volatile PS2_DIR_t SHIP_DIRECTION = PS2_DIR_CENTER;
 //*****************************************************************************
 PS2_DIR_t ps2_get_direction(void)
 {
+    // convert adc data to its direction
     if (PS2_X_DATA>(2.4/3.3*0xfff))
       return PS2_DIR_LEFT;
     else if (PS2_X_DATA<(0.85/3.3*0xfff))
@@ -29,7 +30,7 @@ PS2_DIR_t ps2_get_direction(void)
 //*****************************************************************************
 void TIMER2A_Handler(void)
 {	
-    // Check if the edge contact.
+    // Check if the edge contact, if not then move the image
     if (!contact_edge(PS2_DIR, INVADER_X_COORD, INVADER_Y_COORD, invaderHeightPixels, invaderWidthPixels))
     {
         move_image(PS2_DIR, &INVADER_X_COORD, &INVADER_Y_COORD, invaderHeightPixels, invaderWidthPixels);
@@ -44,12 +45,12 @@ void TIMER2A_Handler(void)
 //*****************************************************************************
 void TIMER3A_Handler(void)
 {	
-    if (MOVE_COUNT == 0)
+    if (MOVE_COUNT == 0)   // if moved, then look for new values
     {
         MOVE_COUNT = get_new_move_count();
         SHIP_DIRECTION = get_new_direction(SHIP_DIRECTION);
     }
-    // Check if edge contact.
+    // Check if edge contact, if not then move the image
     if(!contact_edge(SHIP_DIRECTION, SHIP_X_COORD, SHIP_Y_COORD, space_shipHeightPixels, space_shipWidthPixels))
     {
         move_image(SHIP_DIRECTION, &SHIP_X_COORD, &SHIP_Y_COORD, space_shipHeightPixels, space_shipWidthPixels);
@@ -76,8 +77,10 @@ void TIMER4A_Handler(void)
 //*****************************************************************************
 void ADC0SS2_Handler(void)
 {
+    // Read data from FIFO
     PS2_X_DATA = ADC0->SSFIFO2;
     PS2_Y_DATA = ADC0->SSFIFO2;
+    // Check the direction based on PS data
     PS2_DIR = ps2_get_direction();
     // Clear the interrupt
     ADC0->ISC |= ADC_ISC_IN2;

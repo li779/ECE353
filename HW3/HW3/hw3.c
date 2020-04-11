@@ -28,37 +28,7 @@ bool contact_edge(
     uint8_t image_width
 )
 {
-    /*
-    switch (direction)
-    {
-        case PS2_DIR_LEFT:
-            if (x_coord - 1 < image_width / 2)
-                return true;
-            else
-                move_image(direction, &x_coord, &y_coord, image_height, image_width);
-            break;
-        case PS2_DIR_RIGHT:
-            if (x_coord + 1 > COLS - image_width / 2)
-                return true;
-            else
-                move_image(direction, &x_coord, &y_coord, image_height, image_width);
-            break;
-        case PS2_DIR_UP:
-            if (y_coord - 1 < image_height / 2)
-                return true;
-            else 
-                move_image(direction, &x_coord, &y_coord, image_height, image_width);
-            break;
-        case PS2_DIR_DOWN:
-            if (y_coord + 1 > ROWS - image_height / 2)
-                return true;
-            else
-                move_image(direction, &x_coord, &y_coord, image_height, image_width);
-            break;
-        default:
-            return false;
-    }
-    */
+    // Check if out of bound based on the direction requested.
     switch (direction)
     {
     case PS2_DIR_LEFT:
@@ -66,7 +36,7 @@ bool contact_edge(
             return true;
         break;
     case PS2_DIR_RIGHT:
-        if (x_coord + 1 > COLS - image_width / 2)
+        if (x_coord + 1 > (COLS - image_width / 2 - 1))     // -1 to adjust for the boundary (max = COLS - 1)
             return true;
        
         break;
@@ -75,7 +45,7 @@ bool contact_edge(
             return true;
         break;
     case PS2_DIR_DOWN:
-        if (y_coord + 1 > ROWS - image_height / 2)
+        if (y_coord + 1 > (ROWS - image_height / 2 - 1))    // -1 to adjust for the boundary (max = ROWS - 1)
             return true;
         break;
     default:
@@ -97,7 +67,7 @@ void move_image(
         uint8_t image_width
 )
 {
-    switch (direction)
+    switch (direction)   // move images according to direction
     {
         case PS2_DIR_LEFT:
             (*x_coord)--;
@@ -136,19 +106,20 @@ bool check_game_over(
         uint8_t invader_width
 )
 {
-  bool left_margin = (int)(ship_x_coord - ship_width / 2) > (int)(invader_x_coord - invader_width / 2)
-      && (int)(ship_x_coord - ship_width / 2) < (int)(invader_x_coord + invader_width / 2);
-  bool right_margin = (int)(ship_x_coord + ship_width / 2) < (int)(invader_x_coord + invader_width / 2)
-      && (int)(ship_x_coord + ship_width / 2) > (int)(invader_x_coord - invader_width / 2);
-  bool up_margin = (int)(ship_y_coord + ship_height /2) < (int)(invader_y_coord + invader_height/2) 
-      && (int)(ship_y_coord + ship_height / 2) > (int)(invader_y_coord - invader_height / 2);
-  bool down_margin = (int)(ship_y_coord - ship_height /2) > (int)(invader_y_coord - invader_height/2) 
-      && (int)(ship_y_coord - ship_height / 2) < (int)(invader_y_coord + invader_height / 2);
+    // Check if any margin of the space ship is within the x/y range of the invader.
+    bool left_margin = (int)(ship_x_coord - ship_width / 2) > (int)(invader_x_coord - invader_width / 2)
+        && (int)(ship_x_coord - ship_width / 2) < (int)(invader_x_coord + invader_width / 2);
+    bool right_margin = (int)(ship_x_coord + ship_width / 2) < (int)(invader_x_coord + invader_width / 2)
+        && (int)(ship_x_coord + ship_width / 2) > (int)(invader_x_coord - invader_width / 2);
+    bool up_margin = (int)(ship_y_coord + ship_height /2) < (int)(invader_y_coord + invader_height/2) 
+        && (int)(ship_y_coord + ship_height / 2) > (int)(invader_y_coord - invader_height / 2);
+    bool down_margin = (int)(ship_y_coord - ship_height /2) > (int)(invader_y_coord - invader_height/2) 
+        && (int)(ship_y_coord - ship_height / 2) < (int)(invader_y_coord + invader_height / 2);
 
-  bool over = (left_margin) ? up_margin | down_margin : (right_margin) ? up_margin | down_margin : false;
+    // Based on the margin conditions specified above, check if the invader and space ship has overlapped.
+    bool over = (left_margin) ? up_margin | down_margin : (right_margin) ? up_margin | down_margin : false;
 
-  return over;
-  
+    return over;
 }
 
 //*****************************************************************************
