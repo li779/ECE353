@@ -64,14 +64,13 @@ bool io_expander_init(void)
 
 void io_expander_write_reg(uint8_t reg, uint8_t data)
 {
-    uint8_t i2c_write_opcode;
     i2c_status_t status;
-    i2c_write_opcode = (MCP23017_DEV_ID << 1) & 0x01;
     status = i2cSetSlaveAddr(IO_EXPANDER_I2C_BASE, MCP23017_DEV_ID, I2C_WRITE);
     while (status != I2C_OK) {}
-    status = i2cSendByte(IO_EXPANDER_I2C_BASE, reg, I2C_MCS_START | I2C_MCS_RUN);
+    status = i2cSendByte(IO_EXPANDER_I2C_BASE, reg, I2C_MCS_START | I2C_MCS_RUN | I2C_MCS_STOP);
     while (status != I2C_OK) {}
-    status = i2cSendByte(IO_EXPANDER_I2C_BASE, data, I2C_MCS_STOP);
+    status = i2cSendByte(IO_EXPANDER_I2C_BASE, data, I2C_MCS_START | I2C_MCS_RUN | I2C_MCS_STOP);
+    while (status != I2C_OK) {}
     return;
 }
 
