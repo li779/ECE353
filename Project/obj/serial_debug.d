@@ -15,3 +15,4 @@
 .\obj\serial_debug.o: D:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123\system_TM4C123.h
 .\obj\serial_debug.o: ..\drivers\include\pc_buffer.h
 .\obj\serial_debug.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\obj\serial_debug.o: ..\drivers\include\uart.h
