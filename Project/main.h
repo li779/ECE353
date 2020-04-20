@@ -27,13 +27,17 @@
 #include <string.h>
 
 #include "TM4C123.h"
+#include "driver_defines.h"
 #include "gpio_port.h"
+#include "serial_debug.h"
 #include "lcd.h"
 #include "lcd_images.h"
 #include "timers.h"
 #include "ps2.h"
 #include "launchpad_io.h"
+#include "io_expander.h"
 
 #include "project_interrupts.h"
 #include "project_hardware_init.h"
 #endif
+

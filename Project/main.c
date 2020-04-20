@@ -21,7 +21,6 @@
 // EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "main.h"
-#include "io_expander.h"
 
 
 //*****************************************************************************
@@ -48,7 +47,21 @@ void EnableInterrupts(void)
 int 
 main(void)
 {
-    io_expander_init();
-    io_expander_write_reg(MCP23017_GPIOA_R, 0x0F);
+		uint8_t data;
+		DisableInterrupts();
+		init_serial_debug(true, true);
+		io_expander_init();
+		EnableInterrupts();
+    
+    //io_expander_write_reg(MCP23017_GPIOA_R, 0x0F);
+		//
+		set_io_expander_GPIO();
+		
+		io_expander_write_reg(MCP23017_GPIOA_R, 0x0F);
+		//data = io_expander_read_reg(MCP23017_GPIOB_R);
+		printf("Running...\n\r");
+		printf("data: %d\n\r",data);
+		
+		//printf("data: %d",data);
     while(1){};
 }
