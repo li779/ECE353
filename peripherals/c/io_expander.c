@@ -135,15 +135,15 @@ void io_expander_write_reg(uint8_t reg, uint8_t data)
 
 uint8_t io_expander_read_reg(uint8_t reg)
 {
-    uint8_t* data;
+    uint8_t * data;
     i2c_status_t status;
     status = i2cSetSlaveAddr(IO_EXPANDER_I2C_BASE, MCP23017_DEV_ID, I2C_WRITE);
-    while (status != I2C_OK) {}
+	
     status = i2cSendByte(IO_EXPANDER_I2C_BASE, reg, I2C_MCS_START | I2C_MCS_RUN);
-    while (status != I2C_OK) {}
+
 		status = i2cSetSlaveAddr(IO_EXPANDER_I2C_BASE, MCP23017_DEV_ID, I2C_READ);
-    while (status != I2C_OK) {}
+
     status = i2cGetByte(IO_EXPANDER_I2C_BASE, data, I2C_MCS_START | I2C_MCS_RUN | I2C_MCS_STOP);
-    while (status != I2C_OK) {}
+
     return *data;
 }

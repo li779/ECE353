@@ -28,24 +28,31 @@ Project File Date:  04/21/2020
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Rebuild target 'Project-F19'
 compiling pc_buffer.c...
-compiling gpio_port.c...
-..\drivers\c\gpio_port.c(82): warning:  #188-D: enumerated type mixed with another type
-         return 0;
-..\drivers\c\gpio_port.c: 1 warning, 0 errors
-compiling ft6x06.c...
-compiling lcd.c...
-compiling ps2.c...
-compiling launchpad_io.c...
-compiling timers.c...
-..\drivers\c\timers.c(60): warning:  #188-D: enumerated type mixed with another type
-         return 0;
-..\drivers\c\timers.c: 1 warning, 0 errors
 compiling uart.c...
 ..\drivers\c\uart.c(184): warning:  #188-D: enumerated type mixed with another type
          return 0;
 ..\drivers\c\uart.c: 1 warning, 0 errors
+compiling ps2.c...
+compiling gpio_port.c...
+..\drivers\c\gpio_port.c(82): warning:  #188-D: enumerated type mixed with another type
+         return 0;
+..\drivers\c\gpio_port.c: 1 warning, 0 errors
+compiling timers.c...
+..\drivers\c\timers.c(60): warning:  #188-D: enumerated type mixed with another type
+         return 0;
+..\drivers\c\timers.c: 1 warning, 0 errors
+compiling project_interrupts.c...
+..\peripherals\include\io_expander.h(86): warning:  #1295-D: Deprecated declaration set_io_expander_GPIO - give arg types
+  void set_io_expander_GPIO();
+project_interrupts.c: 1 warning, 0 errors
 compiling serial_debug.c...
 compiling i2c.c...
+compiling project_hardware_init.c...
+..\peripherals\include\io_expander.h(86): warning:  #1295-D: Deprecated declaration set_io_expander_GPIO - give arg types
+  void set_io_expander_GPIO();
+project_hardware_init.c: 1 warning, 0 errors
+compiling lcd.c...
+compiling launchpad_io.c...
 compiling adc.c...
 ..\drivers\c\adc.c(54): warning:  #188-D: enumerated type mixed with another type
          return ADC0SS0_IRQn + ss_num;
@@ -57,33 +64,30 @@ compiling adc.c...
   static bool verify_base_addr(uint32_t baseAddr)
 ..\drivers\c\adc.c: 4 warnings, 0 errors
 compiling eeprom.c...
+compiling ft6x06.c...
 compiling main.c...
 ..\peripherals\include\io_expander.h(86): warning:  #1295-D: Deprecated declaration set_io_expander_GPIO - give arg types
   void set_io_expander_GPIO();
-main.c: 1 warning, 0 errors
-compiling project_hardware_init.c...
-..\peripherals\include\io_expander.h(86): warning:  #1295-D: Deprecated declaration set_io_expander_GPIO - give arg types
-  void set_io_expander_GPIO();
-project_hardware_init.c: 1 warning, 0 errors
-compiling project_interrupts.c...
-..\peripherals\include\io_expander.h(86): warning:  #1295-D: Deprecated declaration set_io_expander_GPIO - give arg types
-  void set_io_expander_GPIO();
-project_interrupts.c: 1 warning, 0 errors
+main.c(73): warning:  #128-D: loop is not reachable
+      while(1){};
+main.c: 2 warnings, 0 errors
 assembling startup_TM4C123.s...
 compiling io_expander.c...
 ..\peripherals\include\io_expander.h(86): warning:  #1295-D: Deprecated declaration set_io_expander_GPIO - give arg types
   void set_io_expander_GPIO();
 ..\peripherals\c\io_expander.c(124): warning:  #550-D: variable "status"  was set but never used
       i2c_status_t status;
+..\peripherals\c\io_expander.c(139): warning:  #550-D: variable "status"  was set but never used
+      i2c_status_t status;
 ..\peripherals\c\io_expander.c(56): warning:  #177-D: function "set_addr"  was declared but never referenced
   static i2c_status_t set_addr
 ..\peripherals\c\io_expander.c(79): warning:  #177-D: function "read_data"  was declared but never referenced
   static i2c_status_t read_data
-..\peripherals\c\io_expander.c: 4 warnings, 0 errors
+..\peripherals\c\io_expander.c: 5 warnings, 0 errors
 compiling system_TM4C123.c...
 linking...
-Program Size: Code=4508 RO-data=652 RW-data=20 ZI-data=4124  
-".\obj\ece353_base_project.axf" - 0 Error(s), 14 Warning(s).
+Program Size: Code=4992 RO-data=652 RW-data=20 ZI-data=4124  
+".\obj\ece353_base_project.axf" - 0 Error(s), 16 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -112,7 +116,7 @@ Package Vendor: Keil
       Include file:  Device\Include\TM4C123\TM4C123.h
       Source file:   Device\Source\ARM\startup_TM4C123.s
       Source file:   Device\Source\system_TM4C123.c
-Build Time Elapsed:  00:00:02
+Build Time Elapsed:  00:00:03
 </pre>
 </body>
 </html>

@@ -48,6 +48,8 @@ int
 main(void)
 {
 		uint8_t data;
+		int i = 0;
+	
 		DisableInterrupts();
 		init_serial_debug(true, true);
 		io_expander_init();
@@ -58,9 +60,14 @@ main(void)
 		set_io_expander_GPIO();
 		
 		io_expander_write_reg(MCP23017_GPIOA_R, 0xFF);
-		//data = io_expander_read_reg(MCP23017_GPIOB_R);
-		printf("Running...\n\r");
-		printf("data: %d\n\r",data);
+		data = io_expander_read_reg(MCP23017_GPIOB_R);
+		
+		while(1){
+			printf("Running...\n\r");
+			printf("data: %X\n\r", data);
+			while(i < 10000000){i++;}
+			i = 0;
+		}
 		
 		//printf("data: %d",data);
     while(1){};
