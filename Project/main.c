@@ -57,7 +57,7 @@ main(void)
 		//
 		set_io_expander_GPIO();
 		
-		io_expander_write_reg(MCP23017_GPIOA_R, 0x0F);
+		io_expander_write_reg(MCP23017_GPIOA_R, 0xFF);
 		//data = io_expander_read_reg(MCP23017_GPIOB_R);
 		printf("Running...\n\r");
 		printf("data: %d\n\r",data);

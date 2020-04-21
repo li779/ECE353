@@ -18,7 +18,7 @@ bool io_expander_init(void)
         return false;
       }
     
-      if(gpio_config_port_control(IO_EXPANDER_GPIO_BASE, IO_EXPANDER_I2C_SCL_PCTL_M, IO_EXPANDER_I2C_SDA_PIN_PCTL)== false)
+      if(gpio_config_port_control(IO_EXPANDER_GPIO_BASE, IO_EXPANDER_I2C_SCL_PCTL_M, IO_EXPANDER_I2C_SCL_PIN_PCTL)== false)
       {
         return false;
       }
@@ -39,7 +39,7 @@ bool io_expander_init(void)
         return false;
       }
     
-      if(gpio_config_port_control(IO_EXPANDER_GPIO_BASE, IO_EXPANDER_I2C_SCL_PCTL_M, IO_EXPANDER_I2C_SDA_PIN_PCTL)== false)
+      if(gpio_config_port_control(IO_EXPANDER_GPIO_BASE, IO_EXPANDER_I2C_SDA_PCTL_M, IO_EXPANDER_I2C_SDA_PIN_PCTL)== false)
       {
         return false;
       }
@@ -115,20 +115,21 @@ void set_io_expander_GPIO(){
 
   // Set PortB to be outputs
   //i2cSendByte( IO_EXPANDER_I2C_BASE, 1, I2C_MCS_RUN | I2C_MCS_STOP);
-	io_expander_write_reg(MCP23017_IODIRA_R,0);
+	io_expander_write_reg(MCP23017_IODIRA_R,0x00);
 	io_expander_write_reg(MCP23017_IODIRB_R,0xff);
 }
 
 void io_expander_write_reg(uint8_t reg, uint8_t data)
 {
     i2c_status_t status;
+	
 		while ( I2CMasterBusy(IO_EXPANDER_I2C_BASE)) {};
     status = i2cSetSlaveAddr(IO_EXPANDER_I2C_BASE, MCP23017_DEV_ID, I2C_WRITE);
-    while (status != I2C_OK) {}
-    status = i2cSendByte(IO_EXPANDER_I2C_BASE, reg, I2C_MCS_RUN);
-    while (status != I2C_OK) {}
+			
+    status = i2cSendByte(IO_EXPANDER_I2C_BASE, reg, I2C_MCS_START | I2C_MCS_RUN);
+			
     status = i2cSendByte(IO_EXPANDER_I2C_BASE, data, I2C_MCS_RUN | I2C_MCS_STOP);
-    while (status != I2C_OK) {}
+			
     return;
 }
 
@@ -138,7 +139,7 @@ uint8_t io_expander_read_reg(uint8_t reg)
     i2c_status_t status;
     status = i2cSetSlaveAddr(IO_EXPANDER_I2C_BASE, MCP23017_DEV_ID, I2C_WRITE);
     while (status != I2C_OK) {}
-    status = i2cSendByte(IO_EXPANDER_I2C_BASE, reg, I2C_MCS_START | I2C_MCS_RUN| I2C_MCS_STOP);
+    status = i2cSendByte(IO_EXPANDER_I2C_BASE, reg, I2C_MCS_START | I2C_MCS_RUN);
     while (status != I2C_OK) {}
 		status = i2cSetSlaveAddr(IO_EXPANDER_I2C_BASE, MCP23017_DEV_ID, I2C_READ);
     while (status != I2C_OK) {}
