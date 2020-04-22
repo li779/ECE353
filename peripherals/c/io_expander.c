@@ -101,22 +101,9 @@ static i2c_status_t read_data
 }
 
 void set_io_expander_GPIO(){
-	//while ( I2CMasterBusy(IO_EXPANDER_I2C_BASE)) {};
-	//i2cSetSlaveAddr(IO_EXPANDER_I2C_BASE, MCP23017_DEV_ID, I2C_WRITE);
-
-  // Send the IODIRA Address
-  //i2cSendByte( IO_EXPANDER_I2C_BASE, MCP23017_IODIRA_R, I2C_MCS_START | I2C_MCS_RUN);
-
-  // Set PortA to be outputs
-  //i2cSendByte( IO_EXPANDER_I2C_BASE,0, I2C_MCS_RUN | I2C_MCS_STOP);
-
-  // Send the IODIRB Address
-  //i2cSendByte( IO_EXPANDER_I2C_BASE, MCP23017_IODIRB_R, I2C_MCS_START | I2C_MCS_RUN);
-
-  // Set PortB to be outputs
-  //i2cSendByte( IO_EXPANDER_I2C_BASE, 1, I2C_MCS_RUN | I2C_MCS_STOP);
 	io_expander_write_reg(MCP23017_IODIRA_R,0x00);
-	io_expander_write_reg(MCP23017_IODIRB_R,0xff);
+	io_expander_write_reg(MCP23017_IODIRB_R,0xFF);
+	io_expander_write_reg(MCP23017_GPPUB_R, 0xFF);
 }
 
 void io_expander_write_reg(uint8_t reg, uint8_t data)
@@ -124,6 +111,7 @@ void io_expander_write_reg(uint8_t reg, uint8_t data)
     i2c_status_t status;
 	
 		while ( I2CMasterBusy(IO_EXPANDER_I2C_BASE)) {};
+			
     status = i2cSetSlaveAddr(IO_EXPANDER_I2C_BASE, MCP23017_DEV_ID, I2C_WRITE);
 			
     status = i2cSendByte(IO_EXPANDER_I2C_BASE, reg, I2C_MCS_START | I2C_MCS_RUN);
@@ -135,15 +123,24 @@ void io_expander_write_reg(uint8_t reg, uint8_t data)
 
 uint8_t io_expander_read_reg(uint8_t reg)
 {
-    uint8_t * data;
+    uint8_t* data;
     i2c_status_t status;
-    status = i2cSetSlaveAddr(IO_EXPANDER_I2C_BASE, MCP23017_DEV_ID, I2C_WRITE);
 	
-    status = i2cSendByte(IO_EXPANDER_I2C_BASE, reg, I2C_MCS_START | I2C_MCS_RUN);
-
+		while ( I2CMasterBusy(IO_EXPANDER_I2C_BASE)) {};
+	
+		status = i2cSetSlaveAddr(IO_EXPANDER_I2C_BASE, MCP23017_DEV_ID, I2C_WRITE);
+			
+		while ( I2CMasterBusy(IO_EXPANDER_I2C_BASE)) {};
+			
+		status = i2cSendByte(IO_EXPANDER_I2C_BASE, MCP23017_GPIOB_R, I2C_MCS_START | I2C_MCS_RUN);
+				
+		while ( I2CMasterBusy(IO_EXPANDER_I2C_BASE)) {};
+		
 		status = i2cSetSlaveAddr(IO_EXPANDER_I2C_BASE, MCP23017_DEV_ID, I2C_READ);
+			
+		while ( I2CMasterBusy(IO_EXPANDER_I2C_BASE)) {};
+	
+		status = i2cGetByte(IO_EXPANDER_I2C_BASE, data, I2C_MCS_START | I2C_MCS_RUN | I2C_MCS_STOP);
 
-    status = i2cGetByte(IO_EXPANDER_I2C_BASE, data, I2C_MCS_START | I2C_MCS_RUN | I2C_MCS_STOP);
-
-    return *data;
+    return (*data);
 }

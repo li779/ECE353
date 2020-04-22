@@ -49,24 +49,25 @@ main(void)
 {
 		uint8_t data;
 		int i = 0;
+		uint8_t cmd_cnt = 0;
 	
 		DisableInterrupts();
 		init_serial_debug(true, true);
 		io_expander_init();
 		EnableInterrupts();
     
-    //io_expander_write_reg(MCP23017_GPIOA_R, 0x0F);
-		//
 		set_io_expander_GPIO();
 		
 		io_expander_write_reg(MCP23017_GPIOA_R, 0xFF);
 		data = io_expander_read_reg(MCP23017_GPIOB_R);
 		
 		while(1){
-			printf("Running...\n\r");
-			printf("data: %X\n\r", data);
-			while(i < 10000000){i++;}
+			printf("Command Count: %d\n\r", cmd_cnt);
+			printf("data: 0x%X\n\r", data);
+			while(i < 5000000){i++;}
 			i = 0;
+			cmd_cnt++;
+			io_expander_write_reg(MCP23017_GPIOA_R, cmd_cnt);
 		}
 		
 		//printf("data: %d",data);
