@@ -140,6 +140,6 @@ uint8_t io_expander_read_reg(uint8_t reg, uint8_t *data)
 		//while ( I2CMasterBusy(IO_EXPANDER_I2C_BASE)) {};
 	
 		status = i2cGetByte(IO_EXPANDER_I2C_BASE, data, I2C_MCS_START | I2C_MCS_RUN | I2C_MCS_STOP);
-
+			
     return 0xff;
 }
