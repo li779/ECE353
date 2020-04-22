@@ -47,7 +47,7 @@ void EnableInterrupts(void)
 int 
 main(void)
 {
-		uint8_t data;
+		uint8_t *data = (uint8_t *)malloc(sizeof(uint8_t));
 		int i = 0;
 		uint8_t cmd_cnt = 0;
 	
@@ -59,11 +59,11 @@ main(void)
 		set_io_expander_GPIO();
 		
 		io_expander_write_reg(MCP23017_GPIOA_R, 0xFF);
-		data = io_expander_read_reg(MCP23017_GPIOB_R);
+		io_expander_read_reg(MCP23017_GPIOB_R, data);
 		
 		while(1){
 			printf("Command Count: %d\n\r", cmd_cnt);
-			printf("data: 0x%X\n\r", data);
+			printf("data: 0x%X\n\r", *data);
 			while(i < 5000000){i++;}
 			i = 0;
 			cmd_cnt++;
