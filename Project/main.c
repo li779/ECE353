@@ -50,11 +50,19 @@ main(void)
 		uint8_t *data = (uint8_t *)malloc(sizeof(uint8_t));
 		int i = 0;
 		uint8_t cmd_cnt = 0;
+		BUTTON_t button = BUTTON_NONE;
 	
 		DisableInterrupts();
+	
 		init_serial_debug(true, true);
 		io_expander_init();
+		
+	
+		printf("ECE 353 Final Project\nYichen Li and Marvin Zhang\n");
+	
 		EnableInterrupts();
+	
+	
     
 		set_io_expander_GPIO();
 		
@@ -73,12 +81,15 @@ main(void)
 			
 				//printf("data: %d",data);
 				
+				printf("Command Count: %d\n\r", cmd_cnt);
 				while(i < 5000000){i++;}
-					i = 0;
-					cmd_cnt++;
-					io_expander_write_reg(MCP23017_GPIOA_R, cmd_cnt);
+				i = 0;
+				cmd_cnt++;
+				io_expander_write_reg(MCP23017_GPIOA_R, cmd_cnt);
 				
-				switch(get_button_status())
+				button = get_button_status();
+				
+				switch(button)
 				{
 					case BUTTON_UP	:
 						printf("Button UP pressed!");

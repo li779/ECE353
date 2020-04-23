@@ -43,23 +43,15 @@ bool io_expander_init(void)
       {
         return false;
       }
-			
-			// Configure PF0 - used to detect GPIOB_reg interrupt
-			gpio_enable_port(IO_EXPANDER_IRQ_GPIO_BASE);
-			gpio_config_digital_enable(IO_EXPANDER_IRQ_GPIO_BASE, IO_EXPANDER_IRQ_PIN_NUM);
-			gpio_config_enable_input(IO_EXPANDER_IRQ_GPIO_BASE, IO_EXPANDER_IRQ_PIN_NUM);
-			gpio_config_falling_edge_irq(IO_EXPANDER_IRQ_GPIO_BASE, IO_EXPANDER_IRQ_PIN_NUM);
-			
-			// Configure MCP23017 interrupt enable
-			io_expander_write_reg(MCP23017_GPINTENB_R, 0xFF);	// Interrupt enabled for GPIOB pins
-			io_expander_write_reg(MCP23017_INTCONB_R, 0xFF);	// Interrupt happens whether the button is pressed / released
-			io_expander_write_reg(MCP23017_IOCONB_R, 0x00);		// Active-low interrupt
-			
+
       //  Initialize the I2C peripheral
       if( initializeI2CMaster(IO_EXPANDER_I2C_BASE)!= I2C_OK)
       {
         return false;
       }
+			
+			// Set up GPIO pins
+			set_io_expander_GPIO();
   
   return true;
 }
@@ -112,9 +104,22 @@ bool io_expander_init(void)
 }*/
 
 void set_io_expander_GPIO(){
-	io_expander_write_reg(MCP23017_IODIRA_R,0x00);
-	io_expander_write_reg(MCP23017_IODIRB_R,0xFF);
-	io_expander_write_reg(MCP23017_GPPUB_R, 0xFF);
+	
+		io_expander_write_reg(MCP23017_IODIRA_R,0x00);
+		io_expander_write_reg(MCP23017_IODIRB_R,0xFF);
+		io_expander_write_reg(MCP23017_GPPUB_R, 0xFF);
+	
+		// Configure PF0 - used to detect GPIOB_reg interrupt
+		gpio_enable_port(IO_EXPANDER_IRQ_GPIO_BASE);
+		gpio_config_digital_enable(IO_EXPANDER_IRQ_GPIO_BASE, IO_EXPANDER_IRQ_PIN_NUM);
+		gpio_config_enable_input(IO_EXPANDER_IRQ_GPIO_BASE, IO_EXPANDER_IRQ_PIN_NUM);
+		gpio_config_falling_edge_irq(IO_EXPANDER_IRQ_GPIO_BASE, IO_EXPANDER_IRQ_PIN_NUM);
+		
+		// Configure MCP23017 interrupt enable
+		io_expander_write_reg(MCP23017_GPINTENB_R, 0xFF);	// Interrupt enabled for GPIOB pins
+		io_expander_write_reg(MCP23017_INTCONB_R, 0xFF);	// Interrupt happens whether the button is pressed / released
+		io_expander_write_reg(MCP23017_IOCONB_R, 0x00);		// Active-low interrupt
+	
 }
 
 void io_expander_write_reg(uint8_t reg, uint8_t data)
