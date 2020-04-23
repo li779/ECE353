@@ -518,3 +518,36 @@ __weak bool  gpio_config_falling_edge_irq(uint32_t gpioBase, uint8_t pins)
   return true;
 
 }
+
+__weak bool  gpio_config_rising_edge_irq(uint32_t gpioBase, uint8_t pins)
+{
+  
+  GPIOA_Type  *gpioPort;
+
+  // Verify that the base address is a valid GPIO base address
+  // using the verify_base_addr function provided above
+  if( verify_base_addr(gpioBase) == false)
+    {
+      return false;
+    }
+    
+  // Type Cast the base address to a GPIOA_Type pointer
+  gpioPort = (GPIOA_Type *)gpioBase;
+
+  // Disable any interrupts that we will modify
+  gpioPort->IM &= ~pins;
+		
+	// Clear any outstanding interrupts
+	gpioPort->ICR |= pins;
+		
+	// Set the interrupts as rising edge interrupts
+	gpioPort->IEV |= pins;
+		
+	gpioPort->IBE |= pins;
+	
+	// Re-enable the interrupts in the peripheral
+	gpioPort->IM |= pins;
+    
+  return true;
+
+}

@@ -24,5 +24,10 @@
 
 #include "main.h"
 
+#include "io_expander.h"
+
+typedef enum BUTTON_t{BUTTON_LEFT, BUTTON_RIGHT, BUTTON_UP, BUTTON_DOWN, BUTTON_NONE} BUTTON_t;
+
+BUTTON_t get_button_status();
 
 #endif

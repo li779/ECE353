@@ -61,15 +61,41 @@ main(void)
 		io_expander_write_reg(MCP23017_GPIOA_R, 0xFF);
 		io_expander_read_reg(MCP23017_GPIOB_R, data);
 		
-		while(1){
-			printf("Command Count: %d\n\r", cmd_cnt);
-			printf("data: 0x%X\n\r", *data);
-			while(i < 5000000){i++;}
-			i = 0;
-			cmd_cnt++;
-			io_expander_write_reg(MCP23017_GPIOA_R, cmd_cnt);
+		while(1)
+		{
+				/*printf("Command Count: %d\n\r", cmd_cnt);
+				printf("data: 0x%X\n\r", *data);
+				while(i < 5000000){i++;}
+				i = 0;
+				cmd_cnt++;
+				io_expander_write_reg(MCP23017_GPIOA_R, cmd_cnt);*/
+				
+			
+				//printf("data: %d",data);
+				
+				while(i < 5000000){i++;}
+					i = 0;
+					cmd_cnt++;
+					io_expander_write_reg(MCP23017_GPIOA_R, cmd_cnt);
+				
+				switch(get_button_status())
+				{
+					case BUTTON_UP	:
+						printf("Button UP pressed!");
+						break;
+					case BUTTON_DOWN	:	
+						printf("Button DOWN pressed!");
+						break;
+					case BUTTON_LEFT	:	
+						printf("Button LEFT pressed!");
+						break;
+					case BUTTON_RIGHT	:	
+						printf("Button RIGHT pressed!");
+						break;
+					case BUTTON_NONE	:	
+						printf("Button NONE pressed!");
+						break;
+				}
 		}
-		
-		//printf("data: %d",data);
     while(1){};
 }

@@ -21,10 +21,46 @@
 // EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "main.h"
+#include "io_expander.h"
+#include "i2c.h"
 #include "project_interrupts.h"
 
+static volatile BUTTON_t button = BUTTON_NONE;
 
+BUTTON_t get_button_status()
+{
+	return button;
+}
 
-
-
-
+// Note: PF0 for io_expander GPIOB_R interrupt
+void GPIOF_Handler(void)
+{
+		GPIOA_Type  *gpioPort;
+		uint8_t * data;
+		gpioPort = (GPIOA_Type *)IO_EXPANDER_IRQ_GPIO_BASE;
+	
+		// Read from MCP23017, it will auto clear its own interrupt status
+		io_expander_read_reg(MCP23017_INTCAPB_R, data);
+		switch((*data & 0x0F))
+		{
+			case 0x01	:
+					button = BUTTON_UP;
+					break;
+			case 0x02	:
+					button = BUTTON_DOWN;
+					break;
+			case 0x04	:
+					button = BUTTON_LEFT;
+					break;
+			case 0x08	:	
+					button = BUTTON_RIGHT;
+					break;
+			default:	
+					button = BUTTON_NONE;
+					break;
+		}
+		
+    // Clear the interrupt status on PF0
+    gpioPort->ICR |= 0x01;
+    
+}
