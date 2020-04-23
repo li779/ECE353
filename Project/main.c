@@ -22,6 +22,7 @@
 
 #include "main.h"
 
+volatile bool BUTTON_PRESSED = false;
 
 //*****************************************************************************
 //*****************************************************************************
@@ -41,6 +42,17 @@ void EnableInterrupts(void)
   }
 }
 
+//*****************************************************************************
+//*****************************************************************************
+
+void delay(int cnt)
+{
+	int i;
+	for(i = 0; i < cnt * 7000; i++)
+	{}
+	return;
+}
+
 
 //*****************************************************************************
 //*****************************************************************************
@@ -56,18 +68,13 @@ main(void)
 	
 		init_serial_debug(true, true);
 		io_expander_init();
-		
-	
+
 		printf("ECE 353 Final Project\nYichen Li and Marvin Zhang\n");
 	
 		EnableInterrupts();
-	
-	
-    
-		set_io_expander_GPIO();
 		
 		io_expander_write_reg(MCP23017_GPIOA_R, 0xFF);
-		io_expander_read_reg(MCP23017_GPIOB_R, data);
+		//io_expander_read_reg(MCP23017_GPIOB_R, data);
 		
 		while(1)
 		{
@@ -80,32 +87,42 @@ main(void)
 				
 			
 				//printf("data: %d",data);
-				
-				printf("Command Count: %d\n\r", cmd_cnt);
-				while(i < 5000000){i++;}
-				i = 0;
-				cmd_cnt++;
-				io_expander_write_reg(MCP23017_GPIOA_R, cmd_cnt);
-				
-				button = get_button_status();
-				
-				switch(button)
+			
+				if(BUTTON_PRESSED)
 				{
-					case BUTTON_UP	:
-						printf("Button UP pressed!");
-						break;
-					case BUTTON_DOWN	:	
-						printf("Button DOWN pressed!");
-						break;
-					case BUTTON_LEFT	:	
-						printf("Button LEFT pressed!");
-						break;
-					case BUTTON_RIGHT	:	
-						printf("Button RIGHT pressed!");
-						break;
-					case BUTTON_NONE	:	
-						printf("Button NONE pressed!");
-						break;
+					printf("Command Count: %d\n\r", cmd_cnt);
+
+					cmd_cnt++;
+				
+					io_expander_write_reg(MCP23017_GPIOA_R, cmd_cnt);
+					
+					button = get_button_status();
+					
+					switch(button)
+					{
+						case BUTTON_UP	:
+							printf("Button UP pressed!\n");
+							break;
+						case BUTTON_DOWN	:	
+							printf("Button DOWN pressed!\n");
+							break;
+						case BUTTON_LEFT	:	
+							printf("Button LEFT pressed!\n");
+							break;
+						case BUTTON_RIGHT	:	
+							printf("Button RIGHT pressed!\n");
+							break;
+						case BUTTON_NONE	:	
+							printf("No Button pressed!\n");
+							break;
+					}
+					
+					BUTTON_PRESSED = false;
+				}
+				else
+				{
+					printf("No Button pressed!\n");
+					delay(1000);
 				}
 		}
     while(1){};

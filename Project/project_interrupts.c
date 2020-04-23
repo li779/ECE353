@@ -25,7 +25,9 @@
 #include "i2c.h"
 #include "project_interrupts.h"
 
-static volatile BUTTON_t button = BUTTON_NONE;
+BUTTON_t button = BUTTON_NONE;
+
+uint8_t data;
 
 BUTTON_t get_button_status()
 {
@@ -35,24 +37,34 @@ BUTTON_t get_button_status()
 // Note: PF0 for io_expander GPIOB_R interrupt
 void GPIOF_Handler(void)
 {
-		GPIOA_Type  *gpioPort;
-		uint8_t * data;
-		gpioPort = (GPIOA_Type *)IO_EXPANDER_IRQ_GPIO_BASE;
+		// Read from MCP23017
+		io_expander_read_reg(MCP23017_GPIOB_R, &data);
 	
-		// Read from MCP23017, it will auto clear its own interrupt status
-		io_expander_read_reg(MCP23017_INTCAPB_R, data);
-		switch((*data & 0x0F))
+		// Assert button_pressed flag only if flag has been de-asserted
+		if(BUTTON_PRESSED)
 		{
-			case 0x01	:
+			GPIOF->ICR |= 0xFF;
+			return;
+		}
+			
+		else
+		{
+			if((data & 0x0F) != 0x0F)
+				BUTTON_PRESSED = true;
+		}
+	
+		switch((data & 0x0F))
+		{
+			case 0x0E	:
 					button = BUTTON_UP;
 					break;
-			case 0x02	:
+			case 0x0D	:
 					button = BUTTON_DOWN;
 					break;
-			case 0x04	:
+			case 0x0B	:
 					button = BUTTON_LEFT;
 					break;
-			case 0x08	:	
+			case 0x07	:	
 					button = BUTTON_RIGHT;
 					break;
 			default:	
@@ -60,7 +72,12 @@ void GPIOF_Handler(void)
 					break;
 		}
 		
+		printf("Data received: %X \n", data);
+		
     // Clear the interrupt status on PF0
-    gpioPort->ICR |= 0x01;
+    GPIOF->ICR |= 0xFF;
+		
+		// Clear the interrupt status on MCP23017
+		//io_expander_read_reg(MCP23017_GPIOB_R, data);
     
 }

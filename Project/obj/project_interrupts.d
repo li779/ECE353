@@ -30,3 +30,4 @@
 .\obj\project_interrupts.o: project_interrupts.h
 .\obj\project_interrupts.o: main.h
 .\obj\project_interrupts.o: project_hardware_init.h
+.\obj\project_interrupts.o: main.h

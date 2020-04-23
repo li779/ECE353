@@ -41,3 +41,6 @@
 #include "project_hardware_init.h"
 #endif
 
+extern volatile bool BUTTON_PRESSED;
+
+extern void delay(int cnt);
