@@ -30,9 +30,9 @@
 .\obj\project_hardware_init.o: ..\drivers\include\i2c.h
 .\obj\project_hardware_init.o: images.h
 .\obj\project_hardware_init.o: game.h
+.\obj\project_hardware_init.o: map.h
 .\obj\project_hardware_init.o: project_interrupts.h
 .\obj\project_hardware_init.o: main.h
-.\obj\project_hardware_init.o: game.h
 .\obj\project_hardware_init.o: staff.h
 .\obj\project_hardware_init.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 .\obj\project_hardware_init.o: project_interrupts.h

@@ -1,5 +1,7 @@
+#include <stdint.h>
+
 #include "map.h"
-#include ""
+#include "lcd.h"
 
 const uint8_t wall_tileBitmaps[] =
 {
@@ -74,24 +76,25 @@ const uint8_t Sevastopol[] =
     1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0
 };
 
-void drawMap(uint8_t[] map)
+void drawMap(const uint8_t map[])
 {
 	int i, j, x, y;
-	ite = 0;
-	x =10, y =10;
-
+	x =15, y =15;
+	
+	lcd_draw_image(x, wall_tileWidthPixels, y, wall_tileHeightPixels, wall_tileBitmaps, 0xFFFF, 0x0000);
+	/*
 	for (i = 0; i < 15; i++)
 	{
 		for (j = 0; j < 12; j++)
 		{
 			if (map[i * 12 + j] == 1)
 			{
-				lcd_draw_image(x, wall_tileWidthPixels, y, wall_tileHeightPixels, map, 0x0880, 0x0000);
+				lcd_draw_image(x, wall_tileWidthPixels, y, wall_tileHeightPixels, wall_tileBitmaps, 0xFFFF, 0x0000);
 			}
 			x += 20;
 		}
 		y += 20;
-	}
+	}*/
 
     return;
 }

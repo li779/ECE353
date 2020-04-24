@@ -24,16 +24,4 @@
 .\obj\game.o: images.h
 .\obj\game.o: ..\peripherals\include\io_expander.h
 .\obj\game.o: ..\drivers\include\i2c.h
-.\obj\game.o: project_interrupts.h
-.\obj\game.o: main.h
-.\obj\game.o: ..\peripherals\include\serial_debug.h
-.\obj\game.o: ..\drivers\include\pc_buffer.h
-.\obj\game.o: ..\drivers\include\uart.h
-.\obj\game.o: ..\peripherals\include\lcd_images.h
-.\obj\game.o: ..\peripherals\include\launchpad_io.h
-.\obj\game.o: game.h
-.\obj\game.o: project_interrupts.h
-.\obj\game.o: project_hardware_init.h
-.\obj\game.o: main.h
-.\obj\game.o: staff.h
-.\obj\game.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\obj\game.o: map.h

@@ -30,9 +30,9 @@
 .\obj\main.o: ..\drivers\include\i2c.h
 .\obj\main.o: images.h
 .\obj\main.o: game.h
+.\obj\main.o: map.h
 .\obj\main.o: project_interrupts.h
 .\obj\main.o: main.h
-.\obj\main.o: game.h
 .\obj\main.o: staff.h
 .\obj\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 .\obj\main.o: project_interrupts.h

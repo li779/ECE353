@@ -24,26 +24,26 @@
 
 void hardwareInit(void)
 {
-		DisableInterrupts();
+	DisableInterrupts();
 	
-		// LCD initialization 
-		lcd_config_gpio();
-		lcd_config_screen();
-		lcd_clear_screen(LCD_COLOR_BLACK);
+	// Enable UART
+	init_serial_debug(true, true);
 		
-		// PS2 joystick initialization
-		ps2_initialize();
+	// LCD initialization 
+	lcd_config_gpio();
+	lcd_config_screen();
+	lcd_clear_screen(LCD_COLOR_BLACK);
 		
-		// IO expander initialization
-		io_expander_init();
+	// PS2 joystick initialization
+	ps2_initialize();
 		
-		// Set timers
-		gp_timer_config_32(TIMER2_BASE,TIMER_TAMR_TAMR_PERIOD, 1000000, false, true);
-		gp_timer_config_32(TIMER3_BASE,TIMER_TAMR_TAMR_PERIOD, 1000000, false, true);
-		gp_timer_config_32(TIMER4_BASE,TIMER_TAMR_TAMR_PERIOD, 50000, false, true);
+	// IO expander initialization
+	io_expander_init();
 		
-		// Enable UART
-		init_serial_debug(true, true);
+	// Set timers
+	gp_timer_config_32(TIMER2_BASE,TIMER_TAMR_TAMR_PERIOD, 1000000, false, true);
+	gp_timer_config_32(TIMER3_BASE,TIMER_TAMR_TAMR_PERIOD, 1000000, false, true);
+	gp_timer_config_32(TIMER4_BASE,TIMER_TAMR_TAMR_PERIOD, 50000, false, true);
 	
-		EnableInterrupts();
+	EnableInterrupts();
 }

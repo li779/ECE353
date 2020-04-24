@@ -13,7 +13,7 @@
 #include "timers.h"
 #include "images.h"
 #include "io_expander.h"
-//#include "project_interrupts.h"
+#include "map.h"
 
 typedef enum{
   PS2_DIR_UP,
@@ -32,8 +32,6 @@ typedef enum BUTTON_t{
 	BUTTON_NONE
 } BUTTON_t;
 
-
-
 typedef struct 
 {
 	PS2_DIR_t dir;
@@ -43,6 +41,14 @@ typedef struct
 	uint8_t width;
 	uint8_t height;
 } tanks;
+
+typedef struct
+{
+    PS2_DIR_t dir;
+	uint16_t x;
+	uint16_t y;
+    bool player;
+} bullet;
 
 extern void initialize_serial_debug(void);
 extern void put_string(char *data);

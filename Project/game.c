@@ -230,7 +230,12 @@ void game(void)
 		enermy[index]->height = easytank_downHeightPixels;
 		enermy[index]->width = easytank_downWidthPixels;
 	}
-
+	
+	printf("Drawing map...\n");
+	// Map Test
+	drawMap(Sevastopol);
+	while (true){};
+	
 	while(true)
 	{	
 	//				put_string("player statistics\n\r");
