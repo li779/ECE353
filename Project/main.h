@@ -43,6 +43,6 @@
 #include "project_hardware_init.h"
 #endif
 
-extern volatile bool BUTTON_PRESSED;
+extern bool RESTART;
 
 extern void delay(int cnt);

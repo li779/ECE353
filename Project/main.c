@@ -62,68 +62,24 @@ main(void)
 		uint8_t *data = (uint8_t *)malloc(sizeof(uint8_t));
 		int i = 0;
 		uint8_t cmd_cnt = 0;
-		BUTTON_t button = BUTTON_NONE;
 	
-		DisableInterrupts();
+		RESTART = true;		// For 1st-time
 	
-		init_serial_debug(true, true);
-		
-		printf("ECE 353 Final Project\nYichen Li and Marvin Zhang\n");
-
-	
-		EnableInterrupts();
-			hw3_main();
-		//io_expander_write_reg(MCP23017_GPIOA_R, 0xFF);
-		//io_expander_read_reg(MCP23017_GPIOB_R, data);
-		
 		while(1)
 		{
-				/*printf("Command Count: %d\n\r", cmd_cnt);
-				printf("data: 0x%X\n\r", *data);
-				while(i < 5000000){i++;}
-				i = 0;
-				cmd_cnt++;
-				io_expander_write_reg(MCP23017_GPIOA_R, cmd_cnt);*/
+			if(RESTART)
+			{
+				RESTART = false;
+		
+				DisableInterrupts();
+			
+				init_serial_debug(true, true);
 				
-			
-				//printf("data: %d",data);
-			
-				if(BUTTON_PRESSED)
-				{
-					printf("Command Count: %d\n\r", cmd_cnt);
+				printf("ECE 353 Final Project\nYichen Li and Marvin Zhang\n");
 
-					cmd_cnt++;
-				
-					io_expander_write_reg(MCP23017_GPIOA_R, cmd_cnt);
-					
-					button = get_button_status();
-					
-					switch(button)
-					{
-						case BUTTON_UP	:
-							printf("Button UP pressed!\n");
-							break;
-						case BUTTON_DOWN	:	
-							printf("Button DOWN pressed!\n");
-							break;
-						case BUTTON_LEFT	:	
-							printf("Button LEFT pressed!\n");
-							break;
-						case BUTTON_RIGHT	:	
-							printf("Button RIGHT pressed!\n");
-							break;
-						case BUTTON_NONE	:	
-							printf("No Button pressed!\n");
-							break;
-					}
-					
-					BUTTON_PRESSED = false;
-				}
-				else
-				{
-					printf("No Button pressed!\n");
-					delay(1000);
-				}
+			
+				EnableInterrupts();
+				game();
+			}
 		}
-    while(1){};
 }
