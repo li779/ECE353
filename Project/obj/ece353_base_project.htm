@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\obj\ece353_base_project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\obj\ece353_base_project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Fri Apr 24 16:53:40 2020
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Fri Apr 24 18:43:28 2020
 <BR><P>
 <H3>Maximum Stack Usage =        160 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -293,7 +293,7 @@ Global Symbols
 <P><STRONG><a name="[e6]"></a>delay</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, main.o(.text), UNUSED)
 
 <P><STRONG><a name="[76]"></a>main</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = main &rArr; game &rArr; drawMap &rArr; lcd_draw_image &rArr; lcd_set_pos &rArr; lcd_write_data_u16
+<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = main &rArr; game &rArr; drawMap &rArr; lcd_draw_image &rArr; lcd_set_pos &rArr; lcd_write_data_u16
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;hardwareInit
 <LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game
@@ -405,7 +405,7 @@ Global Symbols
 <P><STRONG><a name="[ea]"></a>check_shot_on_target</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, game.o(.text), UNUSED)
 
 <P><STRONG><a name="[80]"></a>game</STRONG> (Thumb, 242 bytes, Stack size 0 bytes, game.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = game &rArr; drawMap &rArr; lcd_draw_image &rArr; lcd_set_pos &rArr; lcd_write_data_u16
+<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = game &rArr; drawMap &rArr; lcd_draw_image &rArr; lcd_set_pos &rArr; lcd_write_data_u16
 </UL>
 <BR>[Calls]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawMap
 <LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
@@ -436,8 +436,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER3A_Handler
 </UL>
 
-<P><STRONG><a name="[96]"></a>drawMap</STRONG> (Thumb, 36 bytes, Stack size 32 bytes, map.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = drawMap &rArr; lcd_draw_image &rArr; lcd_set_pos &rArr; lcd_write_data_u16
+<P><STRONG><a name="[96]"></a>drawMap</STRONG> (Thumb, 84 bytes, Stack size 40 bytes, map.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = drawMap &rArr; lcd_draw_image &rArr; lcd_set_pos &rArr; lcd_write_data_u16
 </UL>
 <BR>[Calls]<UL><LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_image
 </UL>
@@ -479,7 +479,6 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_base_addr
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initialize_adc_gpio_pins
-<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_init
 </UL>
 
 <P><STRONG><a name="[9f]"></a>gpio_config_enable_pullup</STRONG> (Thumb, 34 bytes, Stack size 16 bytes, gpio_port.o(.text))
@@ -488,7 +487,6 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_base_addr
 </UL>
 <BR>[Called By]<UL><LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_config_gpio
-<LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_init
 </UL>
 
 <P><STRONG><a name="[a0]"></a>gpio_config_enable_pulldown</STRONG> (Thumb, 34 bytes, Stack size 16 bytes, gpio_port.o(.text), UNUSED)
@@ -530,12 +528,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_init
 </UL>
 
-<P><STRONG><a name="[a5]"></a>gpio_config_falling_edge_irq</STRONG> (Thumb, 56 bytes, Stack size 16 bytes, gpio_port.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = gpio_config_falling_edge_irq
-</UL>
-<BR>[Calls]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_base_addr
-</UL>
-<BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_init
+<P><STRONG><a name="[a5]"></a>gpio_config_falling_edge_irq</STRONG> (Thumb, 56 bytes, Stack size 16 bytes, gpio_port.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_base_addr
 </UL>
 
 <P><STRONG><a name="[a6]"></a>gpio_config_rising_edge_irq</STRONG> (Thumb, 62 bytes, Stack size 16 bytes, gpio_port.o(.text), UNUSED)
@@ -910,16 +904,13 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_init
 </UL>
 
-<P><STRONG><a name="[87]"></a>io_expander_init</STRONG> (Thumb, 226 bytes, Stack size 8 bytes, io_expander.o(.text))
+<P><STRONG><a name="[87]"></a>io_expander_init</STRONG> (Thumb, 118 bytes, Stack size 8 bytes, io_expander.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = io_expander_init &rArr; set_io_expander_GPIO &rArr; io_expander_write_reg &rArr; i2cSendByte &rArr; I2CMasterBusy
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initializeI2CMaster
-<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_falling_edge_irq
 <LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_open_drain
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_port_control
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_alternate_function
-<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_enable_pullup
-<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_enable_input
 <LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_digital_enable
 <LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_enable_port
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_io_expander_GPIO

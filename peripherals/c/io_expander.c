@@ -19,15 +19,15 @@ bool io_expander_init(void)
 			gpio_enable_port(IO_EXPANDER_IRQ_GPIO_BASE);
 			
 			// Configure PF0 - used to detect GPIOB_reg interrupt
-			gpio_config_digital_enable(IO_EXPANDER_IRQ_GPIO_BASE, IO_EXPANDER_IRQ_PIN_NUM);
-			gpio_config_enable_input(IO_EXPANDER_IRQ_GPIO_BASE, IO_EXPANDER_IRQ_PIN_NUM);
-			gpio_config_enable_pullup(IO_EXPANDER_IRQ_GPIO_BASE, IO_EXPANDER_IRQ_PIN_NUM);
-			gpio_config_falling_edge_irq(IO_EXPANDER_IRQ_GPIO_BASE, IO_EXPANDER_IRQ_PIN_NUM);
+//			gpio_config_digital_enable(IO_EXPANDER_IRQ_GPIO_BASE, IO_EXPANDER_IRQ_PIN_NUM);
+//			gpio_config_enable_input(IO_EXPANDER_IRQ_GPIO_BASE, IO_EXPANDER_IRQ_PIN_NUM);
+//			gpio_config_enable_pullup(IO_EXPANDER_IRQ_GPIO_BASE, IO_EXPANDER_IRQ_PIN_NUM);
+//			gpio_config_falling_edge_irq(IO_EXPANDER_IRQ_GPIO_BASE, IO_EXPANDER_IRQ_PIN_NUM);
 
-			GPIOF -> ICR = 0x01;
-	
-			NVIC_SetPriority(GPIOF_IRQn, 1);
-			NVIC_EnableIRQ(GPIOF_IRQn);
+//			GPIOF -> ICR = 0x01;
+//	
+//			NVIC_SetPriority(GPIOF_IRQn, 1);
+//			NVIC_EnableIRQ(GPIOF_IRQn);
 
       //  Initialize the I2C peripheral
       if( initializeI2CMaster(IO_EXPANDER_I2C_BASE)!= I2C_OK)
