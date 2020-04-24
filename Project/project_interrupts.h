@@ -19,15 +19,23 @@
 // WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING 
 // NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, 
 // EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-#ifndef __INTERRUPTS_H__
-#define __INTERRUPTS_H__
+#ifndef __PROJECT_INTERRUPTS_H__
+#define __PROJECT_INTERRUPTS_H__
 
 #include "main.h"
-
+#include "game.h"
 #include "io_expander.h"
+#include "i2c.h"
+#include "staff.h"
 
-typedef enum BUTTON_t{BUTTON_LEFT, BUTTON_RIGHT, BUTTON_UP, BUTTON_DOWN, BUTTON_NONE} BUTTON_t;
+typedef enum BUTTON_t{
+	BUTTON_LEFT, 
+	BUTTON_RIGHT, 
+	BUTTON_UP, 
+	BUTTON_DOWN, 
+	BUTTON_NONE
+} BUTTON_t;
 
-BUTTON_t get_button_status();
+extern volatile BUTTON_t button;
 
 #endif

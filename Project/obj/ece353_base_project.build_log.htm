@@ -29,40 +29,17 @@ Project File Date:  04/24/2020
 Rebuild target 'Project-F19'
 compiling images.c...
 compiling pc_buffer.c...
-compiling launchpad_io.c...
-compiling ft6x06.c...
-compiling gpio_port.c...
-..\drivers\c\gpio_port.c(82): warning:  #188-D: enumerated type mixed with another type
-         return 0;
-..\drivers\c\gpio_port.c: 1 warning, 0 errors
-compiling i2c.c...
-compiling uart.c...
-..\drivers\c\uart.c(184): warning:  #188-D: enumerated type mixed with another type
-         return 0;
-..\drivers\c\uart.c: 1 warning, 0 errors
-compiling eeprom.c...
-compiling timers.c...
-..\drivers\c\timers.c(60): warning:  #188-D: enumerated type mixed with another type
-         return 0;
-..\drivers\c\timers.c: 1 warning, 0 errors
-compiling main.c...
-project_interrupts.h(31): warning:  #1295-D: Deprecated declaration get_button_status - give arg types
-  BUTTON_t get_button_status();
-main.c(128): warning:  #128-D: loop is not reachable
-      while(1){};
-main.c(63): warning:  #177-D: variable "i"  was declared but never referenced
-  		int i = 0;
-main.c: 3 warnings, 0 errors
-compiling staff.c...
-staff.c(34): warning:  #188-D: enumerated type mixed with another type
-  		new_direction = (curr_direction+1)%4;
-staff.c(6): warning:  #177-D: variable "MOV_DIR"  was declared but never referenced
-  static const PS2_DIR_t  MOV_DIR[] = {PS2_DIR_UP, PS2_DIR_DOWN, PS2_DIR_LEFT, PS2_DIR_RIGHT};
-staff.c: 2 warnings, 0 errors
+compiling map.c...
+map.c(2): error:  #13: expected a file name
+  #include ""
+map.c: 0 warnings, 1 error
 compiling project_hardware_init.c...
-project_interrupts.h(31): warning:  #1295-D: Deprecated declaration get_button_status - give arg types
-  BUTTON_t get_button_status();
-project_hardware_init.c: 1 warning, 0 errors
+staff.h(28): error:  #20: identifier "PS2_DIR_t" is undefined
+  PS2_DIR_t get_new_direction(bool* bump, int tank_index, PS2_DIR_t curr_direction);
+staff.h(28): error:  #20: identifier "PS2_DIR_t" is undefined
+  PS2_DIR_t get_new_direction(bool* bump, int tank_index, PS2_DIR_t curr_direction);
+project_hardware_init.c: 0 warnings, 2 errors
+compiling i2c.c...
 compiling adc.c...
 ..\drivers\c\adc.c(54): warning:  #188-D: enumerated type mixed with another type
          return ADC0SS0_IRQn + ss_num;
@@ -73,40 +50,61 @@ compiling adc.c...
 ..\drivers\c\adc.c(29): warning:  #177-D: function "verify_base_addr"  was declared but never referenced
   static bool verify_base_addr(uint32_t baseAddr)
 ..\drivers\c\adc.c: 4 warnings, 0 errors
+compiling uart.c...
+..\drivers\c\uart.c(184): warning:  #188-D: enumerated type mixed with another type
+         return 0;
+..\drivers\c\uart.c: 1 warning, 0 errors
+compiling timers.c...
+..\drivers\c\timers.c(60): warning:  #188-D: enumerated type mixed with another type
+         return 0;
+..\drivers\c\timers.c: 1 warning, 0 errors
+compiling gpio_port.c...
+..\drivers\c\gpio_port.c(82): warning:  #188-D: enumerated type mixed with another type
+         return 0;
+..\drivers\c\gpio_port.c: 1 warning, 0 errors
+compiling ft6x06.c...
+compiling eeprom.c...
+compiling main.c...
+staff.h(28): error:  #20: identifier "PS2_DIR_t" is undefined
+  PS2_DIR_t get_new_direction(bool* bump, int tank_index, PS2_DIR_t curr_direction);
+staff.h(28): error:  #20: identifier "PS2_DIR_t" is undefined
+  PS2_DIR_t get_new_direction(bool* bump, int tank_index, PS2_DIR_t curr_direction);
+main.c: 0 warnings, 2 errors
 compiling game.c...
-game.c(206): warning:  #940-D: missing return statement at end of non-void function "check_shot_on_target" 
+staff.h(28): error:  #20: identifier "PS2_DIR_t" is undefined
+  PS2_DIR_t get_new_direction(bool* bump, int tank_index, PS2_DIR_t curr_direction);
+staff.h(28): error:  #20: identifier "PS2_DIR_t" is undefined
+  PS2_DIR_t get_new_direction(bool* bump, int tank_index, PS2_DIR_t curr_direction);
+game.c(204): warning:  #940-D: missing return statement at end of non-void function "check_shot_on_target" 
   }
-game.c(230): warning:  #177-D: variable "data"  was declared but never referenced
-  		char data[80];
-game.c(232): warning:  #177-D: variable "game_over"  was declared but never referenced
-      bool game_over = false;
-game.c: 3 warnings, 0 errors
-compiling project_interrupts.c...
-project_interrupts.h(31): warning:  #1295-D: Deprecated declaration get_button_status - give arg types
-  BUTTON_t get_button_status();
-project_interrupts.c(136): warning:  #177-D: variable "data"  was declared but never referenced
+game.c(211): warning:  #177-D: variable "data"  was declared but never referenced
   	char data[80];
-project_interrupts.c: 2 warnings, 0 errors
+game.c(213): warning:  #177-D: variable "game_over"  was declared but never referenced
+  	bool game_over = false;
+game.c: 3 warnings, 2 errors
+compiling launchpad_io.c...
+compiling project_interrupts.c...
+project_interrupts.c(129): warning:  #177-D: variable "data"  was declared but never referenced
+  	char data[80];
+project_interrupts.c: 1 warning, 0 errors
+compiling staff.c...
+staff.c(34): warning:  #188-D: enumerated type mixed with another type
+  		new_direction = (curr_direction+1)%4;
+staff.c(6): warning:  #177-D: variable "MOV_DIR"  was declared but never referenced
+  static const PS2_DIR_t  MOV_DIR[] = {PS2_DIR_UP, PS2_DIR_DOWN, PS2_DIR_LEFT, PS2_DIR_RIGHT};
+staff.c: 2 warnings, 0 errors
 compiling ps2.c...
-assembling startup_TM4C123.s...
 compiling lcd.c...
-compiling serial_debug.c...
+assembling startup_TM4C123.s...
+compiling system_TM4C123.c...
 compiling io_expander.c...
 ..\peripherals\c\io_expander.c(61): warning:  #550-D: variable "status"  was set but never used
       i2c_status_t status;
 ..\peripherals\c\io_expander.c(76): warning:  #550-D: variable "status"  was set but never used
       i2c_status_t status;
 ..\peripherals\c\io_expander.c: 2 warnings, 0 errors
-compiling system_TM4C123.c...
-linking...
-.\obj\ece353_base_project.axf: Error: L6200E: Symbol BUTTON_PRESSED multiply defined (by project_hardware_init.o and main.o).
-.\obj\ece353_base_project.axf: Error: L6200E: Symbol BUTTON_PRESSED multiply defined (by project_interrupts.o and main.o).
-.\obj\ece353_base_project.axf: Error: L6200E: Symbol BUTTON_PRESSED multiply defined (by game.o and main.o).
-.\obj\ece353_base_project.axf: Error: L6200E: Symbol BUTTON_PRESSED multiply defined (by staff.o and main.o).
-Not enough information to list image symbols.
-Not enough information to list load addresses in the image map.
-Finished: 2 information, 0 warning and 4 error messages.
-".\obj\ece353_base_project.axf" - 4 Error(s), 20 Warning(s).
+compiling serial_debug.c...
+".\obj\ece353_base_project.axf" - 7 Error(s), 15 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -132,11 +130,11 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.3.0
 
    * Component: Keil::Device:Startup:1.0.1
-      Source file:   Device\Source\system_TM4C123.c
       Include file:  Device\Include\TM4C123\TM4C123.h
       Source file:   Device\Source\ARM\startup_TM4C123.s
+      Source file:   Device\Source\system_TM4C123.c
 Target not created.
-Build Time Elapsed:  00:00:04
+Build Time Elapsed:  00:00:06
 </pre>
 </body>
 </html>

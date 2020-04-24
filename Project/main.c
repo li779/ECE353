@@ -21,8 +21,9 @@
 // EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "main.h"
+#include "game.h"
 
-
+volatile bool RESTART;
 
 //*****************************************************************************
 //*****************************************************************************
@@ -59,27 +60,20 @@ void delay(int cnt)
 int 
 main(void)
 {
-		uint8_t *data = (uint8_t *)malloc(sizeof(uint8_t));
-		int i = 0;
-		uint8_t cmd_cnt = 0;
+	uint8_t *data = (uint8_t *)malloc(sizeof(uint8_t));
 	
-		RESTART = true;		// For 1st-time
+	RESTART = true;		// For 1st-time
 	
-		while(1)
+	hardwareInit();		// Initialize all hardware
+	
+	printf("======ECE 353 Final Project=======\nBy: Yichen Li and Marvin Zhang\n");
+	
+	while(1)
+	{
+		if(RESTART)
 		{
-			if(RESTART)
-			{
-				RESTART = false;
-		
-				DisableInterrupts();
-			
-				init_serial_debug(true, true);
-				
-				printf("ECE 353 Final Project\nYichen Li and Marvin Zhang\n");
-
-			
-				EnableInterrupts();
-				game();
-			}
+			RESTART = false;
+			game();
 		}
+	}
 }

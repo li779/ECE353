@@ -20,28 +20,20 @@
 // NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, 
 // EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#include "main.h"
-#include "io_expander.h"
-#include "i2c.h"
 #include "project_interrupts.h"
+
 static volatile uint16_t PS2_X_DATA = 0;
 static volatile uint16_t PS2_Y_DATA = 0;
 static volatile uint16_t MOVE_COUNT [10];
 static volatile PS2_DIR_t SHIP_DIRECTION = PS2_DIR_CENTER;
 static bool bump [10];
 
-
-BUTTON_t button = BUTTON_NONE;
+volatile BUTTON_t button = BUTTON_NONE;
 
 uint8_t data;
 
-BUTTON_t get_button_status()
-{
-	return button;
-}
-
-// Note: PF0 for io_expander GPIOB_R interrupt
-void GPIOF_Handler(void)
+// PF0 Interrupt 	Note: Deprecated for the final project
+/*void GPIOF_Handler(void)
 {
 		// Read from MCP23017
 		io_expander_read_reg(MCP23017_GPIOB_R, &data);
@@ -86,7 +78,8 @@ void GPIOF_Handler(void)
 		// Clear the interrupt status on MCP23017
 		//io_expander_read_reg(MCP23017_GPIOB_R, data);
     
-}
+}*/
+
 //*****************************************************************************
 // Returns the most current direction that was pressed.
 //*****************************************************************************
@@ -139,7 +132,7 @@ void TIMER3A_Handler(void)
     if (MOVE_COUNT[index] == 0)   // if moved, then look for new values
     {
         MOVE_COUNT[index] = get_new_move_count();
-//        SHIP_DIRECTION = get_new_direction(SHIP_DIRECTION);
+		//        SHIP_DIRECTION = get_new_direction(SHIP_DIRECTION);
 			
     }
 		set_dir(enermy[index],get_new_direction(&bump[index],index,enermy[index]->dir));
@@ -172,11 +165,39 @@ void TIMER3A_Handler(void)
 }
 
 //*****************************************************************************
-// TIMER4 ISR is used to trigger the ADC
+// TIMER4 ISR is used to trigger the ADC and read button value
 //*****************************************************************************
 void TIMER4A_Handler(void)
 {	
     ADC0->PSSI |= ADC_PSSI_SS2;
+	
+	// Read Button Data
+	BUTTON_PRESSED = false;
+	io_expander_read_reg(MCP23017_GPIOB_R, &data);
+	switch((data & 0x0F))
+	{
+		case 0x0E	:
+			button = BUTTON_UP;
+			break;
+		case 0x0D	:
+			button = BUTTON_DOWN;
+			break;
+		case 0x0B	:
+			button = BUTTON_LEFT;
+			break;
+		case 0x07	:	
+			button = BUTTON_RIGHT;
+			break;
+		default:	
+			button = BUTTON_NONE;
+			break;
+	}
+	
+	if(button != BUTTON_NONE)
+	{
+		BUTTON_PRESSED = true;
+	}
+	
 	// Clear the interrupt
     TIMER4->ICR |= TIMER_ICR_TATOCINT;
 }

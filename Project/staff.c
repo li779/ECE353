@@ -1,5 +1,5 @@
-#include "game.h"
 #include "staff.h"
+#include "game.h"
 
 static const uint16_t START_STATE = 0xACE7u;
 static const uint16_t   MOVE_AMOUNT[] = {25, 50, 75, 100, 125, 150, 175, 200};
@@ -65,7 +65,3 @@ uint16_t get_new_move_count(void)
 
 extern void initialize_serial_debug(void);
 extern void put_string(char *data);
-
-//*****************************************************************************
-// Validates HW3 
-//*****************************************************************************

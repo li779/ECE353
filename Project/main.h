@@ -37,12 +37,11 @@
 #include "launchpad_io.h"
 #include "io_expander.h"
 #include "images.h"
-#include "staff.h"
 #include "game.h"
 #include "project_interrupts.h"
 #include "project_hardware_init.h"
-#endif
 
-extern bool RESTART;
-
+extern volatile bool RESTART;
 extern void delay(int cnt);
+
+#endif

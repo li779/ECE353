@@ -245,7 +245,7 @@ const uint8_t easytank_leftHeightPixels = 38;
 //  Image data for panzer_II
 // 
 
-const uint8_t panzer_II_upBitmaps =
+const uint8_t panzer_II_upBitmaps[] =
 {
 	0x00, 0x00, 0x00, //                     
 	0x00, 0x60, 0x00, //          ##         
@@ -277,7 +277,7 @@ const uint8_t panzer_II_upHeightPixels = 20;
 //  Image data for panzer_II
 // 
 
-const uint8_t panzer_II_downBitmaps =
+const uint8_t panzer_II_downBitmaps[] =
 {
 	0x00, 0x00, 0x00, //                     
 	0x00, 0x00, 0x00, //                     
@@ -309,7 +309,7 @@ const uint8_t panzer_II_downHeightPixels = 20;
 //  Image data for panzer_II_right
 // 
 
-const uint8_t panzer_II_rightBitmaps =
+const uint8_t panzer_II_rightBitmaps[] =
 {
 	0x00, 0x00, 0x00, //                     
 	0x00, 0x00, 0x00, //                     
@@ -341,7 +341,7 @@ const uint8_t panzer_II_rightHeightPixels = 20;
 //  Image data for panzer_II_right
 // 
 
-const uint8_t panzer_II_leftBitmaps =
+const uint8_t panzer_II_leftBitmaps[] =
 {
 	0x00, 0x00, 0x00, //                     
 	0x00, 0x00, 0x00, //                     
@@ -369,11 +369,267 @@ const uint8_t panzer_II_leftBitmaps =
 const uint8_t panzer_II_leftWidthPixels = 20;
 const uint8_t panzer_II_leftHeightPixels = 20;
 
+/* 
+**  Image data for panzer_IV_up
+*/
+
+const uint8_t panzer_IV_upBitmaps[] =
+{
+	0x00, 0x00, 0x00, //                     
+	0x00, 0x60, 0x00, //          ##         
+	0x00, 0x60, 0x00, //          ##         
+	0x00, 0x60, 0x00, //          ##         
+	0x1C, 0x63, 0x80, //    ###   ##   ###   
+	0x17, 0xFE, 0x80, //    # ########## #   
+	0x1C, 0x63, 0x80, //    ###   ##   ###   
+	0x14, 0x62, 0x80, //    # #   ##   # #   
+	0x19, 0xFB, 0x80, //    ##  ###### ###   
+	0x15, 0x0A, 0x80, //    # # #    # # #   
+	0x1D, 0x0B, 0x80, //    ### #    # ###   
+	0x15, 0x4A, 0x80, //    # # # #  # # #   
+	0x1D, 0x0B, 0x80, //    ### #    # ###   
+	0x10, 0x12, 0x80, //    #       #  # #   
+	0x18, 0x03, 0x80, //    ##         ###   
+	0x17, 0xFE, 0x80, //    # ########## #   
+	0x1C, 0x03, 0x80, //    ###        ###   
+	0x00, 0x00, 0x00, //                     
+	0x00, 0x00, 0x00, //                     
+	0x00, 0x00, 0x00, //                     
+};
+
+/* Bitmap sizes for panzer_IV_up */
+const uint8_t panzer_IV_upWidthPixels = 20;
+const uint8_t panzer_IV_upHeightPixels = 20;
+
+/* 
+**  Image data for panzer_IV_right
+*/
+
+const uint8_t panzer_IV_rightBitmaps[] =
+{
+	0x00, 0x00, 0x00, //                     
+	0x00, 0x00, 0x00, //                     
+	0x00, 0x00, 0x00, //                     
+	0x1F, 0xFF, 0x00, //    #############    
+	0x15, 0x55, 0x00, //    # # # # # # #    
+	0x19, 0xEF, 0x00, //    ##  #### ####    
+	0x08, 0x02, 0x00, //     #         #     
+	0x09, 0xF2, 0x00, //     #  #####  #     
+	0x08, 0x12, 0x00, //     #      #  #     
+	0x08, 0x9F, 0xE0, //     #   #  ######## 
+	0x08, 0x1F, 0xE0, //     #      ######## 
+	0x0A, 0x12, 0x00, //     # #    #  #     
+	0x09, 0xF2, 0x00, //     #  #####  #     
+	0x08, 0x02, 0x00, //     #         #     
+	0x1F, 0xFF, 0x00, //    #############    
+	0x15, 0x55, 0x00, //    # # # # # # #    
+	0x1F, 0xFF, 0x00, //    #############    
+	0x00, 0x00, 0x00, //                     
+	0x00, 0x00, 0x00, //                     
+	0x00, 0x00, 0x00, //                     
+};
+
+/* Bitmap sizes for panzer_IV_right */
+const uint8_t panzer_IV_rightWidthPixels = 20;
+const uint8_t panzer_IV_rightHeightPixels = 20;
+
+/* 
+**  Image data for panzer_IV_down
+*/
+
+const uint8_t panzer_IV_downBitmaps[] =
+{
+	0x00, 0x00, 0x00, //                     
+	0x00, 0x00, 0x00, //                     
+	0x00, 0x00, 0x00, //                     
+	0x1C, 0x03, 0x80, //    ###        ###   
+	0x17, 0xFE, 0x80, //    # ########## #   
+	0x1C, 0x01, 0x80, //    ###         ##   
+	0x14, 0x80, 0x80, //    # #  #       #   
+	0x1D, 0x0B, 0x80, //    ### #    # ###   
+	0x15, 0x2A, 0x80, //    # # #  # # # #   
+	0x1D, 0x0B, 0x80, //    ### #    # ###   
+	0x15, 0x0A, 0x80, //    # # #    # # #   
+	0x1D, 0xF9, 0x80, //    ### ######  ##   
+	0x14, 0x62, 0x80, //    # #   ##   # #   
+	0x1C, 0x63, 0x80, //    ###   ##   ###   
+	0x17, 0xFE, 0x80, //    # ########## #   
+	0x1C, 0x63, 0x80, //    ###   ##   ###   
+	0x00, 0x60, 0x00, //          ##         
+	0x00, 0x60, 0x00, //          ##         
+	0x00, 0x60, 0x00, //          ##         
+	0x00, 0x00, 0x00, //                     
+};
+
+/* Bitmap sizes for panzer_IV_down */
+const uint8_t panzer_IV_downWidthPixels = 20;
+const uint8_t panzer_IV_downHeightPixels = 20;
+
+/* 
+**  Image data for panzer_IV_left
+*/
+
+const uint8_t panzer_IV_leftBitmaps[] =
+{
+	0x00, 0x00, 0x00, //                     
+	0x00, 0x00, 0x00, //                     
+	0x00, 0x00, 0x00, //                     
+	0x0F, 0xFF, 0x80, //     #############   
+	0x0A, 0xAA, 0x80, //     # # # # # # #   
+	0x0F, 0xFF, 0x80, //     #############   
+	0x04, 0x01, 0x00, //      #         #    
+	0x04, 0xF9, 0x00, //      #  #####  #    
+	0x04, 0x85, 0x00, //      #  #    # #    
+	0x7F, 0x81, 0x00, //  ########      #    
+	0x7F, 0x91, 0x00, //  ########  #   #    
+	0x04, 0x81, 0x00, //      #  #      #    
+	0x04, 0xF9, 0x00, //      #  #####  #    
+	0x04, 0x01, 0x00, //      #         #    
+	0x0F, 0x79, 0x80, //     #### ####  ##   
+	0x0A, 0xAA, 0x80, //     # # # # # # #   
+	0x0F, 0xFF, 0x80, //     #############   
+	0x00, 0x00, 0x00, //                     
+	0x00, 0x00, 0x00, //                     
+	0x00, 0x00, 0x00, //                     
+};
+
+/* Bitmap sizes for panzer_IV_left */
+const uint8_t panzer_IV_leftWidthPixels = 20;
+const uint8_t panzer_IV_leftHeightPixels = 20;
+
+/* 
+**  Image data for panzer_VI_up
+*/
+
+const uint8_t panzer_VI_upBitmaps[] =
+{
+	0x00, 0x60, 0x00, //          ##         
+	0x38, 0x61, 0xC0, //   ###    ##    ###  
+	0x2F, 0xFF, 0x40, //   # ############ #  
+	0x38, 0x61, 0xC0, //   ###    ##    ###  
+	0x2F, 0xFF, 0x40, //   # ############ #  
+	0x38, 0x61, 0xC0, //   ###    ##    ###  
+	0x28, 0x61, 0x40, //   # #    ##    # #  
+	0x39, 0xF9, 0xC0, //   ###  ######  ###  
+	0x2B, 0x05, 0x40, //   # # ##     # # #  
+	0x3E, 0x07, 0xC0, //   #####      #####  
+	0x2C, 0x03, 0x40, //   # ##        ## #  
+	0x3C, 0x03, 0xC0, //   ####        ####  
+	0x2E, 0x87, 0x40, //   # ### #    ### #  
+	0x3B, 0x0D, 0xC0, //   ### ##    ## ###  
+	0x29, 0x39, 0x40, //   # #  #  ###  # #  
+	0x38, 0x91, 0xC0, //   ###   #  #   ###  
+	0x28, 0xF1, 0x40, //   # #   ####   # #  
+	0x38, 0x01, 0xC0, //   ###          ###  
+	0x2F, 0xFF, 0x40, //   # ############ #  
+	0x39, 0x99, 0xC0, //   ###  ##  ##  ###  
+};
+
+/* Bitmap sizes for panzer_VI_up */
+const uint8_t panzer_VI_upWidthPixels = 20;
+const uint8_t panzer_VI_upHeightPixels = 20;
+
+/* 
+**  Image data for panzer_VI_right
+*/
+
+const uint8_t panzer_VI_rightBitmaps[] =
+{
+	0x00, 0x00, 0x00, //                     
+	0x00, 0x00, 0x00, //                     
+	0xFF, 0xFF, 0xE0, // ################### 
+	0xAA, 0xAA, 0xA0, // # # # # # # # # # # 
+	0xFF, 0xFF, 0xE0, // ################### 
+	0x41, 0xE1, 0x40, //  #     ####    # #  
+	0x43, 0x31, 0x40, //  #    ##  ##   # #  
+	0xC6, 0x19, 0x40, // ##   ##    ##  # #  
+	0xD9, 0x09, 0x40, // ## ##  #    #  # #  
+	0x50, 0x0F, 0xF0, //  # #        ########
+	0x54, 0x0F, 0xF0, //  # # #      ########
+	0xDC, 0x09, 0x40, // ## ###      #  # #  
+	0xC6, 0x09, 0x40, // ##   ##     #  # #  
+	0x43, 0x31, 0x40, //  #    ##  ##   # #  
+	0x41, 0xE1, 0x40, //  #     ####    # #  
+	0xFF, 0xFF, 0xE0, // ################### 
+	0xAA, 0xAA, 0xA0, // # # # # # # # # # # 
+	0xFF, 0xFF, 0xE0, // ################### 
+	0x00, 0x00, 0x00, //                     
+	0x00, 0x00, 0x00, //                     
+};
+
+/* Bitmap sizes for panzer_VI_right */
+const uint8_t panzer_VI_rightWidthPixels = 20;
+const uint8_t panzer_VI_rightHeightPixels = 20;
+
+/* 
+**  Image data for panzer_VI_down
+*/
+
+const uint8_t panzer_VI_downBitmaps[] =
+{
+	0x39, 0x99, 0xC0, //   ###  ##  ##  ###  
+	0x2F, 0xFF, 0x40, //   # ############ #  
+	0x38, 0x01, 0xC0, //   ###          ###  
+	0x28, 0xF1, 0x40, //   # #   ####   # #  
+	0x38, 0x91, 0xC0, //   ###   #  #   ###  
+	0x29, 0xC9, 0x40, //   # #  ###  #  # #  
+	0x3B, 0x0D, 0xC0, //   ### ##    ## ###  
+	0x2E, 0x17, 0x40, //   # ###    # ### #  
+	0x3C, 0x03, 0xC0, //   ####        ####  
+	0x2C, 0x03, 0x40, //   # ##        ## #  
+	0x3E, 0x07, 0xC0, //   #####      #####  
+	0x2A, 0x0D, 0x40, //   # # #     ## # #  
+	0x39, 0xF9, 0xC0, //   ###  ######  ###  
+	0x28, 0x61, 0x40, //   # #    ##    # #  
+	0x38, 0x61, 0xC0, //   ###    ##    ###  
+	0x2F, 0xFF, 0x40, //   # ############ #  
+	0x38, 0x61, 0xC0, //   ###    ##    ###  
+	0x2F, 0xFF, 0x40, //   # ############ #  
+	0x38, 0x61, 0xC0, //   ###    ##    ###  
+	0x00, 0x60, 0x00, //          ##         
+};
+
+/* Bitmap sizes for panzer_VI_down */
+const uint8_t panzer_VI_downWidthPixels = 20;
+const uint8_t panzer_VI_downHeightPixels = 20;
+
+/* 
+**  Image data for panzer_VI_left
+*/
+
+const uint8_t panzer_VI_leftBitmaps[] =
+{
+	0x00, 0x00, 0x00, //                     
+	0x00, 0x00, 0x00, //                     
+	0x7F, 0xFF, 0xF0, //  ###################
+	0x55, 0x55, 0x50, //  # # # # # # # # # #
+	0x7F, 0xFF, 0xF0, //  ###################
+	0x28, 0x78, 0x20, //   # #    ####     # 
+	0x28, 0xCC, 0x20, //   # #   ##  ##    # 
+	0x29, 0x06, 0x30, //   # #  #     ##   ##
+	0x29, 0x03, 0xB0, //   # #  #      ### ##
+	0xFF, 0x02, 0xA0, // ########      # # # 
+	0xFF, 0x00, 0xA0, // ########        # # 
+	0x29, 0x09, 0xB0, //   # #  #    #  ## ##
+	0x29, 0x86, 0x30, //   # #  ##    ##   ##
+	0x28, 0xCC, 0x20, //   # #   ##  ##    # 
+	0x28, 0x78, 0x20, //   # #    ####     # 
+	0x7F, 0xFF, 0xF0, //  ###################
+	0x55, 0x55, 0x50, //  # # # # # # # # # #
+	0x7F, 0xFF, 0xF0, //  ###################
+	0x00, 0x00, 0x00, //                     
+	0x00, 0x00, 0x00, //                     
+};
+
+/* Bitmap sizes for panzer_VI_left */
+const uint8_t panzer_VI_leftWidthPixels = 20;
+const uint8_t panzer_VI_leftHeightPixels = 20;
+
 // 
 //  Image data for shell_obj
 // 
 
-const uint8_t shell_objBitmaps =
+const uint8_t shell_objBitmaps[] =
 {
 	0x00,
 	0x60, // ##
@@ -389,7 +645,7 @@ const uint8_t shell_objHeightPixels = 4;
 //  Image data for wall_tile
 // 
 
-const uint8_t wall_tileBitmaps =
+const uint8_t wall_tileBitmaps[] =
 {
 	0xFF, 0xDF, 0xF0, // ########## #########
 	0xFF, 0xDF, 0xF0, // ########## #########
@@ -421,7 +677,7 @@ const uint8_t wall_tileHeightPixels = 20;
 //  Image data for water_tile
 // 
 
-const uint8_t water_tileBitmaps =
+const uint8_t water_tileBitmaps[] =
 {
 	0xFF, 0xFF, 0xF0, // ####################
 	0xC7, 0x8F, 0x10, // ##   ####   ####   #

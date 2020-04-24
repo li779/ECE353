@@ -8,12 +8,11 @@
 #include <math.h>
 
 #include "TM4C123.h"
-#include "gpio_port.h"
-#include "ps2.h"
-#include "lcd.h"
-#include "timers.h"
-#include "images.h"
+#include "project_interrupts.h"
 #include "game.h"
+#include "ps2.h"
+#include "images.h"
+
 extern void initialize_serial_debug(void);
 extern void put_string(char *data);
 

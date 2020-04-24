@@ -24,6 +24,6 @@
 
 #include "main.h"
 
-
+void hardwareInit(void);
 
 #endif
