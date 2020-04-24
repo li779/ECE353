@@ -78,7 +78,7 @@ void drawMap(uint8_t[] map)
 {
 	int i, j, x, y;
 	ite = 0;
-	x = 0, y = 0;
+	x =10, y =10;
 
 	for (i = 0; i < 15; i++)
 	{
