@@ -22,7 +22,7 @@
 
 #include "main.h"
 
-volatile bool BUTTON_PRESSED = false;
+
 
 //*****************************************************************************
 //*****************************************************************************
@@ -67,13 +67,13 @@ main(void)
 		DisableInterrupts();
 	
 		init_serial_debug(true, true);
-		io_expander_init();
-
+		
 		printf("ECE 353 Final Project\nYichen Li and Marvin Zhang\n");
+
 	
 		EnableInterrupts();
-		
-		io_expander_write_reg(MCP23017_GPIOA_R, 0xFF);
+			hw3_main();
+		//io_expander_write_reg(MCP23017_GPIOA_R, 0xFF);
 		//io_expander_read_reg(MCP23017_GPIOB_R, data);
 		
 		while(1)

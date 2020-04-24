@@ -60,8 +60,9 @@ void TIMER3A_Handler(void)
     {
         MOVE_COUNT[index] = get_new_move_count();
 //        SHIP_DIRECTION = get_new_direction(SHIP_DIRECTION);
-			set_dir(enermy[index],get_new_direction(&bump[index],index,enermy[index]->dir));
+			
     }
+		set_dir(enermy[index],get_new_direction(&bump[index],index,enermy[index]->dir));
     // Check if edge contact, if not then move the image
 		
 		for(i = 0; i < enermy_size; i++){
@@ -74,11 +75,9 @@ void TIMER3A_Handler(void)
 													player->x,player->y,player->height, player->width);
 		bump[index] |= contact_edge(enermy[index]->dir, enermy[index]->x, enermy[index]->y, enermy[index]->height, enermy[index]->width);
 		if (bump[index]){
-			sprintf(data,"tank: %d\n\r", index);
+			sprintf(data,"tank: %d is bumping at dir: %d\r", index,enermy[index]->dir);
 			put_string(data);
-			put_string("bumping...\n\r");
-			sprintf(data,"dir: %d\n\r", enermy[index]->dir);
-			put_string(data);
+			
 		}
     if(!bump[index])
     {

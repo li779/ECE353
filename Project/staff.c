@@ -1,5 +1,5 @@
-#include "hw3.h"
-#include "hw3_staff.h"
+#include "game.h"
+#include "staff.h"
 
 static const uint16_t START_STATE = 0xACE7u;
 static const uint16_t   MOVE_AMOUNT[] = {25, 50, 75, 100, 125, 150, 175, 200};

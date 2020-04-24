@@ -22,7 +22,7 @@
 #ifndef __PS2_H__
 #define __PS2_H__
 
-#define STAFF   0
+#define STAFF   1
 #define DCOMP_ENABLE  0
 
 

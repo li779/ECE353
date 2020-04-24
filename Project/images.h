@@ -1,4 +1,4 @@
-// Copyright (c) 2015-16, Joe Krachey
+// Copyright (c) 2015-18, Joe Krachey
 // All rights reserved.
 //
 // Redistribution and use in source or binary form, with or without modification, 
@@ -19,30 +19,38 @@
 // WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING 
 // NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, 
 // EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-#ifndef __MAIN_H__
-#define __MAIN_H__
+#ifndef __HW2_IMAGES_H__
+#define __HW2_IMAGES_H__
 
-#include <stdio.h>
 #include <stdint.h>
-#include <string.h>
 
-#include "TM4C123.h"
-#include "driver_defines.h"
-#include "gpio_port.h"
-#include "serial_debug.h"
-#include "lcd.h"
-#include "lcd_images.h"
-#include "timers.h"
-#include "ps2.h"
-#include "launchpad_io.h"
-#include "io_expander.h"
-#include "images.h"
-#include "staff.h"
-#include "game.h"
-#include "project_interrupts.h"
-#include "project_hardware_init.h"
+/* Bitmap info for space_ship */
+extern const uint8_t space_shipBitmaps[];
+extern const uint8_t space_shipWidthPixels;
+extern const uint8_t space_shipHeightPixels;
+
+// Bitmap info for invader
+extern const uint8_t easytank_upBitmaps[];
+extern const uint8_t easytank_upWidthPixels;
+extern const uint8_t easytank_upHeightPixels;
+
+// Bitmap info for invader
+extern const uint8_t easytank_downBitmaps[];
+extern const uint8_t easytank_downWidthPixels;
+extern const uint8_t easytank_downHeightPixels;
+
+
+// Bitmap info for invader
+extern const uint8_t easytank_leftBitmaps[];
+extern const uint8_t easytank_leftWidthPixels;
+extern const uint8_t easytank_leftHeightPixels;
+
+
+// Bitmap info for invader
+extern const uint8_t easytank_rightBitmaps[];
+extern const uint8_t easytank_rightWidthPixels;
+extern const uint8_t easytank_rightHeightPixels;
+
+
+
 #endif
-
-extern volatile bool BUTTON_PRESSED;
-
-extern void delay(int cnt);
