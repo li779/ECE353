@@ -13,9 +13,9 @@
 #include "timers.h"
 #include "images.h"
 #include "io_expander.h"
-#include "project_interrupts.h"
+//#include "project_interrupts.h"
 
-typedef enum PS2_DIR_t{
+typedef enum{
   PS2_DIR_UP,
   PS2_DIR_DOWN,
   PS2_DIR_LEFT,
@@ -23,6 +23,16 @@ typedef enum PS2_DIR_t{
   PS2_DIR_CENTER,
   PS2_DIR_INIT
 } PS2_DIR_t;
+
+typedef enum BUTTON_t{
+	BUTTON_LEFT, 
+	BUTTON_RIGHT, 
+	BUTTON_UP, 
+	BUTTON_DOWN, 
+	BUTTON_NONE
+} BUTTON_t;
+
+
 
 typedef struct 
 {
@@ -50,7 +60,7 @@ extern volatile const uint8_t enermy_size;
 extern volatile tanks** enermy;
 
 extern volatile bool BUTTON_PRESSED;
-
+extern volatile BUTTON_t button;
 //*****************************************************************************
 // Determines if any part of the image would be off the screen if the image
 // is moved in the specified direction.

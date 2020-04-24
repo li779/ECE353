@@ -28,14 +28,6 @@
 #include "i2c.h"
 #include "staff.h"
 
-typedef enum BUTTON_t{
-	BUTTON_LEFT, 
-	BUTTON_RIGHT, 
-	BUTTON_UP, 
-	BUTTON_DOWN, 
-	BUTTON_NONE
-} BUTTON_t;
 
-extern volatile BUTTON_t button;
 
 #endif
