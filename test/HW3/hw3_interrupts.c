@@ -4,6 +4,7 @@ static volatile uint16_t PS2_X_DATA = 0;
 static volatile uint16_t PS2_Y_DATA = 0;
 static volatile uint16_t MOVE_COUNT [10];
 static volatile PS2_DIR_t SHIP_DIRECTION = PS2_DIR_CENTER;
+static bool bump [10];
 
 
 //*****************************************************************************
@@ -52,23 +53,34 @@ void TIMER3A_Handler(void)
 {	
 	int index;
 	int i;
-	bool bump = false;
+	char data[80];
+	for(i = 0; i < 10; i++){ bump[i] = false;}
 	for (index = 0; index < enermy_size; index++){
     if (MOVE_COUNT[index] == 0)   // if moved, then look for new values
     {
         MOVE_COUNT[index] = get_new_move_count();
 //        SHIP_DIRECTION = get_new_direction(SHIP_DIRECTION);
-			set_dir(enermy[index],get_new_direction(SHIP_DIRECTION));
+			set_dir(enermy[index],get_new_direction(&bump[index],index,enermy[index]->dir));
     }
     // Check if edge contact, if not then move the image
 		
 		for(i = 0; i < enermy_size; i++){
 			if(i != index){
-			bump |= check_bump(enermy[index]->x,enermy[index]->y,enermy[index]->height, enermy[index]->width,
+			bump[index] |= check_bump(&(enermy[index]->dir),enermy[index]->x,enermy[index]->y,enermy[index]->height, enermy[index]->width,
 													enermy[i]->x,enermy[i]->y,enermy[i]->height, enermy[i]->width);
 			}
 		}
-    if((!contact_edge(enermy[index]->dir, enermy[index]->x, enermy[index]->y, enermy[index]->height, enermy[index]->width))&(!bump))
+		bump[index] |= check_bump(&(enermy[index]->dir),enermy[index]->x,enermy[index]->y,enermy[index]->height, enermy[index]->width,
+													player->x,player->y,player->height, player->width);
+		bump[index] |= contact_edge(enermy[index]->dir, enermy[index]->x, enermy[index]->y, enermy[index]->height, enermy[index]->width);
+		if (bump[index]){
+			sprintf(data,"tank: %d\n\r", index);
+			put_string(data);
+			put_string("bumping...\n\r");
+			sprintf(data,"dir: %d\n\r", enermy[index]->dir);
+			put_string(data);
+		}
+    if(!bump[index])
     {
         move_image(enermy[index]->dir, &(enermy[index]->x), &(enermy[index]->y), enermy[index]->height, enermy[index]->width);
         ALERT_SPACE_SHIP[index] = true;

@@ -22,13 +22,37 @@ uint16_t generate_random_number(
 //*****************************************************************************
 // Generates the the new direction and number of pixels  -- DO NOT MODIFY
 //*****************************************************************************
-PS2_DIR_t get_new_direction(PS2_DIR_t curr_direction)
-{
+PS2_DIR_t get_new_direction(bool* bump, int tank_index, PS2_DIR_t curr_direction)
+{	
+		
      PS2_DIR_t new_direction;
-    do
+		 double horizontal_dist = fabs((double)(enermy[tank_index]->x - player->x));
+		 double vertical_dist = fabs((double)(enermy[tank_index]->y - player->y));
+			
+		if(*bump){
+			
+			do
     {
         new_direction = MOV_DIR[generate_random_number()%4];
     }while (new_direction == curr_direction);
+			*bump = false;
+		
+			return new_direction;
+		}
+		if(horizontal_dist>vertical_dist){
+			if(enermy[tank_index]->x > player->x){
+				new_direction = PS2_DIR_LEFT;
+			} else{
+				new_direction = PS2_DIR_RIGHT;
+			}
+		} else{
+			if(enermy[tank_index]->y > player->y){
+				new_direction = PS2_DIR_UP;
+			} else{
+				new_direction = PS2_DIR_DOWN;
+			}
+		}
+//    
     
     return new_direction;
 }

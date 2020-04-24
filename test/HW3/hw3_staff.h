@@ -5,6 +5,7 @@
 #include <stdint.h>
 #include <string.h>
 #include <stdlib.h>
+#include <math.h>
 
 #include "TM4C123.h"
 #include "gpio_port.h"
@@ -13,6 +14,8 @@
 #include "timers.h"
 #include "hw3_images.h"
 #include "hw3.h"
+extern void initialize_serial_debug(void);
+extern void put_string(char *data);
 
 //*****************************************************************************
 // Generates a random number
@@ -23,7 +26,7 @@ uint16_t generate_random_number(void);
 //*****************************************************************************
 // Generates the the new direction and number of pixels  -- DO NOT MODIFY
 //*****************************************************************************
-PS2_DIR_t get_new_direction(PS2_DIR_t curr_direction);
+PS2_DIR_t get_new_direction(bool* bump, int tank_index, PS2_DIR_t curr_direction);
 
 //*****************************************************************************
 // Generates the the new direction and number of pixels  -- DO NOT MODIFY

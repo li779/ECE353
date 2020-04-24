@@ -23,5 +23,6 @@
 .\obj\main.o: ..\drivers\include\timers.h
 .\obj\main.o: hw3_images.h
 .\obj\main.o: hw3_staff.h
+.\obj\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 .\obj\main.o: hw3.h
 .\obj\main.o: hw3_interrupts.h

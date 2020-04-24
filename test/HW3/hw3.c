@@ -170,6 +170,7 @@ bool check_game_over(
 }
 
 bool check_bump(
+				volatile PS2_DIR_t* contact_dir,
         volatile uint16_t ship_x_coord, 
         volatile uint16_t ship_y_coord, 
         uint8_t ship_height, 
@@ -182,16 +183,19 @@ bool check_bump(
 {
     // Check if any margin of the space ship is within the x/y range of the invader.
     bool left_margin = (int)(ship_x_coord - ship_width / 2) > (int)(invader_x_coord - invader_width / 2)
-        && (int)(ship_x_coord - ship_width / 2) < (int)(invader_x_coord + invader_width / 2);
+        && (int)(ship_x_coord - ship_width / 2) < (int)(invader_x_coord + invader_width / 2) && (*contact_dir ==PS2_DIR_LEFT);
     bool right_margin = (int)(ship_x_coord + ship_width / 2) < (int)(invader_x_coord + invader_width / 2)
-        && (int)(ship_x_coord + ship_width / 2) > (int)(invader_x_coord - invader_width / 2);
+        && (int)(ship_x_coord + ship_width / 2) > (int)(invader_x_coord - invader_width / 2) && (*contact_dir ==PS2_DIR_UP);
     bool up_margin = (int)(ship_y_coord + ship_height /2) < (int)(invader_y_coord + invader_height/2) 
-        && (int)(ship_y_coord + ship_height / 2) > (int)(invader_y_coord - invader_height / 2);
+        && (int)(ship_y_coord + ship_height / 2) > (int)(invader_y_coord - invader_height / 2) && (*contact_dir ==PS2_DIR_RIGHT);
     bool down_margin = (int)(ship_y_coord - ship_height /2) > (int)(invader_y_coord - invader_height/2) 
-        && (int)(ship_y_coord - ship_height / 2) < (int)(invader_y_coord + invader_height / 2);
+        && (int)(ship_y_coord - ship_height / 2) < (int)(invader_y_coord + invader_height / 2) && (*contact_dir ==PS2_DIR_DOWN);
+		
+		bool over;
+		
 
     // Based on the margin conditions specified above, check if the invader and space ship has overlapped.
-    bool over = (left_margin) ? up_margin | down_margin : (right_margin) ? up_margin | down_margin : false;
+     over = left_margin || up_margin || down_margin || right_margin;
 
     return over;
 }
@@ -212,7 +216,7 @@ void init_hardware(void)
   
   // Update the Space Shipt 60 times per second.
   gp_timer_config_32(TIMER2_BASE,TIMER_TAMR_TAMR_PERIOD, 1000000, false, true);
-  gp_timer_config_32(TIMER3_BASE,TIMER_TAMR_TAMR_PERIOD, 500000, false, true);
+  gp_timer_config_32(TIMER3_BASE,TIMER_TAMR_TAMR_PERIOD, 1000000, false, true);
   gp_timer_config_32(TIMER4_BASE,TIMER_TAMR_TAMR_PERIOD, 50000, false, true);
 }
 
@@ -244,10 +248,10 @@ void hw3_main(void)
 			enermy[index]->width = easytank_downWidthPixels;
 		}
 
-      while(!game_over)
+      while(true)
       {	
 //				put_string("player statistics\n\r");
-//				sprintf(data,"%d\n\r",enermy[0]->x);
+//				sprintf(data,"%d\n\r",player->x);
 //				put_string(data);
           
             for (index = 0; index < enermy_size; index++){
@@ -264,16 +268,16 @@ void hw3_main(void)
                           LCD_COLOR_BLACK          // Background Color
                         );
               
-            game_over = check_game_over(
-                                        SHIP_X_COORD,
-                                        SHIP_Y_COORD,
-                                        space_shipHeightPixels,
-                                        space_shipWidthPixels,
-                                        INVADER_X_COORD,
-                                        INVADER_Y_COORD,
-                                        easytank_rightHeightPixels,
-                                        easytank_rightWidthPixels
-                                    );
+//            game_over = check_game_over(
+//                                        SHIP_X_COORD,
+//                                        SHIP_Y_COORD,
+//                                        space_shipHeightPixels,
+//                                        space_shipWidthPixels,
+//                                        INVADER_X_COORD,
+//                                        INVADER_Y_COORD,
+//                                        easytank_rightHeightPixels,
+//                                        easytank_rightWidthPixels
+//                                    );
 						}
           }
           
@@ -291,16 +295,16 @@ void hw3_main(void)
                           LCD_COLOR_BLACK           // Background Color
                         );
               
-             game_over = check_game_over(
-                                            SHIP_X_COORD,
-                                            SHIP_Y_COORD,
-                                            space_shipHeightPixels,
-                                            space_shipWidthPixels,
-                                            player->x,
-                                            player->y,
-                                            player->height,
-                                            player->width
-                                        );
+//             game_over = check_game_over(
+//                                            SHIP_X_COORD,
+//                                            SHIP_Y_COORD,
+//                                            space_shipHeightPixels,
+//                                            space_shipWidthPixels,
+//                                            player->x,
+//                                            player->y,
+//                                            player->height,
+//                                            player->width
+//                                        );
           }
           
       }   

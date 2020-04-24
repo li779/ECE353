@@ -91,6 +91,7 @@ bool check_game_over(
 );
 				
 bool check_bump(
+	volatile PS2_DIR_t* contact_dir,
         volatile uint16_t ship_x_coord, 
         volatile uint16_t ship_y_coord, 
         uint8_t ship_height, 

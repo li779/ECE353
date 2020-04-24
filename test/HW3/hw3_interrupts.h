@@ -14,6 +14,7 @@
 #include "hw3.h"
 #include "hw3_images.h"
 #include "hw3_staff.h"
-
+extern void initialize_serial_debug(void);
+extern void put_string(char *data);
 
 #endif

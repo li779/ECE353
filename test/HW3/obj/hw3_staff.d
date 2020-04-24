@@ -23,3 +23,4 @@
 .\obj\hw3_staff.o: ..\drivers\include\timers.h
 .\obj\hw3_staff.o: hw3_images.h
 .\obj\hw3_staff.o: hw3_staff.h
+.\obj\hw3_staff.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h

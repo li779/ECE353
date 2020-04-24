@@ -24,3 +24,4 @@
 .\obj\hw3_interrupts.o: hw3.h
 .\obj\hw3_interrupts.o: hw3_images.h
 .\obj\hw3_interrupts.o: hw3_staff.h
+.\obj\hw3_interrupts.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
