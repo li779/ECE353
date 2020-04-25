@@ -21,6 +21,11 @@ typedef struct
 
 volatile tanks* player;
 volatile tanks** enermy;
+<<<<<<< Updated upstream
+=======
+volatile bullet** shells;
+volatile const uint8_t shell_size = 4;
+>>>>>>> Stashed changes
 volatile const uint8_t enermy_size = 2;
 
 void set_dir(volatile tanks* tank, PS2_DIR_t dir){tank->dir = dir;set_image(tank);}
@@ -145,14 +150,14 @@ bool check_moveable(
 // reference)
 //*****************************************************************************
 void move_image(
-        volatile PS2_DIR_t direction,
-        volatile uint16_t *x_coord, 
-        volatile uint16_t *y_coord, 
-        uint8_t image_height, 
-        uint8_t image_width
+    volatile PS2_DIR_t direction,
+    volatile uint16_t *x_coord, 
+    volatile uint16_t *y_coord, 
+    uint8_t image_height, 
+    uint8_t image_width
 )
 {
-		clear_image(*x_coord, *y_coord);
+	clear_image(*x_coord, *y_coord);
     switch (direction)   // move images according to direction
     {
         case PS2_DIR_LEFT:
@@ -253,6 +258,35 @@ bool check_bump(
 
 bool check_shot_on_target(){
 	
+<<<<<<< Updated upstream
+=======
+	int i;
+	printf("fired x:%d, y:%d\n", x,y);
+	
+	switch(dir)
+	{
+		case PS2_DIR_UP:
+			
+			break;
+		case PS2_DIR_DOWN:
+			break;
+		case PS2_DIR_LEFT:
+			break;
+		case PS2_DIR_RIGHT:
+			break;
+		default:
+			break;
+	}
+	
+	for (i = 0; i<shell_size; i++){
+		if(!(shells[i]->valid)){
+			shells[i]->valid = true;
+			shells[i]->x = x;
+			shells[i]->y = y;
+			shells[i]->dir = dir;
+		}
+	}
+>>>>>>> Stashed changes
 }
 
 //*****************************************************************************
@@ -352,7 +386,13 @@ void game(void)
 				BUTTON_PRESSED = false;	// Deassert BUTTON_PRESSED flag
 				switch(button)
 				{
+<<<<<<< Updated upstream
 					case(BUTTON_UP)	:	
+=======
+					case(BUTTON_UP)	:	{
+						fire(player->x,player->y,player->dir);
+						//printf("pressed button\n");
+>>>>>>> Stashed changes
 						break;
 					case(BUTTON_DOWN):
 						break;

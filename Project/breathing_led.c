@@ -1,3 +1,4 @@
+  
 #include "breathing_led.h"
 
 uint8_t R = 0, G = 0, B = 0;
@@ -52,8 +53,15 @@ void breathing_led_init(void)
 	lp_io_init();
 	
 	GPIOF->DATA = 0x0E;
+<<<<<<< Updated upstream
 	
 	//PWM_init();
 	
 }
 
+=======
+	
+	//PWM_init();
+	
+}
+>>>>>>> Stashed changes

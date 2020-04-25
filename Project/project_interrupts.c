@@ -32,8 +32,8 @@ volatile BUTTON_t button = BUTTON_NONE;
 
 uint8_t data;
 
-// PF0 Interrupt 	Note: Deprecated for the final project
-/*void GPIOF_Handler(void)
+// PF0 Interrupt 
+void GPIOF_Handler(void)
 {
 		// Read from MCP23017
 		io_expander_read_reg(MCP23017_GPIOB_R, &data);
@@ -70,15 +70,11 @@ uint8_t data;
 					break;
 		}
 		
-		printf("Data received: %X \n", data);
+		printf("IO Expander data received: %X \n", data);
 		
     // Clear the interrupt status on PF0
     GPIOF->ICR |= 0xFF;
-		
-		// Clear the interrupt status on MCP23017
-		//io_expander_read_reg(MCP23017_GPIOB_R, data);
-    
-}*/
+}
 
 //*****************************************************************************
 // Returns the most current direction that was pressed.
@@ -154,6 +150,7 @@ void TIMER2A_Handler(void)
         move_image(player->dir, &player->x, &player->y, player->height, player->width);
         ALERT_INVADER = true;
     }
+	
     // Clear the interrupt
 	TIMER2->ICR |= TIMER_ICR_TATOCINT;
 }
@@ -204,39 +201,11 @@ void TIMER3A_Handler(void)
 }
 
 //*****************************************************************************
-// TIMER4 ISR is used to trigger the ADC and read button value
+// TIMER4 ISR is used to trigger the ADC
 //*****************************************************************************
 void TIMER4A_Handler(void)
 {	
     ADC0->PSSI |= ADC_PSSI_SS2;
-	
-	// Read Button Data
-	BUTTON_PRESSED = false;
-	io_expander_read_reg(MCP23017_GPIOB_R, &data);
-	switch((data & 0x0F))
-	{
-		case 0x0E	:
-			button = BUTTON_UP;
-			break;
-		case 0x0D	:
-			button = BUTTON_DOWN;
-			break;
-		case 0x0B	:
-			button = BUTTON_LEFT;
-			break;
-		case 0x07	:	
-			button = BUTTON_RIGHT;
-			break;
-		default:	
-			button = BUTTON_NONE;
-			break;
-	}
-	
-	if(button != BUTTON_NONE)
-	{
-		BUTTON_PRESSED = true;
-	}
-	
 	// Clear the interrupt
     TIMER4->ICR |= TIMER_ICR_TATOCINT;
 }
@@ -251,6 +220,7 @@ void ADC0SS2_Handler(void)
     PS2_Y_DATA = ADC0->SSFIFO2;
     // Check the direction based on PS data
     ps2_get_direction();
+	
     // Clear the interrupt
     ADC0->ISC |= ADC_ISC_IN2;
     
