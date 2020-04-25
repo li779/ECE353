@@ -110,7 +110,7 @@ void ps2_get_direction(void)
 void TIMER2A_Handler(void)
 {	
     // Check if the edge contact, if not then move the image
-    if (!contact_edge(player->dir, player->x, player->y, player->height, player->width))
+    if (check_moveable(player->dir, player->x, player->y, player->height, player->width))
     {
         move_image(player->dir, &player->x, &player->y, player->height, player->width);
         ALERT_INVADER = true;

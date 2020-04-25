@@ -100,7 +100,18 @@ void drawMap(const uint8_t map[])
     return;
 }
 uint8_t get_pos(uint16_t x, uint16_t y){
-	return (uint8_t)((x/20+1)+(y/20)*12);
+	return (uint8_t)((x/20)+((y-20)/20)*12);
+}
+void set_pos(uint8_t index, volatile uint16_t* x, volatile uint16_t* y){
+	*x = (index%12)*20 + 10;
+	*y = (index/12)*20 + 30;
+	return;
+}
+uint16_t get_x(uint8_t index){
+	return (index%12)*20 + 10;
+}
+uint16_t get_y(uint8_t index){
+	return (index/12)*20 + 30;
 }
 /*
 void lcd_draw_image(

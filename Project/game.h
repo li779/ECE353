@@ -121,7 +121,14 @@ bool check_bump(
     uint8_t invader_height, 
     uint8_t invader_width
 );
-
+		
+bool check_moveable(
+    volatile PS2_DIR_t direction,
+    volatile uint16_t x_coord, 
+    volatile uint16_t y_coord, 
+    uint8_t image_height, 
+    uint8_t image_width
+);
 //*****************************************************************************
 // Initializes all of the peripherls used in HW3
 //*****************************************************************************
