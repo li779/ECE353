@@ -21,6 +21,8 @@ typedef struct
 
 volatile tanks* player;
 volatile tanks** enermy;
+volatile bullet** shells;
+volatile const uint8_t shell_size = 10;
 volatile const uint8_t enermy_size = 2;
 
 void set_dir(volatile tanks* tank, PS2_DIR_t dir){tank->dir = dir;set_image(tank);}
@@ -285,15 +287,20 @@ bool check_shot_on_target(){
 	
 }
 
-//*****************************************************************************
-// Main application for HW3
-//*****************************************************************************
-void game(void)
-{		
-	char data[80];
+void fire(uint16_t x, uint16_t y, PS2_DIR_t dir){
+	int i;
+	for (i = 0; i<shell_size; i++){
+		if(!(shells[i]->valid)){
+			shells[i]->valid = true;
+			shells[i]->x = x;
+			shells[i]->y = y;
+			shells[i]->dir = dir;
+		}
+	}
+}
+
+void initialize_obj(){
 	int index;
-	bool game_over = false;
-	for (i = 0; i<10;i++){ ALERT_SPACE_SHIP[i] = true;}
 	player = malloc(sizeof(tanks));
 	set_pos(1,&(player->x),&(player->y));
 	player->dir = PS2_DIR_CENTER;
@@ -310,7 +317,24 @@ void game(void)
 		enermy[index]->height = easytank_downHeightPixels;
 		enermy[index]->width = easytank_downWidthPixels;
 	}
+	shells = malloc(sizeof(bullet*)*shell_size);
+	for (index=0; index<shell_size; index++){
+		shells[index] = malloc(sizeof(bullet));
+		shells[index]->valid = false;
+	}
+}
+
+//*****************************************************************************
+// Main application for HW3
+//*****************************************************************************
+void game(void)
+{		
+	char data[80];
+	int index;
+	bool game_over = false;
+	for (i = 0; i<10;i++){ ALERT_SPACE_SHIP[i] = true;}
 	
+	initialize_obj();
 	printf("Drawing map...\n");
 	// Map Test
 	drawMap(Sevastopol);
@@ -383,6 +407,19 @@ void game(void)
 					default:
 						break;
 				}
+			}
+			
+						for(i=0;i<shell_size;i++){
+							if(shells[i]->valid)
+				lcd_draw_image(
+				shells[i]->x,          // X Center Point
+				shell_objWidthPixels,       // Image Horizontal Width
+				shells[i]->y,          // Y Center Point
+				shell_objHeightPixels,      // Image Vertical Height
+				shell_objBitmaps,           // Image
+				LCD_COLOR_YELLOW,            // Foreground Color
+				LCD_COLOR_BLACK           // Background Color
+			);
 			}
 
 	}   

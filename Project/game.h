@@ -45,7 +45,8 @@ typedef struct
 
 typedef struct
 {
-    PS2_DIR_t dir;
+	bool valid;
+   PS2_DIR_t dir;
 	uint16_t x;
 	uint16_t y;
     bool player;
@@ -65,6 +66,7 @@ extern char STUDENT_NAME[];
 extern volatile tanks* player;
 extern volatile const uint8_t enermy_size;
 extern volatile tanks** enermy;
+extern volatile bullet** shells;
 
 extern volatile bool BUTTON_PRESSED;
 extern volatile BUTTON_t button;

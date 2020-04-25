@@ -31,7 +31,7 @@ I (..\peripherals\include\launchpad_io.h)(0x5E9B4CE3)
 I (..\peripherals\include\io_expander.h)(0x5EA25C41)
 I (..\drivers\include\i2c.h)(0x5E9B4CE3)
 I (images.h)(0x5EA3B620)
-I (game.h)(0x5EA3BECD)
+I (game.h)(0x5EA3E2D5)
 I (map.h)(0x5EA3AC96)
 I (top_row_display.h)(0x5EA3AC96)
 I (project_interrupts.h)(0x5EA37385)
@@ -70,7 +70,7 @@ I (..\peripherals\include\launchpad_io.h)(0x5E9B4CE3)
 I (..\peripherals\include\io_expander.h)(0x5EA25C41)
 I (..\drivers\include\i2c.h)(0x5E9B4CE3)
 I (images.h)(0x5EA3B620)
-I (game.h)(0x5EA3BECD)
+I (game.h)(0x5EA3E2D5)
 I (map.h)(0x5EA3AC96)
 I (top_row_display.h)(0x5EA3AC96)
 I (project_interrupts.h)(0x5EA37385)
@@ -110,15 +110,15 @@ I (..\peripherals\include\launchpad_io.h)(0x5E9B4CE3)
 I (..\peripherals\include\io_expander.h)(0x5EA25C41)
 I (..\drivers\include\i2c.h)(0x5E9B4CE3)
 I (images.h)(0x5EA3B620)
-I (game.h)(0x5EA3BECD)
+I (game.h)(0x5EA3E2D5)
 I (map.h)(0x5EA3AC96)
 I (top_row_display.h)(0x5EA3AC96)
 I (project_hardware_init.h)(0x5EA37385)
 I (staff.h)(0x5EA37385)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x5D9B88E2)
 F (.\project_interrupts.h)(0x5EA37385)()
-F (.\game.c)(0x5EA3DAEB)(-c --cpu Cortex-M4.fp.sp -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork -I C:\Keil_v5\ARM\Pack\ARM\CMSIS\3.20.4\CMSIS\Include -I ..\include -I ..\drivers\include -I ..\peripherals\include --debug-I.\RTE\_Project-F19-I"C:\Users\Yichen Li\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include"-I"C:\Users\Yichen Li\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123"-D__UVISION_VERSION="529" -D_RTE_ -DTM4C123GH6PM-o .\obj\game.o --omf_browse .\obj\game.crf --depend .\obj\game.d)
-I (game.h)(0x5EA3BECD)
+F (.\game.c)(0x5EA3E6D8)(-c --cpu Cortex-M4.fp.sp -D__EVAL -D__MICROLIB -g -O0 --apcs=interwork -I C:\Keil_v5\ARM\Pack\ARM\CMSIS\3.20.4\CMSIS\Include -I ..\include -I ..\drivers\include -I ..\peripherals\include --debug-I.\RTE\_Project-F19-I"C:\Users\Yichen Li\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include"-I"C:\Users\Yichen Li\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123"-D__UVISION_VERSION="529" -D_RTE_ -DTM4C123GH6PM-o .\obj\game.o --omf_browse .\obj\game.crf --depend .\obj\game.d)
+I (game.h)(0x5EA3E2D5)
 I (C:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x5D9B88EA)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5D9B88E8)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5D9B88E8)
@@ -182,7 +182,7 @@ I (..\peripherals\include\launchpad_io.h)(0x5E9B4CE3)
 I (..\peripherals\include\io_expander.h)(0x5EA25C41)
 I (..\drivers\include\i2c.h)(0x5E9B4CE3)
 I (images.h)(0x5EA3B620)
-I (game.h)(0x5EA3BECD)
+I (game.h)(0x5EA3E2D5)
 I (map.h)(0x5EA3AC96)
 I (top_row_display.h)(0x5EA3AC96)
 I (project_hardware_init.h)(0x5EA37385)
