@@ -81,20 +81,20 @@ void drawMap(const uint8_t map[])
 	int i, j, x, y;
 	x = -10, y = 10;
 	
-	lcd_draw_image(230, wall_tileWidthPixels, 310, wall_tileHeightPixels, wall_tileBitmaps, 0xFFFF, 0x0000);
+	//lcd_draw_image(230, wall_tileWidthPixels, 310, wall_tileHeightPixels, wall_tileBitmaps, 0xFFFF, 0x0000);
 	
-	/*for (i = 0; i < 15; i++)
+	for (i = 0; i < 15; i++)
 	{
 		y += 20;
+		x = -10;
 		for (j = 0; j < 12; j++)
 		{
 			x += 20;
 			if (map[i * 12 + j] == 1)
 			{
-				lcd_draw_image(x, wall_tileWidthPixels-1, y, wall_tileHeightPixels, wall_tileBitmaps, 0xFFFF, 0x0000);
+				lcd_draw_image(x, wall_tileWidthPixels, y, wall_tileHeightPixels, wall_tileBitmaps, 0xFFFF, 0x0000);
 			}
 		}
-		y += 20;
 	}
 
     return;
