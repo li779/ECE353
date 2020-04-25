@@ -81,23 +81,30 @@ void GPIOF_Handler(void)
 //*****************************************************************************
 void ps2_get_direction(void)
 {
+	PS2_MOVE = true;
     // convert adc data to its direction
     if (PS2_X_DATA>(2.4/3.3*0xfff)){
-			set_dir(player,PS2_DIR_LEFT);
-      return;
-    }else if (PS2_X_DATA<(0.85/3.3*0xfff)){
-			set_dir(player,PS2_DIR_RIGHT);
-      return;
-    }else if (PS2_Y_DATA>(2.4/3.3*0xfff)){
-			set_dir(player,PS2_DIR_UP);
-      return;
-		}else if (PS2_Y_DATA<(0.85/3.3*0xfff)){
-			set_dir(player,PS2_DIR_DOWN);
-      return;
-		}else {
-			set_dir(player,PS2_DIR_CENTER);
-      return;
-		}
+		set_dir(player,PS2_DIR_LEFT);
+		return;
+    }
+	else if (PS2_X_DATA<(0.85/3.3*0xfff)){
+		set_dir(player,PS2_DIR_RIGHT);
+		return;
+    }
+	else if (PS2_Y_DATA>(2.4/3.3*0xfff)){
+		set_dir(player,PS2_DIR_UP);
+		return;
+	}
+	else if (PS2_Y_DATA<(0.85/3.3*0xfff)){
+		set_dir(player,PS2_DIR_DOWN);
+		return;
+	}
+	else 
+	{
+		//set_dir(player,PS2_DIR_CENTER);
+		PS2_MOVE = false;
+		return;
+	}
 }
 
 //*****************************************************************************
@@ -151,11 +158,15 @@ void TIMER2A_Handler(void)
 			bump = bump || enermy_bump;
 	}
 			
-    if (check_moveable(player->dir, player->x, player->y, player->height, player->width) && (!bump))
-    {
-        move_image(player->dir, &player->x, &player->y, player->height, player->width);
-        ALERT_INVADER = true;
-    }
+	if(PS2_MOVE)
+	{
+		if (check_moveable(player->dir, player->x, player->y, player->height, player->width) && (!bump))
+		{
+			move_image(player->dir, &player->x, &player->y, player->height, player->width);
+			ALERT_INVADER = true;
+		}
+		PS2_MOVE = false;
+	}
 	
     // Clear the interrupt
 	TIMER2->ICR |= TIMER_ICR_TATOCINT;

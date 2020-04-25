@@ -7,6 +7,7 @@ volatile uint16_t INVADER_Y_COORD = 40;
 volatile bool ALERT_SPACE_SHIP[10];
 volatile bool ALERT_INVADER = true;
 volatile bool BUTTON_PRESSED = false;
+volatile bool PS2_MOVE = false;
 char STUDENT_NAME[] = "Yichen Li and Marvin Zhang";
 int i;
 
@@ -225,28 +226,28 @@ bool check_game_over(
 }
 
 bool check_bump(
-				volatile PS2_DIR_t* contact_dir,
-        volatile uint16_t ship_x_coord, 
-        volatile uint16_t ship_y_coord, 
-        uint8_t ship_height, 
-        uint8_t ship_width,
-        volatile uint16_t invader_x_coord, 
-        volatile uint16_t invader_y_coord, 
-        uint8_t invader_height, 
-        uint8_t invader_width
+	volatile PS2_DIR_t* contact_dir,
+    volatile uint16_t ship_x_coord, 
+    volatile uint16_t ship_y_coord, 
+    uint8_t ship_height, 
+    uint8_t ship_width,
+    volatile uint16_t invader_x_coord, 
+    volatile uint16_t invader_y_coord, 
+    uint8_t invader_height, 
+    uint8_t invader_width
 )
 {
-		uint8_t ship_index = get_pos(ship_x_coord,ship_y_coord);
-		uint8_t invader_index = get_pos(invader_x_coord,invader_y_coord);
+	uint8_t ship_index = get_pos(ship_x_coord,ship_y_coord);
+	uint8_t invader_index = get_pos(invader_x_coord,invader_y_coord);
     // Check if any margin of the space ship is within the x/y range of the invader.
-//		bool left_margin = (int)(ship_x_coord - ship_width / 2) > (int)(invader_x_coord - invader_width / 2)
-//        && (int)(ship_x_coord - ship_width / 2) < (int)(invader_x_coord + invader_width / 2) && (*contact_dir ==PS2_DIR_LEFT);
-//    bool right_margin = (int)(ship_x_coord + ship_width / 2) < (int)(invader_x_coord + invader_width / 2)
-//        && (int)(ship_x_coord + ship_width / 2) > (int)(invader_x_coord - invader_width / 2) && (*contact_dir ==PS2_DIR_UP);
-//    bool up_margin = (int)(ship_y_coord + ship_height /2) < (int)(invader_y_coord + invader_height/2) 
-//        && (int)(ship_y_coord + ship_height / 2) > (int)(invader_y_coord - invader_height / 2) && (*contact_dir ==PS2_DIR_RIGHT);
-//    bool down_margin = (int)(ship_y_coord - ship_height /2) > (int)(invader_y_coord - invader_height/2) 
-//        && (int)(ship_y_coord - ship_height / 2) < (int)(invader_y_coord + invader_height / 2) && (*contact_dir ==PS2_DIR_DOWN);
+	//bool left_margin = (int)(ship_x_coord - ship_width / 2) > (int)(invader_x_coord - invader_width / 2)
+	//        && (int)(ship_x_coord - ship_width / 2) < (int)(invader_x_coord + invader_width / 2) && (*contact_dir ==PS2_DIR_LEFT);
+	//bool right_margin = (int)(ship_x_coord + ship_width / 2) < (int)(invader_x_coord + invader_width / 2)
+	//        && (int)(ship_x_coord + ship_width / 2) > (int)(invader_x_coord - invader_width / 2) && (*contact_dir ==PS2_DIR_UP);
+	//bool up_margin = (int)(ship_y_coord + ship_height /2) < (int)(invader_y_coord + invader_height/2) 
+	//        && (int)(ship_y_coord + ship_height / 2) > (int)(invader_y_coord - invader_height / 2) && (*contact_dir ==PS2_DIR_RIGHT);
+	//bool down_margin = (int)(ship_y_coord - ship_height /2) > (int)(invader_y_coord - invader_height/2) 
+	//        && (int)(ship_y_coord - ship_height / 2) < (int)(invader_y_coord + invader_height / 2) && (*contact_dir ==PS2_DIR_DOWN);
     switch (*contact_dir)
     {
     case PS2_DIR_LEFT:{

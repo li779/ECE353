@@ -68,6 +68,7 @@ extern volatile const uint8_t enermy_size;
 extern volatile tanks** enermy;
 extern volatile bullet** shells;
 
+extern volatile bool PS2_MOVE;
 extern volatile bool BUTTON_PRESSED;
 extern volatile BUTTON_t button;
 //*****************************************************************************
