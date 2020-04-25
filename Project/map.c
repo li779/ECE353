@@ -64,14 +64,14 @@ const uint8_t Sevastopol[] =
     1, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 
     1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1,
     1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 
-    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
     1, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 
     1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
     1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 
     1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 
     1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 0, 1, 
     1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 
-    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
     1, 0, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 
     1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0
 };
@@ -92,7 +92,7 @@ void drawMap(const uint8_t map[])
 			x += 20;
 			if (map[i * 12 + j] == 1)
 			{
-				lcd_draw_image(x, wall_tileWidthPixels, y, wall_tileHeightPixels, wall_tileBitmaps, 0xFFFF, 0x0000);
+				lcd_draw_image(x, wall_tileWidthPixels, y, wall_tileHeightPixels, wall_tileBitmaps, LCD_COLOR_GRAY, LCD_COLOR_BLACK);
 			}
 		}
 	}

@@ -596,12 +596,12 @@ Image Symbol Table
     i._printf_core                           0x00002e5a   Section        0  printfb.o(i._printf_core)
     _printf_core                             0x00002e5b   Thumb Code    34  printfb.o(i._printf_core)
     i.malloc                                 0x00002e7c   Section        0  malloc.o(i.malloc)
-    .constdata                               0x00002ee8   Section     1634  images.o(.constdata)
-    .constdata                               0x0000354a   Section       20  staff.o(.constdata)
-    MOVE_AMOUNT                              0x0000354a   Data          16  staff.o(.constdata)
-    MOV_DIR                                  0x0000355a   Data           4  staff.o(.constdata)
-    .constdata                               0x0000355e   Section      304  map.o(.constdata)
-    .conststring                             0x00003690   Section       67  main.o(.conststring)
+    .constdata                               0x00002ee8   Section      998  images.o(.constdata)
+    .constdata                               0x000032ce   Section       20  staff.o(.constdata)
+    MOVE_AMOUNT                              0x000032ce   Data          16  staff.o(.constdata)
+    MOV_DIR                                  0x000032de   Data           4  staff.o(.constdata)
+    .constdata                               0x000032e2   Section      304  map.o(.constdata)
+    .conststring                             0x00003414   Section       67  main.o(.conststring)
     .data                                    0x20000000   Section        1  main.o(.data)
     .data                                    0x20000002   Section        7  project_interrupts.o(.data)
     PS2_X_DATA                               0x20000002   Data           2  project_interrupts.o(.data)
@@ -876,66 +876,66 @@ Image Symbol Table
     __scatterload_null                       0x00002e4b   Thumb Code     2  handlers.o(i.__scatterload_null)
     __scatterload_zeroinit                   0x00002e4d   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
     malloc                                   0x00002e7d   Thumb Code    92  malloc.o(i.malloc)
-    easytank_upBitmaps                       0x00002ee8   Data         210  images.o(.constdata)
-    easytank_upWidthPixels                   0x00002fba   Data           1  images.o(.constdata)
-    easytank_upHeightPixels                  0x00002fbb   Data           1  images.o(.constdata)
-    easytank_downBitmaps                     0x00002fbc   Data         210  images.o(.constdata)
-    easytank_downWidthPixels                 0x0000308e   Data           1  images.o(.constdata)
-    easytank_downHeightPixels                0x0000308f   Data           1  images.o(.constdata)
-    easytank_rightBitmaps                    0x00003090   Data         228  images.o(.constdata)
-    easytank_rightWidthPixels                0x00003174   Data           1  images.o(.constdata)
-    easytank_rightHeightPixels               0x00003175   Data           1  images.o(.constdata)
-    easytank_leftBitmaps                     0x00003176   Data         228  images.o(.constdata)
-    easytank_leftWidthPixels                 0x0000325a   Data           1  images.o(.constdata)
-    easytank_leftHeightPixels                0x0000325b   Data           1  images.o(.constdata)
-    panzer_II_upBitmaps                      0x0000325c   Data          60  images.o(.constdata)
-    panzer_II_upWidthPixels                  0x00003298   Data           1  images.o(.constdata)
-    panzer_II_upHeightPixels                 0x00003299   Data           1  images.o(.constdata)
-    panzer_II_downBitmaps                    0x0000329a   Data          60  images.o(.constdata)
-    panzer_II_downWidthPixels                0x000032d6   Data           1  images.o(.constdata)
-    panzer_II_downHeightPixels               0x000032d7   Data           1  images.o(.constdata)
-    panzer_II_rightBitmaps                   0x000032d8   Data          60  images.o(.constdata)
-    panzer_II_rightWidthPixels               0x00003314   Data           1  images.o(.constdata)
-    panzer_II_rightHeightPixels              0x00003315   Data           1  images.o(.constdata)
-    panzer_II_leftBitmaps                    0x00003316   Data          60  images.o(.constdata)
-    panzer_II_leftWidthPixels                0x00003352   Data           1  images.o(.constdata)
-    panzer_II_leftHeightPixels               0x00003353   Data           1  images.o(.constdata)
-    panzer_IV_upBitmaps                      0x00003354   Data          60  images.o(.constdata)
-    panzer_IV_upWidthPixels                  0x00003390   Data           1  images.o(.constdata)
-    panzer_IV_upHeightPixels                 0x00003391   Data           1  images.o(.constdata)
-    panzer_IV_rightBitmaps                   0x00003392   Data          60  images.o(.constdata)
-    panzer_IV_rightWidthPixels               0x000033ce   Data           1  images.o(.constdata)
-    panzer_IV_rightHeightPixels              0x000033cf   Data           1  images.o(.constdata)
-    panzer_IV_downBitmaps                    0x000033d0   Data          60  images.o(.constdata)
-    panzer_IV_downWidthPixels                0x0000340c   Data           1  images.o(.constdata)
-    panzer_IV_downHeightPixels               0x0000340d   Data           1  images.o(.constdata)
-    panzer_IV_leftBitmaps                    0x0000340e   Data          60  images.o(.constdata)
-    panzer_IV_leftWidthPixels                0x0000344a   Data           1  images.o(.constdata)
-    panzer_IV_leftHeightPixels               0x0000344b   Data           1  images.o(.constdata)
-    panzer_VI_upBitmaps                      0x0000344c   Data          60  images.o(.constdata)
-    panzer_VI_upWidthPixels                  0x00003488   Data           1  images.o(.constdata)
-    panzer_VI_upHeightPixels                 0x00003489   Data           1  images.o(.constdata)
-    panzer_VI_rightBitmaps                   0x0000348a   Data          60  images.o(.constdata)
-    panzer_VI_rightWidthPixels               0x000034c6   Data           1  images.o(.constdata)
-    panzer_VI_rightHeightPixels              0x000034c7   Data           1  images.o(.constdata)
-    panzer_VI_downBitmaps                    0x000034c8   Data          60  images.o(.constdata)
-    panzer_VI_downWidthPixels                0x00003504   Data           1  images.o(.constdata)
-    panzer_VI_downHeightPixels               0x00003505   Data           1  images.o(.constdata)
-    panzer_VI_leftBitmaps                    0x00003506   Data          60  images.o(.constdata)
-    panzer_VI_leftWidthPixels                0x00003542   Data           1  images.o(.constdata)
-    panzer_VI_leftHeightPixels               0x00003543   Data           1  images.o(.constdata)
-    shell_objBitmaps                         0x00003544   Data           4  images.o(.constdata)
-    shell_objWidthPixels                     0x00003548   Data           1  images.o(.constdata)
-    shell_objHeightPixels                    0x00003549   Data           1  images.o(.constdata)
-    wall_tileBitmaps                         0x0000355e   Data          60  map.o(.constdata)
-    wall_tileWidthPixels                     0x0000359a   Data           1  map.o(.constdata)
-    wall_tileHeightPixels                    0x0000359b   Data           1  map.o(.constdata)
-    water_tileBitmaps                        0x0000359c   Data          60  map.o(.constdata)
-    water_tileWidthPixels                    0x000035d8   Data           1  map.o(.constdata)
-    water_tileHeightPixels                   0x000035d9   Data           1  map.o(.constdata)
-    Sevastopol                               0x000035da   Data         180  map.o(.constdata)
-    Region$$Table$$Base                      0x000036d4   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x000036f4   Number         0  anon$$obj.o(Region$$Table)
+    easytank_upBitmaps                       0x00002ee8   Data          60  images.o(.constdata)
+    easytank_upWidthPixels                   0x00002f24   Data           1  images.o(.constdata)
+    easytank_upHeightPixels                  0x00002f25   Data           1  images.o(.constdata)
+    easytank_downBitmaps                     0x00002f26   Data          60  images.o(.constdata)
+    easytank_downWidthPixels                 0x00002f62   Data           1  images.o(.constdata)
+    easytank_downHeightPixels                0x00002f63   Data           1  images.o(.constdata)
+    easytank_rightBitmaps                    0x00002f64   Data          60  images.o(.constdata)
+    easytank_rightWidthPixels                0x00002fa0   Data           1  images.o(.constdata)
+    easytank_rightHeightPixels               0x00002fa1   Data           1  images.o(.constdata)
+    easytank_leftBitmaps                     0x00002fa2   Data          60  images.o(.constdata)
+    easytank_leftWidthPixels                 0x00002fde   Data           1  images.o(.constdata)
+    easytank_leftHeightPixels                0x00002fdf   Data           1  images.o(.constdata)
+    panzer_II_upBitmaps                      0x00002fe0   Data          60  images.o(.constdata)
+    panzer_II_upWidthPixels                  0x0000301c   Data           1  images.o(.constdata)
+    panzer_II_upHeightPixels                 0x0000301d   Data           1  images.o(.constdata)
+    panzer_II_downBitmaps                    0x0000301e   Data          60  images.o(.constdata)
+    panzer_II_downWidthPixels                0x0000305a   Data           1  images.o(.constdata)
+    panzer_II_downHeightPixels               0x0000305b   Data           1  images.o(.constdata)
+    panzer_II_rightBitmaps                   0x0000305c   Data          60  images.o(.constdata)
+    panzer_II_rightWidthPixels               0x00003098   Data           1  images.o(.constdata)
+    panzer_II_rightHeightPixels              0x00003099   Data           1  images.o(.constdata)
+    panzer_II_leftBitmaps                    0x0000309a   Data          60  images.o(.constdata)
+    panzer_II_leftWidthPixels                0x000030d6   Data           1  images.o(.constdata)
+    panzer_II_leftHeightPixels               0x000030d7   Data           1  images.o(.constdata)
+    panzer_IV_upBitmaps                      0x000030d8   Data          60  images.o(.constdata)
+    panzer_IV_upWidthPixels                  0x00003114   Data           1  images.o(.constdata)
+    panzer_IV_upHeightPixels                 0x00003115   Data           1  images.o(.constdata)
+    panzer_IV_rightBitmaps                   0x00003116   Data          60  images.o(.constdata)
+    panzer_IV_rightWidthPixels               0x00003152   Data           1  images.o(.constdata)
+    panzer_IV_rightHeightPixels              0x00003153   Data           1  images.o(.constdata)
+    panzer_IV_downBitmaps                    0x00003154   Data          60  images.o(.constdata)
+    panzer_IV_downWidthPixels                0x00003190   Data           1  images.o(.constdata)
+    panzer_IV_downHeightPixels               0x00003191   Data           1  images.o(.constdata)
+    panzer_IV_leftBitmaps                    0x00003192   Data          60  images.o(.constdata)
+    panzer_IV_leftWidthPixels                0x000031ce   Data           1  images.o(.constdata)
+    panzer_IV_leftHeightPixels               0x000031cf   Data           1  images.o(.constdata)
+    panzer_VI_upBitmaps                      0x000031d0   Data          60  images.o(.constdata)
+    panzer_VI_upWidthPixels                  0x0000320c   Data           1  images.o(.constdata)
+    panzer_VI_upHeightPixels                 0x0000320d   Data           1  images.o(.constdata)
+    panzer_VI_rightBitmaps                   0x0000320e   Data          60  images.o(.constdata)
+    panzer_VI_rightWidthPixels               0x0000324a   Data           1  images.o(.constdata)
+    panzer_VI_rightHeightPixels              0x0000324b   Data           1  images.o(.constdata)
+    panzer_VI_downBitmaps                    0x0000324c   Data          60  images.o(.constdata)
+    panzer_VI_downWidthPixels                0x00003288   Data           1  images.o(.constdata)
+    panzer_VI_downHeightPixels               0x00003289   Data           1  images.o(.constdata)
+    panzer_VI_leftBitmaps                    0x0000328a   Data          60  images.o(.constdata)
+    panzer_VI_leftWidthPixels                0x000032c6   Data           1  images.o(.constdata)
+    panzer_VI_leftHeightPixels               0x000032c7   Data           1  images.o(.constdata)
+    shell_objBitmaps                         0x000032c8   Data           4  images.o(.constdata)
+    shell_objWidthPixels                     0x000032cc   Data           1  images.o(.constdata)
+    shell_objHeightPixels                    0x000032cd   Data           1  images.o(.constdata)
+    wall_tileBitmaps                         0x000032e2   Data          60  map.o(.constdata)
+    wall_tileWidthPixels                     0x0000331e   Data           1  map.o(.constdata)
+    wall_tileHeightPixels                    0x0000331f   Data           1  map.o(.constdata)
+    water_tileBitmaps                        0x00003320   Data          60  map.o(.constdata)
+    water_tileWidthPixels                    0x0000335c   Data           1  map.o(.constdata)
+    water_tileHeightPixels                   0x0000335d   Data           1  map.o(.constdata)
+    Sevastopol                               0x0000335e   Data         180  map.o(.constdata)
+    Region$$Table$$Base                      0x00003458   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x00003478   Number         0  anon$$obj.o(Region$$Table)
     RESTART                                  0x20000000   Data           1  main.o(.data)
     button                                   0x20000007   Data           1  project_interrupts.o(.data)
     data                                     0x20000008   Data           1  project_interrupts.o(.data)
@@ -969,9 +969,9 @@ Memory Map of the image
 
   Image Entry point : 0x00002911
 
-  Load Region LR_1 (Base: 0x00000000, Size: 0x0000374c, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x00000000, Size: 0x000034d0, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x000036f4, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00003478, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -1021,42 +1021,42 @@ Memory Map of the image
     0x00002e4c   0x00002e4c   0x0000000e   Code   RO         1038    i.__scatterload_zeroinit  mc_w.l(handlers.o)
     0x00002e5a   0x00002e5a   0x00000022   Code   RO          703    i._printf_core      mc_w.l(printfb.o)
     0x00002e7c   0x00002e7c   0x0000006c   Code   RO          956    i.malloc            mc_w.l(malloc.o)
-    0x00002ee8   0x00002ee8   0x00000662   Data   RO          245    .constdata          images.o
-    0x0000354a   0x0000354a   0x00000014   Data   RO          262    .constdata          staff.o
-    0x0000355e   0x0000355e   0x00000130   Data   RO          289    .constdata          map.o
-    0x0000368e   0x0000368e   0x00000002   PAD
-    0x00003690   0x00003690   0x00000043   Data   RO            5    .conststring        main.o
-    0x000036d3   0x000036d3   0x00000001   PAD
-    0x000036d4   0x000036d4   0x00000020   Data   RO         1034    Region$$Table       anon$$obj.o
+    0x00002ee8   0x00002ee8   0x000003e6   Data   RO          245    .constdata          images.o
+    0x000032ce   0x000032ce   0x00000014   Data   RO          262    .constdata          staff.o
+    0x000032e2   0x000032e2   0x00000130   Data   RO          289    .constdata          map.o
+    0x00003412   0x00003412   0x00000002   PAD
+    0x00003414   0x00003414   0x00000043   Data   RO            5    .conststring        main.o
+    0x00003457   0x00003457   0x00000001   PAD
+    0x00003458   0x00003458   0x00000020   Data   RO         1034    Region$$Table       anon$$obj.o
 
 
-    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x000036f4, Size: 0x00000058, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x00003478, Size: 0x00000058, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x000036f4   0x00000001   Data   RW            6    .data               main.o
-    0x20000001   0x000036f5   0x00000001   PAD
-    0x20000002   0x000036f6   0x00000007   Data   RW          182    .data               project_interrupts.o
-    0x20000009   0x000036fd   0x00000003   PAD
-    0x2000000c   0x00003700   0x00000035   Data   RW          214    .data               game.o
-    0x20000041   0x00003735   0x00000001   PAD
-    0x20000042   0x00003736   0x00000002   Data   RW          263    .data               staff.o
-    0x20000044   0x00003738   0x00000002   Data   RW          586    .data               serial_debug.o
-    0x20000046   0x0000373a   0x00000002   PAD
-    0x20000048   0x0000373c   0x00000004   Data   RW          659    .data               system_tm4c123.o
-    0x2000004c   0x00003740   0x00000004   Data   RW          694    .data               mc_w.l(stdout.o)
-    0x20000050   0x00003744   0x00000004   Data   RW         1013    .data               mc_w.l(mvars.o)
-    0x20000054   0x00003748   0x00000004   Data   RW         1014    .data               mc_w.l(mvars.o)
+    0x20000000   0x00003478   0x00000001   Data   RW            6    .data               main.o
+    0x20000001   0x00003479   0x00000001   PAD
+    0x20000002   0x0000347a   0x00000007   Data   RW          182    .data               project_interrupts.o
+    0x20000009   0x00003481   0x00000003   PAD
+    0x2000000c   0x00003484   0x00000035   Data   RW          214    .data               game.o
+    0x20000041   0x000034b9   0x00000001   PAD
+    0x20000042   0x000034ba   0x00000002   Data   RW          263    .data               staff.o
+    0x20000044   0x000034bc   0x00000002   Data   RW          586    .data               serial_debug.o
+    0x20000046   0x000034be   0x00000002   PAD
+    0x20000048   0x000034c0   0x00000004   Data   RW          659    .data               system_tm4c123.o
+    0x2000004c   0x000034c4   0x00000004   Data   RW          694    .data               mc_w.l(stdout.o)
+    0x20000050   0x000034c8   0x00000004   Data   RW         1013    .data               mc_w.l(mvars.o)
+    0x20000054   0x000034cc   0x00000004   Data   RW         1014    .data               mc_w.l(mvars.o)
 
 
-    Execution Region ER_ZI (Exec base: 0x20000058, Load base: 0x0000374c, Size: 0x00001048, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_ZI (Exec base: 0x20000058, Load base: 0x000034d0, Size: 0x00001048, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x20000058        -       0x0000001e   Zero   RW          181    .bss                project_interrupts.o
     0x20000076        -       0x0000000a   Zero   RW          213    .bss                game.o
     0x20000080        -       0x0000001c   Zero   RW          585    .bss                serial_debug.o
-    0x2000009c   0x0000374c   0x00000004   PAD
+    0x2000009c   0x000034d0   0x00000004   PAD
     0x200000a0        -       0x00000000   Zero   RW          649    HEAP                startup_tm4c123.o
     0x200000a0        -       0x00001000   Zero   RW          648    STACK               startup_tm4c123.o
 
@@ -1071,7 +1071,7 @@ Image component sizes
       1420        106          0         53         10       5869   game.o
        772         34          0          0          0       5562   gpio_port.o
        520         24          0          0          0       3713   i2c.o
-         0          0       1634          0          0       3942   images.o
+         0          0        998          0          0       3938   images.o
        324         14          0          0          0       1723   io_expander.o
       2886         28          0          0          0       8268   lcd.o
         80         10         67          1          0      30898   main.o
@@ -1088,7 +1088,7 @@ Image component sizes
        656         54          0          0          0       3500   uart.o
 
     ----------------------------------------------------------------------
-     10716        624       2680         76       4168     120702   Object Totals
+     10716        624       2044         76       4168     120698   Object Totals
          0          0         32          0          0          0   (incl. Generated)
          2          0          3          7          4          0   (incl. Padding)
 
@@ -1142,15 +1142,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     11388        664       2680         88       4168     118566   Grand Totals
-     11388        664       2680         88       4168     118566   ELF Image Totals
-     11388        664       2680         88          0          0   ROM Totals
+     11388        664       2044         88       4168     118562   Grand Totals
+     11388        664       2044         88       4168     118562   ELF Image Totals
+     11388        664       2044         88          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                14068 (  13.74kB)
+    Total RO  Size (Code + RO Data)                13432 (  13.12kB)
     Total RW  Size (RW Data + ZI Data)              4256 (   4.16kB)
-    Total ROM Size (Code + RO Data + RW Data)      14156 (  13.82kB)
+    Total ROM Size (Code + RO Data + RW Data)      13520 (  13.20kB)
 
 ==============================================================================
 
