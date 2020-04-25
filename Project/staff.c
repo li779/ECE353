@@ -30,8 +30,8 @@ PS2_DIR_t get_new_direction(bool* bump, int tank_index, PS2_DIR_t curr_direction
 		 double vertical_dist = fabs((double)(enermy[tank_index]->y - player->y));
 			
 		if(*bump){
-			
 		new_direction = (curr_direction+1)%4;
+			//printf("want to go to:%d",new_direction);
 			*bump = false;
 		
 			return new_direction;

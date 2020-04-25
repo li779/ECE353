@@ -120,7 +120,15 @@ void TIMER1A_Handler(void)
 void TIMER2A_Handler(void)
 {	
     // Check if the edge contact, if not then move the image
-    if (check_moveable(player->dir, player->x, player->y, player->height, player->width))
+	bool bump, enermy_bump;
+	int i;
+	for(i = 0; i < enermy_size; i++){
+				enermy_bump = check_bump(&(player->dir),player->x,player->y,player->height, player->width,
+													enermy[i]->x,enermy[i]->y,enermy[i]->height, enermy[i]->width);
+			bump = bump || enermy_bump;
+	}
+			
+    if (check_moveable(player->dir, player->x, player->y, player->height, player->width) && (!bump))
     {
         move_image(player->dir, &player->x, &player->y, player->height, player->width);
         ALERT_INVADER = true;
@@ -136,39 +144,46 @@ void TIMER3A_Handler(void)
 {	
 	int index;
 	int i;
-	char data[80];
-	for(i = 0; i < 10; i++){ bump[i] = false;}
+	bool test;
+	bool not_moveable, enermy_bump, player_bump;
+	
 	for (index = 0; index < enermy_size; index++){
-    if (MOVE_COUNT[index] == 0)   // if moved, then look for new values
-    {
-        MOVE_COUNT[index] = get_new_move_count();
-		//        SHIP_DIRECTION = get_new_direction(SHIP_DIRECTION);
-			
-    }
+//    if (MOVE_COUNT[index] == 0)   // if moved, then look for new values
+//    {
+//        MOVE_COUNT[index] = get_new_move_count();
+//		//        SHIP_DIRECTION = get_new_direction(SHIP_DIRECTION);
+//			
+//    }
 		set_dir(enermy[index],get_new_direction(&bump[index],index,enermy[index]->dir));
     // Check if edge contact, if not then move the image
 		
 		for(i = 0; i < enermy_size; i++){
 			if(i != index){
-			bump[index] |= check_bump(&(enermy[index]->dir),enermy[index]->x,enermy[index]->y,enermy[index]->height, enermy[index]->width,
+				enermy_bump = check_bump(&(enermy[index]->dir),enermy[index]->x,enermy[index]->y,enermy[index]->height, enermy[index]->width,
 													enermy[i]->x,enermy[i]->y,enermy[i]->height, enermy[i]->width);
+			bump[index] = bump[index] || enermy_bump;
 			}
 		}
-		bump[index] |= check_bump(&(enermy[index]->dir),enermy[index]->x,enermy[index]->y,enermy[index]->height, enermy[index]->width,
+		player_bump = check_bump(&(enermy[index]->dir),enermy[index]->x,enermy[index]->y,enermy[index]->height, enermy[index]->width,
 													player->x,player->y,player->height, player->width);
-		bump[index] |= contact_edge(enermy[index]->dir, enermy[index]->x, enermy[index]->y, enermy[index]->height, enermy[index]->width);
+		bump[index] = bump[index] || player_bump;
+		printf("player:%d\n",bump[index]? 1:0);
+		
+		not_moveable = (!(check_moveable((enermy[index]->dir),enermy[index]->x,enermy[index]->y,enermy[index]->height, enermy[index]->width)));
+		printf("move:%d\n",not_moveable? 0:1);
+		bump[index] = bump[index] || not_moveable;
+		printf("map:%d\n",bump[index]? 1:0);
 		if (bump[index]){
-//			sprintf(data,"tank: %d is bumping at dir: %d\r", index,enermy[index]->dir);
-//			put_string(data);
+			//printf("tank: %d is bumping at dir: %d\n", index,enermy[index]->dir);
 			
 		}
     if(!bump[index])
     {
-        //move_image(enermy[index]->dir, &(enermy[index]->x), &(enermy[index]->y), enermy[index]->height, enermy[index]->width);
+        move_image(enermy[index]->dir, &(enermy[index]->x), &(enermy[index]->y), enermy[index]->height, enermy[index]->width);
         ALERT_SPACE_SHIP[index] = true;
     }
     // Decrement MOVE_COUNT
-    MOVE_COUNT[index]--;
+    //MOVE_COUNT[index]--;
 	}
 	// Clear the interrupt
 	TIMER3->ICR |= TIMER_ICR_TATOCINT;  

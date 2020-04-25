@@ -113,29 +113,37 @@ bool check_moveable(
 )
 {
 		uint8_t map_index = get_pos(x_coord,y_coord);
-	printf("map_index:%d, x:%d, y:%d\r",map_index,x_coord,y_coord);
+	
     // Check if out of bound based on the direction requested.
     switch (direction)
     {
-    case PS2_DIR_LEFT:
-        if ((map_index%12 == 0) || (Sevastopol[map_index-1] == 1))
+    case PS2_DIR_LEFT:{
+				if (map_index>100) printf("in left\n");
+        if ((map_index%12 == 0) || (Sevastopol[map_index-1] == 1)){
+					if (map_index>100) printf("map_index:%d, dir: %d\n",map_index,direction);
             return false;
+				}
         break;
+			}
     case PS2_DIR_RIGHT:
+			if (map_index>100) printf("in right\n");
         if ((map_index%12 == 11) || (Sevastopol[map_index+1] == 1))
             return false;
         break;
     case PS2_DIR_UP:
+			if (map_index>100) printf("in up\n");
         if ((map_index/12 == 0) || (Sevastopol[map_index-12] == 1))
             return false;
         break;
     case PS2_DIR_DOWN:
+			if (map_index>100) printf("in down\n");
         if ((map_index/12 == 14) || (Sevastopol[map_index+12] == 1))
             return false;
         break;
     default:
         return true;
     }
+		if (map_index>100) printf("in end\n");
     return true;
 }
 
@@ -232,23 +240,45 @@ bool check_bump(
         uint8_t invader_width
 )
 {
+		uint8_t ship_index = get_pos(ship_x_coord,ship_y_coord);
+		uint8_t invader_index = get_pos(invader_x_coord,invader_y_coord);
     // Check if any margin of the space ship is within the x/y range of the invader.
-    bool left_margin = (int)(ship_x_coord - ship_width / 2) > (int)(invader_x_coord - invader_width / 2)
-        && (int)(ship_x_coord - ship_width / 2) < (int)(invader_x_coord + invader_width / 2) && (*contact_dir ==PS2_DIR_LEFT);
-    bool right_margin = (int)(ship_x_coord + ship_width / 2) < (int)(invader_x_coord + invader_width / 2)
-        && (int)(ship_x_coord + ship_width / 2) > (int)(invader_x_coord - invader_width / 2) && (*contact_dir ==PS2_DIR_UP);
-    bool up_margin = (int)(ship_y_coord + ship_height /2) < (int)(invader_y_coord + invader_height/2) 
-        && (int)(ship_y_coord + ship_height / 2) > (int)(invader_y_coord - invader_height / 2) && (*contact_dir ==PS2_DIR_RIGHT);
-    bool down_margin = (int)(ship_y_coord - ship_height /2) > (int)(invader_y_coord - invader_height/2) 
-        && (int)(ship_y_coord - ship_height / 2) < (int)(invader_y_coord + invader_height / 2) && (*contact_dir ==PS2_DIR_DOWN);
+//		bool left_margin = (int)(ship_x_coord - ship_width / 2) > (int)(invader_x_coord - invader_width / 2)
+//        && (int)(ship_x_coord - ship_width / 2) < (int)(invader_x_coord + invader_width / 2) && (*contact_dir ==PS2_DIR_LEFT);
+//    bool right_margin = (int)(ship_x_coord + ship_width / 2) < (int)(invader_x_coord + invader_width / 2)
+//        && (int)(ship_x_coord + ship_width / 2) > (int)(invader_x_coord - invader_width / 2) && (*contact_dir ==PS2_DIR_UP);
+//    bool up_margin = (int)(ship_y_coord + ship_height /2) < (int)(invader_y_coord + invader_height/2) 
+//        && (int)(ship_y_coord + ship_height / 2) > (int)(invader_y_coord - invader_height / 2) && (*contact_dir ==PS2_DIR_RIGHT);
+//    bool down_margin = (int)(ship_y_coord - ship_height /2) > (int)(invader_y_coord - invader_height/2) 
+//        && (int)(ship_y_coord - ship_height / 2) < (int)(invader_y_coord + invader_height / 2) && (*contact_dir ==PS2_DIR_DOWN);
+    switch (*contact_dir)
+    {
+    case PS2_DIR_LEFT:{
+        if (ship_index-1 == invader_index){
+            return true;
+				}
+        break;
+			}
+    case PS2_DIR_RIGHT:
+			if (ship_index+1 == invader_index){
+            return true;
+				}
+        break;
+    case PS2_DIR_UP:
+			if (ship_index-12 == invader_index){
+            return true;
+				}
+        break;
+    case PS2_DIR_DOWN:
+			if (ship_index+12 == invader_index){
+            return true;
+				}
+        break;
+    default:
+        return false;
+    }
 		
-		bool over;
-		
-
-    // Based on the margin conditions specified above, check if the invader and space ship has overlapped.
-     over = left_margin || up_margin || down_margin || right_margin;
-
-    return over;
+		return false;
 }
 
 bool check_shot_on_target(){
@@ -274,8 +304,7 @@ void game(void)
 	
 	for (index = 0; index < enermy_size; index++){
 		enermy[index] = malloc(sizeof(tanks));
-		enermy[index]->x = 190-index*60;
-		enermy[index]->y = 270;
+		set_pos(179-2*index, &(enermy[index]->x), &(enermy[index]->y));
 		enermy[index]->dir = PS2_DIR_CENTER;
 		enermy[index]->image = (uint8_t*)easytank_downBitmaps;
 		enermy[index]->height = easytank_downHeightPixels;
@@ -294,32 +323,23 @@ void game(void)
 	//				sprintf(data,"%d\n\r",player->x);
 	//				put_string(data);
 
-//		for (index = 0; index < enermy_size; index++){
-//		if(ALERT_SPACE_SHIP[index])
-//		{
-//			ALERT_SPACE_SHIP[index] = false;
-//			lcd_draw_image(
-//				enermy[index]->x,                       // X Center Point
-//				enermy[index]->width,   // Image Horizontal Width
-//				enermy[index]->y,                       // Y Center Point
-//				enermy[index]->height,  // Image Vertical Height
-//				enermy[index]->image,       // Image
-//				LCD_COLOR_BLUE,           // Foreground Color
-//				LCD_COLOR_BLACK          // Background Color
-//			);
+		for (index = 0; index < enermy_size; index++){
+		if(ALERT_SPACE_SHIP[index])
+		{
+			ALERT_SPACE_SHIP[index] = false;
+			lcd_draw_image(
+				enermy[index]->x,                       // X Center Point
+				enermy[index]->width,   // Image Horizontal Width
+				enermy[index]->y,                       // Y Center Point
+				enermy[index]->height,  // Image Vertical Height
+				enermy[index]->image,       // Image
+				LCD_COLOR_BLUE,           // Foreground Color
+				LCD_COLOR_BLACK          // Background Color
+			);
 
-//		//            game_over = check_game_over(
-//		//                                        SHIP_X_COORD,
-//		//                                        SHIP_Y_COORD,
-//		//                                        space_shipHeightPixels,
-//		//                                        space_shipWidthPixels,
-//		//                                        INVADER_X_COORD,
-//		//                                        INVADER_Y_COORD,
-//		//                                        easytank_rightHeightPixels,
-//		//                                        easytank_rightWidthPixels
-//		//                                    );
-//		}
-//		}
+
+		}
+		}
 
 		if(ALERT_INVADER)
 		{
