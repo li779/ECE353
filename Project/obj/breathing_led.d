@@ -38,5 +38,5 @@
 .\obj\breathing_led.o: staff.h
 .\obj\breathing_led.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 .\obj\breathing_led.o: project_interrupts.h
-.\obj\breathing_led.o: project_hardware_init.h
 .\obj\breathing_led.o: breathing_led.h
+.\obj\breathing_led.o: project_hardware_init.h

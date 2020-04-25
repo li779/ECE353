@@ -36,6 +36,6 @@
 .\obj\project_interrupts.o: project_interrupts.h
 .\obj\project_interrupts.o: project_hardware_init.h
 .\obj\project_interrupts.o: main.h
-.\obj\project_interrupts.o: breathing_led.h
 .\obj\project_interrupts.o: staff.h
 .\obj\project_interrupts.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\obj\project_interrupts.o: breathing_led.h

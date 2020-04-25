@@ -38,5 +38,5 @@
 .\obj\staff.o: project_interrupts.h
 .\obj\staff.o: project_hardware_init.h
 .\obj\staff.o: main.h
-.\obj\staff.o: breathing_led.h
 .\obj\staff.o: staff.h
+.\obj\staff.o: breathing_led.h

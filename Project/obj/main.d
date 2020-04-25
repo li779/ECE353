@@ -37,5 +37,5 @@
 .\obj\main.o: staff.h
 .\obj\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 .\obj\main.o: project_interrupts.h
-.\obj\main.o: project_hardware_init.h
 .\obj\main.o: breathing_led.h
+.\obj\main.o: project_hardware_init.h
