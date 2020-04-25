@@ -224,6 +224,7 @@ void TIMER3A_Handler(void)
 	SHELL_MOVE = true;
 	for (i=0; i<shell_size; i++){
 		if (shells[i]->valid){
+			printf("shell index: %d\n",i);
 		if (check_shot_on_target(shells[i])){
 			shells[i]->valid = false;
 		} else {

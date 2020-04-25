@@ -33,6 +33,12 @@ top_row_display.h(8): warning:  #1-D: last line of file ends without a newline
 breathing_led.h(20): warning:  #1-D: last line of file ends without a newline
   void breathing_led_init(void);
 project_hardware_init.c: 2 warnings, 0 errors
+compiling main.c...
+top_row_display.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+breathing_led.h(20): warning:  #1-D: last line of file ends without a newline
+  void breathing_led_init(void);
+main.c: 2 warnings, 0 errors
 compiling project_interrupts.c...
 top_row_display.h(8): warning:  #1-D: last line of file ends without a newline
   #endif
@@ -41,25 +47,7 @@ breathing_led.h(20): warning:  #1-D: last line of file ends without a newline
 project_interrupts.c(156): warning:  #177-D: variable "test"  was declared but never referenced
   	bool test;
 project_interrupts.c: 3 warnings, 0 errors
-compiling main.c...
-top_row_display.h(8): warning:  #1-D: last line of file ends without a newline
-  #endif
-breathing_led.h(20): warning:  #1-D: last line of file ends without a newline
-  void breathing_led_init(void);
-main.c: 2 warnings, 0 errors
 compiling images.c...
-compiling map.c...
-map.c(125): warning:  #1-D: last line of file ends without a newline
-  );*/
-map.c: 1 warning, 0 errors
-compiling game.c...
-top_row_display.h(8): warning:  #1-D: last line of file ends without a newline
-  #endif
-game.c(390): warning:  #177-D: variable "data"  was declared but never referenced
-  	char data[80];
-game.c(392): warning:  #177-D: variable "game_over"  was declared but never referenced
-  	bool game_over = false;
-game.c: 3 warnings, 0 errors
 compiling staff.c...
 top_row_display.h(8): warning:  #1-D: last line of file ends without a newline
   #endif
@@ -70,6 +58,22 @@ staff.c(34): warning:  #188-D: enumerated type mixed with another type
 staff.c(6): warning:  #177-D: variable "MOV_DIR"  was declared but never referenced
   static const PS2_DIR_t  MOV_DIR[] = {PS2_DIR_UP, PS2_DIR_DOWN, PS2_DIR_LEFT, PS2_DIR_RIGHT};
 staff.c: 4 warnings, 0 errors
+compiling game.c...
+top_row_display.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+game.c(390): warning:  #177-D: variable "data"  was declared but never referenced
+  	char data[80];
+game.c(392): warning:  #177-D: variable "game_over"  was declared but never referenced
+  	bool game_over = false;
+game.c: 3 warnings, 0 errors
+compiling map.c...
+map.c(125): warning:  #1-D: last line of file ends without a newline
+  );*/
+map.c: 1 warning, 0 errors
+compiling top_row_display.c...
+top_row_display.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+top_row_display.c: 1 warning, 0 errors
 compiling adc.c...
 ..\drivers\c\adc.c(54): warning:  #188-D: enumerated type mixed with another type
          return ADC0SS0_IRQn + ss_num;
@@ -80,10 +84,6 @@ compiling adc.c...
 ..\drivers\c\adc.c(29): warning:  #177-D: function "verify_base_addr"  was declared but never referenced
   static bool verify_base_addr(uint32_t baseAddr)
 ..\drivers\c\adc.c: 4 warnings, 0 errors
-compiling top_row_display.c...
-top_row_display.h(8): warning:  #1-D: last line of file ends without a newline
-  #endif
-top_row_display.c: 1 warning, 0 errors
 compiling breathing_led.c...
 top_row_display.h(8): warning:  #1-D: last line of file ends without a newline
   #endif
@@ -95,11 +95,11 @@ breathing_led.c(59): warning:  #1-D: last line of file ends without a newline
   }
 breathing_led.c: 4 warnings, 0 errors
 compiling pc_buffer.c...
+compiling i2c.c...
 compiling gpio_port.c...
 ..\drivers\c\gpio_port.c(82): warning:  #188-D: enumerated type mixed with another type
          return 0;
 ..\drivers\c\gpio_port.c: 1 warning, 0 errors
-compiling i2c.c...
 compiling timers.c...
 ..\drivers\c\timers.c(60): warning:  #188-D: enumerated type mixed with another type
          return 0;
@@ -123,7 +123,7 @@ compiling io_expander.c...
 ..\peripherals\c\io_expander.c: 2 warnings, 0 errors
 compiling system_TM4C123.c...
 linking...
-Program Size: Code=14444 RO-data=2368 RW-data=100 ZI-data=4164  
+Program Size: Code=14472 RO-data=2368 RW-data=100 ZI-data=4164  
 ".\obj\ece353_base_project.axf" - 0 Error(s), 29 Warning(s).
 
 <h2>Software Packages used:</h2>
