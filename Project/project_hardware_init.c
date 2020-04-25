@@ -43,8 +43,7 @@ void hardwareInit(void)
 	// Set timers
 	gp_timer_config_32(TIMER2_BASE,TIMER_TAMR_TAMR_PERIOD, 1000000, false, true);		// Used to move player's tank
 	gp_timer_config_32(TIMER3_BASE,TIMER_TAMR_TAMR_PERIOD, 1000000, false, true);		// Used to move enemy's tanks
-	gp_timer_config_32(TIMER4_BASE,TIMER_TAMR_TAMR_PERIOD, 50000, false, true);			// Used to check PS2 and button
-	gp_timer_config_32(TIMER4_BASE,TIMER_TAMR_TAMR_PERIOD, 50000, false, true);			// Used to control breathing RGB effect
+	gp_timer_config_32(TIMER4_BASE,TIMER_TAMR_TAMR_PERIOD, 500000, false, true);		// Used to check PS2 and button
 	
 	EnableInterrupts();
 }

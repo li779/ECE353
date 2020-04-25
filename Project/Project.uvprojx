@@ -184,7 +184,6 @@
             <hadXRAM>0</hadXRAM>
             <uocXRam>0</uocXRam>
             <RvdsVP>2</RvdsVP>
-            <RvdsMve>0</RvdsMve>
             <hadIRAM2>0</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>8</StupSel>
@@ -446,6 +445,11 @@
               <FileName>top_row_display.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\top_row_display.h</FilePath>
+            </File>
+            <File>
+              <FileName>breathing_led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\breathing_led.c</FilePath>
             </File>
           </Files>
         </Group>

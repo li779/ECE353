@@ -105,6 +105,16 @@ void ps2_get_direction(void)
 }
 
 //*****************************************************************************
+// TIMER1 ISR is used to determine when to update breathing effect
+//*****************************************************************************
+void TIMER1A_Handler(void)
+{
+	
+	// Clear the interrupt
+	TIMER1->ICR |= 0x01;
+}
+
+//*****************************************************************************
 // TIMER2 ISR is used to determine when to move the Invader
 //*****************************************************************************
 void TIMER2A_Handler(void)

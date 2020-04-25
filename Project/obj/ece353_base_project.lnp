@@ -1,4 +1,4 @@
---cpu=Cortex-M4.fp.sp
+--cpu=Cortex-M4.fp
 ".\obj\main.o"
 ".\obj\project_hardware_init.o"
 ".\obj\project_interrupts.o"
@@ -7,6 +7,7 @@
 ".\obj\staff.o"
 ".\obj\map.o"
 ".\obj\top_row_display.o"
+".\obj\breathing_led.o"
 ".\obj\adc.o"
 ".\obj\gpio_port.o"
 ".\obj\i2c.o"
