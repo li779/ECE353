@@ -106,12 +106,41 @@ void ps2_get_direction(void)
 
 //*****************************************************************************
 // TIMER1 ISR is used to determine when to update breathing effect
+// This is basically a simulated PWM module + timer interrupt.
+// We have tried to use PWM but failed, this is why we ended up with this.
 //*****************************************************************************
 void TIMER1A_Handler(void)
 {
+	// Check if need to update RGB values, if not, just change RGB_temp values
+	if(RGB_update)
+	{
+		if(R > 254)
+			RGB_direction = true;
+		else if (R < 1)
+			RGB_direction = false;
+		
+		if(RGB_direction){R--, G--, B--;}
+		else {R++, G++, B++;}
+		
+		R_temp = 0, G_temp = 0, B_temp = 0;
+		
+		RGB_update = false;
+	}
+	else
+	{
+		R_temp ++;
+		G_temp ++;
+		B_temp ++;
+		if(R_temp == 255)
+			RGB_update = 1;
+	}
+	
+	// Write value into GPIOF based on whether the RGB_temp has been larger than pre-set value
+	GPIOF->DATA = (((R_temp > R) << 1 ) | ((G_temp > G) << 3) | ((B_temp > B) << 2) );
+	
 	
 	// Clear the interrupt
-	TIMER1->ICR |= 0x01;
+	TIMER1->ICR |= TIMER_ICR_TATOCINT;
 }
 
 //*****************************************************************************

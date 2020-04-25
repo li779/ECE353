@@ -38,3 +38,4 @@
 .\obj\project_hardware_init.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 .\obj\project_hardware_init.o: project_interrupts.h
 .\obj\project_hardware_init.o: project_hardware_init.h
+.\obj\project_hardware_init.o: breathing_led.h
