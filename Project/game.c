@@ -130,7 +130,7 @@ bool check_moveable(
             return false;
         break;
     case PS2_DIR_DOWN:
-        if ((map_index/12 == 11) || (Sevastopol[map_index+12] == 1))
+        if ((map_index/12 == 14) || (Sevastopol[map_index+12] == 1))
             return false;
         break;
     default:
