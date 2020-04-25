@@ -91,13 +91,16 @@ void drawMap(const uint8_t map[])
 			x += 20;
 			if (map[i * 12 + j] == 1)
 			{
-				lcd_draw_image(x, wall_tileWidthPixels, y, wall_tileHeightPixels, wall_tileBitmaps, 0xFFFF, 0x0000);
+				lcd_draw_image(x, wall_tileWidthPixels-1, y, wall_tileHeightPixels, wall_tileBitmaps, 0xFFFF, 0x0000);
 			}
 		}
-		
-	}*/
+		y += 20;
+	}
 
     return;
+}
+uint8_t get_pos(uint16_t x, uint16_t y){
+	return (uint8_t)((x/20+1)+(y/20)*12);
 }
 /*
 void lcd_draw_image(
