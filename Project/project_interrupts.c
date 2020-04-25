@@ -150,38 +150,28 @@ void TIMER1A_Handler(void)
 void TIMER2A_Handler(void)
 {	
     // Check if the edge contact, if not then move the image
-	bool bump, enermy_bump;
+	bool player_bump, enermy_bump;
 	int i;
+	int index;
+	bool test;
+	bool not_moveable;
 	for(i = 0; i < enermy_size; i++){
 				enermy_bump = check_bump(&(player->dir),player->x,player->y,player->height, player->width,
 													enermy[i]->x,enermy[i]->y,enermy[i]->height, enermy[i]->width);
-			bump = bump || enermy_bump;
+			player_bump = player_bump || enermy_bump;
 	}
 			
 	if(PS2_MOVE)
 	{
-		if (check_moveable(player->dir, player->x, player->y, player->height, player->width) && (!bump))
+		if (check_moveable(player->dir, player->x, player->y, player->height, player->width) && (!player_bump))
 		{
 			move_image(player->dir, &player->x, &player->y, player->height, player->width);
 			ALERT_INVADER = true;
 		}
 		PS2_MOVE = false;
 	}
-	
-    // Clear the interrupt
-	TIMER2->ICR |= TIMER_ICR_TATOCINT;
-}
-
-//*****************************************************************************
-// TIMER3 ISR is used to determine when to move the enemy
-//*****************************************************************************
-void TIMER3A_Handler(void)
-{	
-	int index;
-	int i;
-	bool test;
-	bool not_moveable, enermy_bump, player_bump;
-	
+	player_bump = false;
+	enermy_bump = false;
 	for (index = 0; index < enermy_size; index++){
 //    if (MOVE_COUNT[index] == 0)   // if moved, then look for new values
 //    {
@@ -218,6 +208,29 @@ void TIMER3A_Handler(void)
     }
     // Decrement MOVE_COUNT
     //MOVE_COUNT[index]--;
+	}
+	
+    // Clear the interrupt
+	TIMER2->ICR |= TIMER_ICR_TATOCINT;
+}
+
+//*****************************************************************************
+// TIMER3 ISR is used to determine when to move the enemy
+//*****************************************************************************
+void TIMER3A_Handler(void)
+{	
+	int i;
+	
+	SHELL_MOVE = true;
+	for (i=0; i<shell_size; i++){
+		if (shells[i]->valid){
+		if (check_shot_on_target(shells[i])){
+			shells[i]->valid = false;
+		} else {
+			move_image(shells[i]->dir, &(shells[i]->x), &(shells[i]->y), shell_objHeightPixels, shell_objWidthPixels);
+		}
+	}
+		
 	}
 	// Clear the interrupt
 	TIMER3->ICR |= TIMER_ICR_TATOCINT;  

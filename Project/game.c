@@ -7,6 +7,7 @@ volatile uint16_t INVADER_Y_COORD = 40;
 volatile bool ALERT_SPACE_SHIP[10];
 volatile bool ALERT_INVADER = true;
 volatile bool BUTTON_PRESSED = false;
+volatile bool SHELL_MOVE = false;
 volatile bool PS2_MOVE = false;
 char STUDENT_NAME[] = "Yichen Li and Marvin Zhang";
 int i;
@@ -467,7 +468,7 @@ void game(void)
 						break;
 				}
 			}
-			
+			if (SHELL_MOVE){
 			for(i=0;i<shell_size;i++){
 				
 				if(check_shot_on_target(shells[i]))
@@ -486,6 +487,8 @@ void game(void)
 						LCD_COLOR_BLACK           // Background Color
 					);
 			}
+			SHELL_MOVE = false;
+		}
 
 	}   
 }

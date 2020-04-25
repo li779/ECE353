@@ -61,12 +61,14 @@ extern volatile uint16_t INVADER_X_COORD;
 extern volatile uint16_t INVADER_Y_COORD;
 extern volatile bool ALERT_SPACE_SHIP[10];
 extern volatile bool ALERT_INVADER;
+extern volatile bool SHELL_MOVE;
 
 extern char STUDENT_NAME[];
 extern volatile tanks* player;
 extern volatile const uint8_t enermy_size;
 extern volatile tanks** enermy;
 extern volatile bullet** shells;
+extern volatile const uint8_t shell_size;
 
 extern volatile bool PS2_MOVE;
 extern volatile bool BUTTON_PRESSED;
@@ -135,6 +137,7 @@ bool check_moveable(
 );
 		
 		void clear_image(uint16_t x, uint16_t y);
+		bool check_shot_on_target(volatile bullet * i);
 //*****************************************************************************
 // Initializes all of the peripherls used in HW3
 //*****************************************************************************
