@@ -130,6 +130,8 @@ bool check_moveable(
     uint8_t image_height, 
     uint8_t image_width
 );
+		
+		void clear_image(uint16_t x, uint16_t y);
 //*****************************************************************************
 // Initializes all of the peripherls used in HW3
 //*****************************************************************************

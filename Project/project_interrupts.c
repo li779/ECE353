@@ -164,7 +164,7 @@ void TIMER3A_Handler(void)
 		}
     if(!bump[index])
     {
-        move_image(enermy[index]->dir, &(enermy[index]->x), &(enermy[index]->y), enermy[index]->height, enermy[index]->width);
+        //move_image(enermy[index]->dir, &(enermy[index]->x), &(enermy[index]->y), enermy[index]->height, enermy[index]->width);
         ALERT_SPACE_SHIP[index] = true;
     }
     // Decrement MOVE_COUNT

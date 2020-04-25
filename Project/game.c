@@ -118,19 +118,19 @@ bool check_moveable(
     switch (direction)
     {
     case PS2_DIR_LEFT:
-        if ((x_coord - 1 < image_width / 2) || ((Sevastopol[map_index-1] == 1)&&(x_coord - 1 < image_width+get_x(map_index-1))) || (y_coord != get_y(map_index)))
+        if ((map_index%12 == 0) || (Sevastopol[map_index-1] == 1))
             return false;
         break;
     case PS2_DIR_RIGHT:
-        if (x_coord + 1 > (COLS - image_width / 2 - 1) || ((Sevastopol[map_index+1] == 1)&&(x_coord + 1 > get_x(map_index+1) - image_width))|| (y_coord != get_y(map_index)))
+        if ((map_index%12 == 11) || (Sevastopol[map_index+1] == 1))
             return false;
         break;
     case PS2_DIR_UP:
-        if ((y_coord - 1 < image_height / 2) || ((Sevastopol[map_index-12] == 1) && (y_coord - 1 < image_height+get_y(map_index-12)))|| (x_coord != get_x(map_index)))
+        if ((map_index/12 == 0) || (Sevastopol[map_index-12] == 1))
             return false;
         break;
     case PS2_DIR_DOWN:
-        if ((y_coord + 1 > (ROWS - image_height / 2 - 1)) || ((Sevastopol[map_index+12] == 1) && (y_coord + 1 > get_y(map_index+12) - image_height))|| (x_coord != get_x(map_index)))
+        if ((map_index/12 == 11) || (Sevastopol[map_index+12] == 1))
             return false;
         break;
     default:
@@ -152,25 +152,38 @@ void move_image(
         uint8_t image_width
 )
 {
+		clear_image(*x_coord, *y_coord);
     switch (direction)   // move images according to direction
     {
         case PS2_DIR_LEFT:
-            (*x_coord)--;
+            (*x_coord)-=20;
             break;
         case PS2_DIR_RIGHT:
-            (*x_coord)++;
+            (*x_coord)+=20;
             break;
         case PS2_DIR_UP:
-            (*y_coord)--;
+            (*y_coord)-=20;
             break;
         case PS2_DIR_DOWN:
-            (*y_coord)++;
+            (*y_coord)+=20;
             break;
         default:
             break;
     }
 
     return;
+}
+
+void clear_image(uint16_t x, uint16_t y){
+	lcd_draw_image(
+			x,          // X Center Point
+			20,       // Image Horizontal Width
+			y,          // Y Center Point
+			20,      // Image Vertical Height
+			shell_objBitmaps,           // Image
+			LCD_COLOR_BLACK,            // Foreground Color
+			LCD_COLOR_BLACK           // Background Color
+			);
 }
 
 //*****************************************************************************
