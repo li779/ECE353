@@ -284,22 +284,27 @@ bool check_shot_on_target(){
 void fire(uint16_t x, uint16_t y, PS2_DIR_t dir){
 	
 	int i;
-	printf("fired x:%d, y:%d\n", x,y);
 	
 	switch(dir)
 	{
 		case PS2_DIR_UP:
-			
+			y -= 20;
 			break;
 		case PS2_DIR_DOWN:
+			y += 20;
 			break;
 		case PS2_DIR_LEFT:
+			x -= 20;
 			break;
 		case PS2_DIR_RIGHT:
+			x += 20;
 			break;
 		default:
+			printf("Error: shell direction not detected!");
 			break;
 	}
+	
+	printf("fired x:%d, y:%d\n", x,y);
 	
 	for (i = 0; i<shell_size; i++){
 		if(!(shells[i]->valid)){
@@ -410,7 +415,6 @@ void game(void)
 				{
 					case(BUTTON_UP)	:	{
 						fire(player->x,player->y,player->dir);
-						//printf("pressed button\n");
 						break;
 					}
 					case(BUTTON_DOWN):
@@ -424,17 +428,17 @@ void game(void)
 				}
 			}
 			
-						for(i=0;i<shell_size;i++){
-							if(shells[i]->valid)
-				lcd_draw_image(
-				shells[i]->x,          // X Center Point
-				shell_objWidthPixels,       // Image Horizontal Width
-				shells[i]->y,          // Y Center Point
-				shell_objHeightPixels,      // Image Vertical Height
-				shell_objBitmaps,           // Image
-				LCD_COLOR_YELLOW,            // Foreground Color
-				LCD_COLOR_BLACK           // Background Color
-			);
+			for(i=0;i<shell_size;i++){
+				if(shells[i]->valid)
+					lcd_draw_image(
+						shells[i]->x,          		// X Center Point
+						shell_objWidthPixels,       // Image Horizontal Width
+						shells[i]->y,          		// Y Center Point
+						shell_objHeightPixels,      // Image Vertical Height
+						shell_objBitmaps,           // Image
+						LCD_COLOR_YELLOW,            // Foreground Color
+						LCD_COLOR_BLACK           // Background Color
+					);
 			}
 
 	}   

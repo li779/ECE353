@@ -162,7 +162,7 @@ void TIMER2A_Handler(void)
 }
 
 //*****************************************************************************
-// TIMER3 ISR is used to determine when to move the spaceship
+// TIMER3 ISR is used to determine when to move the enemy
 //*****************************************************************************
 void TIMER3A_Handler(void)
 {	
