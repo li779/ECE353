@@ -234,7 +234,7 @@ void game(void)
 	printf("Drawing map...\n");
 	// Map Test
 	drawMap(Sevastopol);
-	while (true){};
+	//while (true){};
 	
 	while(true)
 	{	
@@ -245,16 +245,16 @@ void game(void)
 		for (index = 0; index < enermy_size; index++){
 		if(ALERT_SPACE_SHIP[index])
 		{
-		ALERT_SPACE_SHIP[index] = false;
-		lcd_draw_image(
-		enermy[index]->x,                       // X Center Point
-		enermy[index]->width,   // Image Horizontal Width
-		enermy[index]->y,                       // Y Center Point
-		enermy[index]->height,  // Image Vertical Height
-		enermy[index]->image,       // Image
-		LCD_COLOR_BLUE,           // Foreground Color
-		LCD_COLOR_BLACK          // Background Color
-		);
+			ALERT_SPACE_SHIP[index] = false;
+			lcd_draw_image(
+				enermy[index]->x,                       // X Center Point
+				enermy[index]->width,   // Image Horizontal Width
+				enermy[index]->y,                       // Y Center Point
+				enermy[index]->height,  // Image Vertical Height
+				enermy[index]->image,       // Image
+				LCD_COLOR_BLUE,           // Foreground Color
+				LCD_COLOR_BLACK          // Background Color
+			);
 
 		//            game_over = check_game_over(
 		//                                        SHIP_X_COORD,
@@ -271,47 +271,47 @@ void game(void)
 
 		if(ALERT_INVADER)
 		{
-		ALERT_INVADER = false;
+			ALERT_INVADER = false;
 
-		lcd_draw_image(
-		player->x,          // X Center Point
-		player->width,       // Image Horizontal Width
-		player->y,          // Y Center Point
-		player->height,      // Image Vertical Height
-		player->image,           // Image
-		LCD_COLOR_RED,            // Foreground Color
-		LCD_COLOR_BLACK           // Background Color
-		);
+			lcd_draw_image(
+			player->x,          // X Center Point
+			player->width,       // Image Horizontal Width
+			player->y,          // Y Center Point
+			player->height,      // Image Vertical Height
+			player->image,           // Image
+			LCD_COLOR_RED,            // Foreground Color
+			LCD_COLOR_BLACK           // Background Color
+			);
 
-		//             game_over = check_game_over(
-		//                                            SHIP_X_COORD,
-		//                                            SHIP_Y_COORD,
-		//                                            space_shipHeightPixels,
-		//                                            space_shipWidthPixels,
-		//                                            player->x,
-		//                                            player->y,
-		//                                            player->height,
-		//                                            player->width
-		//                                        );
-		}
-
-		if(BUTTON_PRESSED)
-		{
-			BUTTON_PRESSED = false;	// Deassert BUTTON_PRESSED flag
-			switch(button)
-			{
-				case(BUTTON_UP)	:	
-					break;
-				case(BUTTON_DOWN):
-					break;
-				case(BUTTON_LEFT):
-					break;
-				case(BUTTON_RIGHT):
-					break;
-				default:
-					break;
+			//             game_over = check_game_over(
+			//                                            SHIP_X_COORD,
+			//                                            SHIP_Y_COORD,
+			//                                            space_shipHeightPixels,
+			//                                            space_shipWidthPixels,
+			//                                            player->x,
+			//                                            player->y,
+			//                                            player->height,
+			//                                            player->width
+			//                                        );
 			}
-		}
+
+			if(BUTTON_PRESSED)
+			{
+				BUTTON_PRESSED = false;	// Deassert BUTTON_PRESSED flag
+				switch(button)
+				{
+					case(BUTTON_UP)	:	
+						break;
+					case(BUTTON_DOWN):
+						break;
+					case(BUTTON_LEFT):
+						break;
+					case(BUTTON_RIGHT):
+						break;
+					default:
+						break;
+				}
+			}
 
 	}   
 }

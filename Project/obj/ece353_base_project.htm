@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\obj\ece353_base_project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\obj\ece353_base_project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Fri Apr 24 20:29:21 2020
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Fri Apr 24 20:31:30 2020
 <BR><P>
 <H3>Maximum Stack Usage =        160 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -293,7 +293,7 @@ Global Symbols
 <P><STRONG><a name="[e6]"></a>delay</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, main.o(.text), UNUSED)
 
 <P><STRONG><a name="[76]"></a>main</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = main &rArr; game &rArr; drawMap &rArr; lcd_draw_image &rArr; lcd_set_pos &rArr; lcd_write_data_u16
+<BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = main &rArr; game &rArr; drawMap &rArr; lcd_draw_image &rArr; lcd_set_pos &rArr; lcd_write_data_u16
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;hardwareInit
 <LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game
@@ -404,26 +404,27 @@ Global Symbols
 
 <P><STRONG><a name="[ea]"></a>check_shot_on_target</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, game.o(.text), UNUSED)
 
-<P><STRONG><a name="[80]"></a>game</STRONG> (Thumb, 242 bytes, Stack size 0 bytes, game.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = game &rArr; drawMap &rArr; lcd_draw_image &rArr; lcd_set_pos &rArr; lcd_write_data_u16
+<P><STRONG><a name="[80]"></a>game</STRONG> (Thumb, 434 bytes, Stack size 16 bytes, game.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = game &rArr; drawMap &rArr; lcd_draw_image &rArr; lcd_set_pos &rArr; lcd_write_data_u16
 </UL>
-<BR>[Calls]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawMap
+<BR>[Calls]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_image
+<LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawMap
 <LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
 <LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[99]"></a>generate_random_number</STRONG> (Thumb, 48 bytes, Stack size 0 bytes, staff.o(.text))
+<P><STRONG><a name="[9a]"></a>generate_random_number</STRONG> (Thumb, 48 bytes, Stack size 0 bytes, staff.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_new_move_count
 </UL>
 
 <P><STRONG><a name="[92]"></a>get_new_direction</STRONG> (Thumb, 212 bytes, Stack size 48 bytes, staff.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = get_new_direction &rArr; __aeabi_i2d &rArr; _double_epilogue &rArr; _double_round
 </UL>
-<BR>[Calls]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
+<BR>[Calls]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
 <LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdrcmple
-<LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_fabs
+<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_fabs
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER3A_Handler
 </UL>
@@ -431,7 +432,7 @@ Global Symbols
 <P><STRONG><a name="[91]"></a>get_new_move_count</STRONG> (Thumb, 28 bytes, Stack size 4 bytes, staff.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = get_new_move_count
 </UL>
-<BR>[Calls]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;generate_random_number
+<BR>[Calls]<UL><LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;generate_random_number
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER3A_Handler
 </UL>
@@ -439,7 +440,7 @@ Global Symbols
 <P><STRONG><a name="[96]"></a>drawMap</STRONG> (Thumb, 90 bytes, Stack size 40 bytes, map.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = drawMap &rArr; lcd_draw_image &rArr; lcd_set_pos &rArr; lcd_write_data_u16
 </UL>
-<BR>[Calls]<UL><LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_image
+<BR>[Calls]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_image
 </UL>
 <BR>[Called By]<UL><LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game
 </UL>
@@ -718,7 +719,7 @@ Global Symbols
 <LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_rectangle_centered
 <LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_rectangle
 <LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_box
-<LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_image
+<LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_image
 <LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_clear_screen
 </UL>
 
@@ -759,13 +760,14 @@ Global Symbols
 <LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_write_data_u16
 </UL>
 
-<P><STRONG><a name="[9a]"></a>lcd_draw_image</STRONG> (Thumb, 242 bytes, Stack size 56 bytes, lcd.o(.text))
+<P><STRONG><a name="[97]"></a>lcd_draw_image</STRONG> (Thumb, 242 bytes, Stack size 56 bytes, lcd.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = lcd_draw_image &rArr; lcd_set_pos &rArr; lcd_write_data_u16
 </UL>
 <BR>[Calls]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_pos
 <LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_write_data_u16
 </UL>
 <BR>[Called By]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawMap
+<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game
 </UL>
 
 <P><STRONG><a name="[c4]"></a>lcd_draw_color_image</STRONG> (Thumb, 142 bytes, Stack size 56 bytes, lcd.o(.text), UNUSED)
@@ -1724,7 +1726,7 @@ Global Symbols
 <P><STRONG><a name="[77]"></a>SystemInit</STRONG> (Thumb, 112 bytes, Stack size 0 bytes, system_tm4c123.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_tm4c123.o(.text)
 </UL>
-<P><STRONG><a name="[97]"></a>__aeabi_i2d</STRONG> (Thumb, 34 bytes, Stack size 16 bytes, dflti.o(.text))
+<P><STRONG><a name="[98]"></a>__aeabi_i2d</STRONG> (Thumb, 34 bytes, Stack size 16 bytes, dflti.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = __aeabi_i2d &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
@@ -1766,7 +1768,7 @@ Global Symbols
 <LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsl
 <LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_round
 </UL>
-<BR>[Called By]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
+<BR>[Called By]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
 <LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
 </UL>
 
@@ -1801,7 +1803,7 @@ Global Symbols
 <LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[98]"></a>__hardfp_fabs</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, fabs.o(i.__hardfp_fabs))
+<P><STRONG><a name="[99]"></a>__hardfp_fabs</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, fabs.o(i.__hardfp_fabs))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = __hardfp_fabs
 </UL>
 <BR>[Called By]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_new_direction
@@ -1868,7 +1870,7 @@ Local Symbols
 <LI><a href="#[c0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_rectangle
 <LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_box
 <LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_pos
-<LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_image
+<LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_image
 <LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_clear_screen
 </UL>
 
