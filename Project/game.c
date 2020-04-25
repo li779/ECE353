@@ -101,6 +101,45 @@ bool contact_edge(
 }
 
 //*****************************************************************************
+// Determines if any part of the image would be off the screen if the image
+// is moved in the specified direction.
+//*****************************************************************************
+bool check_moveable(
+    volatile PS2_DIR_t direction,
+    volatile uint16_t x_coord, 
+    volatile uint16_t y_coord, 
+    uint8_t image_height, 
+    uint8_t image_width
+)
+{
+		uint8_t map_index = get_pos(x_coord,y_coord);
+	printf("map_index:%d, x:%d, y:%d\r",map_index,x_coord,y_coord);
+    // Check if out of bound based on the direction requested.
+    switch (direction)
+    {
+    case PS2_DIR_LEFT:
+        if ((x_coord - 1 < image_width / 2) || ((Sevastopol[map_index-1] == 1)&&(x_coord - 1 < image_width+get_x(map_index-1))) || (y_coord != get_y(map_index)))
+            return false;
+        break;
+    case PS2_DIR_RIGHT:
+        if (x_coord + 1 > (COLS - image_width / 2 - 1) || ((Sevastopol[map_index+1] == 1)&&(x_coord + 1 > get_x(map_index+1) - image_width))|| (y_coord != get_y(map_index)))
+            return false;
+        break;
+    case PS2_DIR_UP:
+        if ((y_coord - 1 < image_height / 2) || ((Sevastopol[map_index-12] == 1) && (y_coord - 1 < image_height+get_y(map_index-12)))|| (x_coord != get_x(map_index)))
+            return false;
+        break;
+    case PS2_DIR_DOWN:
+        if ((y_coord + 1 > (ROWS - image_height / 2 - 1)) || ((Sevastopol[map_index+12] == 1) && (y_coord + 1 > get_y(map_index+12) - image_height))|| (x_coord != get_x(map_index)))
+            return false;
+        break;
+    default:
+        return true;
+    }
+    return true;
+}
+
+//*****************************************************************************
 // Moves the image by one pixel in the provided direction.  The second and 
 // third parameter should modify the current location of the image (pass by
 // reference)
@@ -213,8 +252,7 @@ void game(void)
 	bool game_over = false;
 	for (i = 0; i<10;i++){ ALERT_SPACE_SHIP[i] = true;}
 	player = malloc(sizeof(tanks));
-	player->x = 50;
-	player->y = 40;
+	set_pos(1,&(player->x),&(player->y));
 	player->dir = PS2_DIR_CENTER;
 	player->image = (uint8_t*)easytank_downBitmaps;
 	player->height = easytank_downHeightPixels;
@@ -243,32 +281,32 @@ void game(void)
 	//				sprintf(data,"%d\n\r",player->x);
 	//				put_string(data);
 
-		for (index = 0; index < enermy_size; index++){
-		if(ALERT_SPACE_SHIP[index])
-		{
-			ALERT_SPACE_SHIP[index] = false;
-			lcd_draw_image(
-				enermy[index]->x,                       // X Center Point
-				enermy[index]->width,   // Image Horizontal Width
-				enermy[index]->y,                       // Y Center Point
-				enermy[index]->height,  // Image Vertical Height
-				enermy[index]->image,       // Image
-				LCD_COLOR_BLUE,           // Foreground Color
-				LCD_COLOR_BLACK          // Background Color
-			);
+//		for (index = 0; index < enermy_size; index++){
+//		if(ALERT_SPACE_SHIP[index])
+//		{
+//			ALERT_SPACE_SHIP[index] = false;
+//			lcd_draw_image(
+//				enermy[index]->x,                       // X Center Point
+//				enermy[index]->width,   // Image Horizontal Width
+//				enermy[index]->y,                       // Y Center Point
+//				enermy[index]->height,  // Image Vertical Height
+//				enermy[index]->image,       // Image
+//				LCD_COLOR_BLUE,           // Foreground Color
+//				LCD_COLOR_BLACK          // Background Color
+//			);
 
-		//            game_over = check_game_over(
-		//                                        SHIP_X_COORD,
-		//                                        SHIP_Y_COORD,
-		//                                        space_shipHeightPixels,
-		//                                        space_shipWidthPixels,
-		//                                        INVADER_X_COORD,
-		//                                        INVADER_Y_COORD,
-		//                                        easytank_rightHeightPixels,
-		//                                        easytank_rightWidthPixels
-		//                                    );
-		}
-		}
+//		//            game_over = check_game_over(
+//		//                                        SHIP_X_COORD,
+//		//                                        SHIP_Y_COORD,
+//		//                                        space_shipHeightPixels,
+//		//                                        space_shipWidthPixels,
+//		//                                        INVADER_X_COORD,
+//		//                                        INVADER_Y_COORD,
+//		//                                        easytank_rightHeightPixels,
+//		//                                        easytank_rightWidthPixels
+//		//                                    );
+//		}
+//		}
 
 		if(ALERT_INVADER)
 		{
