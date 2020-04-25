@@ -234,6 +234,7 @@ void game(void)
 	printf("Drawing map...\n");
 	// Map Test
 	drawMap(Sevastopol);
+	drawHP(100);
 	//while (true){};
 	
 	while(true)

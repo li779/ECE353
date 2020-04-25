@@ -25,3 +25,4 @@
 .\obj\game.o: ..\peripherals\include\io_expander.h
 .\obj\game.o: ..\drivers\include\i2c.h
 .\obj\game.o: map.h
+.\obj\game.o: top_row_display.h

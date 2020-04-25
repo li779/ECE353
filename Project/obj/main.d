@@ -31,6 +31,7 @@
 .\obj\main.o: images.h
 .\obj\main.o: game.h
 .\obj\main.o: map.h
+.\obj\main.o: top_row_display.h
 .\obj\main.o: project_interrupts.h
 .\obj\main.o: main.h
 .\obj\main.o: staff.h

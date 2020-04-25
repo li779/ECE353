@@ -1,6 +1,7 @@
 #define __MAP_H__
 
 #include <stdint.h>
+#include "lcd.h"
 
 extern const uint8_t Sevastopol[];
 extern const uint8_t map_width;

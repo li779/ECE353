@@ -30,8 +30,9 @@ I (..\peripherals\include\launchpad_io.h)(0x5E9B4469)
 I (..\peripherals\include\io_expander.h)(0x5EA10D1E)
 I (..\drivers\include\i2c.h)(0x5E9B4469)
 I (images.h)(0x5EA307BF)
-I (game.h)(0x5EA35EB0)
-I (map.h)(0x5EA3889B)
+I (game.h)(0x5EA39A5D)
+I (map.h)(0x5EA398E1)
+I (top_row_display.h)(0x5EA399DA)
 I (project_interrupts.h)(0x5EA35701)
 I (staff.h)(0x5EA34614)
 I (D:\Keil_v5\ARM\ARMCC\include\math.h)(0x599F920E)
@@ -68,8 +69,9 @@ I (..\peripherals\include\launchpad_io.h)(0x5E9B4469)
 I (..\peripherals\include\io_expander.h)(0x5EA10D1E)
 I (..\drivers\include\i2c.h)(0x5E9B4469)
 I (images.h)(0x5EA307BF)
-I (game.h)(0x5EA35EB0)
-I (map.h)(0x5EA3889B)
+I (game.h)(0x5EA39A5D)
+I (map.h)(0x5EA398E1)
+I (top_row_display.h)(0x5EA399DA)
 I (project_interrupts.h)(0x5EA35701)
 I (staff.h)(0x5EA34614)
 I (D:\Keil_v5\ARM\ARMCC\include\math.h)(0x599F920E)
@@ -107,14 +109,15 @@ I (..\peripherals\include\launchpad_io.h)(0x5E9B4469)
 I (..\peripherals\include\io_expander.h)(0x5EA10D1E)
 I (..\drivers\include\i2c.h)(0x5E9B4469)
 I (images.h)(0x5EA307BF)
-I (game.h)(0x5EA35EB0)
-I (map.h)(0x5EA3889B)
+I (game.h)(0x5EA39A5D)
+I (map.h)(0x5EA398E1)
+I (top_row_display.h)(0x5EA399DA)
 I (project_hardware_init.h)(0x5EA33332)
 I (staff.h)(0x5EA34614)
 I (D:\Keil_v5\ARM\ARMCC\include\math.h)(0x599F920E)
 F (.\project_interrupts.h)(0x5EA35701)()
-F (.\game.c)(0x5EA392ED)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork -I C:\Keil_v5\ARM\Pack\ARM\CMSIS\3.20.4\CMSIS\Include -I ..\include -I ..\drivers\include -I ..\peripherals\include --debug-I.\RTE\_Project-F19-ID:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include-ID:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="525" -D_RTE_ -DTM4C123GH6PM-o .\obj\game.o --omf_browse .\obj\game.crf --depend .\obj\game.d)
-I (game.h)(0x5EA35EB0)
+F (.\game.c)(0x5EA3A05A)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork -I C:\Keil_v5\ARM\Pack\ARM\CMSIS\3.20.4\CMSIS\Include -I ..\include -I ..\drivers\include -I ..\peripherals\include --debug-I.\RTE\_Project-F19-ID:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include-ID:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="525" -D_RTE_ -DTM4C123GH6PM-o .\obj\game.o --omf_browse .\obj\game.crf --depend .\obj\game.d)
+I (game.h)(0x5EA39A5D)
 I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599F920C)
 I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F920E)
 I (D:\Keil_v5\ARM\ARMCC\include\string.h)(0x599F920C)
@@ -139,7 +142,8 @@ I (..\drivers\include\timers.h)(0x5E9B4469)
 I (images.h)(0x5EA307BF)
 I (..\peripherals\include\io_expander.h)(0x5EA10D1E)
 I (..\drivers\include\i2c.h)(0x5E9B4469)
-I (map.h)(0x5EA3889B)
+I (map.h)(0x5EA398E1)
+I (top_row_display.h)(0x5EA399DA)
 F (.\images.c)(0x5EA3926D)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork -I C:\Keil_v5\ARM\Pack\ARM\CMSIS\3.20.4\CMSIS\Include -I ..\include -I ..\drivers\include -I ..\peripherals\include --debug-I.\RTE\_Project-F19-ID:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include-ID:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="525" -D_RTE_ -DTM4C123GH6PM-o .\obj\images.o --omf_browse .\obj\images.crf --depend .\obj\images.d)
 I (images.h)(0x5EA307BF)
 I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F920E)
@@ -177,12 +181,13 @@ I (..\peripherals\include\launchpad_io.h)(0x5E9B4469)
 I (..\peripherals\include\io_expander.h)(0x5EA10D1E)
 I (..\drivers\include\i2c.h)(0x5E9B4469)
 I (images.h)(0x5EA307BF)
-I (game.h)(0x5EA35EB0)
-I (map.h)(0x5EA3889B)
+I (game.h)(0x5EA39A5D)
+I (map.h)(0x5EA398E1)
+I (top_row_display.h)(0x5EA399DA)
 I (project_hardware_init.h)(0x5EA33332)
 F (.\map.c)(0x5EA38F56)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork -I C:\Keil_v5\ARM\Pack\ARM\CMSIS\3.20.4\CMSIS\Include -I ..\include -I ..\drivers\include -I ..\peripherals\include --debug-I.\RTE\_Project-F19-ID:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include-ID:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="525" -D_RTE_ -DTM4C123GH6PM-o .\obj\map.o --omf_browse .\obj\map.crf --depend .\obj\map.d)
 I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F920E)
-I (map.h)(0x5EA3889B)
+I (map.h)(0x5EA398E1)
 I (..\peripherals\include\lcd.h)(0x5E9B4469)
 I (..\drivers\include\driver_defines.h)(0x5E9B4469)
 I (D:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x599F920E)
@@ -196,7 +201,24 @@ I (D:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_armcc.h)(0x5D265
 I (D:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\mpu_armv7.h)(0x5C9012B4)
 I (D:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123\system_TM4C123.h)(0x51B75486)
 I (..\drivers\include\gpio_port.h)(0x5EA0B681)
-F (.\map.h)(0x5EA3889B)()
+F (.\map.h)(0x5EA398E1)()
+F (.\top_row_display.c)(0x5EA3A036)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork -I C:\Keil_v5\ARM\Pack\ARM\CMSIS\3.20.4\CMSIS\Include -I ..\include -I ..\drivers\include -I ..\peripherals\include --debug-I.\RTE\_Project-F19-ID:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include-ID:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="525" -D_RTE_ -DTM4C123GH6PM-o .\obj\top_row_display.o --omf_browse .\obj\top_row_display.crf --depend .\obj\top_row_display.d)
+I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F920E)
+I (top_row_display.h)(0x5EA399DA)
+I (..\peripherals\include\lcd.h)(0x5E9B4469)
+I (..\drivers\include\driver_defines.h)(0x5E9B4469)
+I (D:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x599F920E)
+I (D:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x599F920C)
+I (D:\Keil_v5\ARM\ARMCC\include\errno.h)(0x599F920C)
+I (D:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123\TM4C123GH6PM.h)(0x551052AC)
+I (D:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\core_cm4.h)(0x5D265596)
+I (D:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_version.h)(0x5D265596)
+I (D:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_compiler.h)(0x5D265596)
+I (D:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\cmsis_armcc.h)(0x5D265596)
+I (D:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include\mpu_armv7.h)(0x5C9012B4)
+I (D:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123\system_TM4C123.h)(0x51B75486)
+I (..\drivers\include\gpio_port.h)(0x5EA0B681)
+F (.\top_row_display.h)(0x5EA399DA)()
 F (..\drivers\c\adc.c)(0x5E9B4469)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork -I C:\Keil_v5\ARM\Pack\ARM\CMSIS\3.20.4\CMSIS\Include -I ..\include -I ..\drivers\include -I ..\peripherals\include --debug-I.\RTE\_Project-F19-ID:\Keil_v5\ARM\PACK\ARM\CMSIS\5.6.0\CMSIS\Core\Include-ID:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="525" -D_RTE_ -DTM4C123GH6PM-o .\obj\adc.o --omf_browse .\obj\adc.crf --depend .\obj\adc.d)
 I (..\drivers\include\adc.h)(0x5E9B4469)
 I (D:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x599F920E)

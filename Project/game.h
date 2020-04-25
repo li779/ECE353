@@ -14,6 +14,7 @@
 #include "images.h"
 #include "io_expander.h"
 #include "map.h"
+#include "top_row_display.h"
 
 typedef enum{
   PS2_DIR_UP,

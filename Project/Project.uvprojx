@@ -436,6 +436,16 @@
               <FileType>5</FileType>
               <FilePath>.\map.h</FilePath>
             </File>
+            <File>
+              <FileName>top_row_display.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\top_row_display.c</FilePath>
+            </File>
+            <File>
+              <FileName>top_row_display.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\top_row_display.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

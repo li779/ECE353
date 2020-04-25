@@ -31,6 +31,7 @@
 .\obj\project_hardware_init.o: images.h
 .\obj\project_hardware_init.o: game.h
 .\obj\project_hardware_init.o: map.h
+.\obj\project_hardware_init.o: top_row_display.h
 .\obj\project_hardware_init.o: project_interrupts.h
 .\obj\project_hardware_init.o: main.h
 .\obj\project_hardware_init.o: staff.h

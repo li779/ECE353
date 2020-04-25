@@ -6,6 +6,7 @@
 ".\obj\images.o"
 ".\obj\staff.o"
 ".\obj\map.o"
+".\obj\top_row_display.o"
 ".\obj\adc.o"
 ".\obj\gpio_port.o"
 ".\obj\i2c.o"
