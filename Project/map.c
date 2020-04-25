@@ -99,6 +99,9 @@ void drawMap(const uint8_t map[])
 
     return;
 }
+uint8_t get_pos(uint16_t x, uint16_t y){
+	return (uint8_t)((x/20+1)+(y/20)*12);
+}
 /*
 void lcd_draw_image(
 	uint16_t x_start,                 // X coordinate starting address
