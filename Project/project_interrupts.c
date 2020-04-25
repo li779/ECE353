@@ -167,12 +167,11 @@ void TIMER3A_Handler(void)
 		player_bump = check_bump(&(enermy[index]->dir),enermy[index]->x,enermy[index]->y,enermy[index]->height, enermy[index]->width,
 													player->x,player->y,player->height, player->width);
 		bump[index] = bump[index] || player_bump;
-		printf("player:%d\n",bump[index]? 1:0);
+		
 		
 		not_moveable = (!(check_moveable((enermy[index]->dir),enermy[index]->x,enermy[index]->y,enermy[index]->height, enermy[index]->width)));
-		printf("move:%d\n",not_moveable? 0:1);
 		bump[index] = bump[index] || not_moveable;
-		printf("map:%d\n",bump[index]? 1:0);
+		
 		if (bump[index]){
 			//printf("tank: %d is bumping at dir: %d\n", index,enermy[index]->dir);
 			

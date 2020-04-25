@@ -120,32 +120,26 @@ bool check_moveable(
     switch (direction)
     {
     case PS2_DIR_LEFT:{
-				if (map_index>100) printf("in left\n");
         if ((map_index%12 == 0) || (Sevastopol[map_index-1] == 1)){
-					if (map_index>100) printf("map_index:%d, dir: %d\n",map_index,direction);
             return false;
 				}
         break;
 			}
     case PS2_DIR_RIGHT:
-			if (map_index>100) printf("in right\n");
         if ((map_index%12 == 11) || (Sevastopol[map_index+1] == 1))
             return false;
         break;
     case PS2_DIR_UP:
-			if (map_index>100) printf("in up\n");
         if ((map_index/12 == 0) || (Sevastopol[map_index-12] == 1))
             return false;
         break;
     case PS2_DIR_DOWN:
-			if (map_index>100) printf("in down\n");
         if ((map_index/12 == 14) || (Sevastopol[map_index+12] == 1))
             return false;
         break;
     default:
         return true;
     }
-		if (map_index>100) printf("in end\n");
     return true;
 }
 
@@ -288,7 +282,9 @@ bool check_shot_on_target(){
 }
 
 void fire(uint16_t x, uint16_t y, PS2_DIR_t dir){
+	
 	int i;
+	printf("fired x:%d, y:%d\n", x,y);
 	for (i = 0; i<shell_size; i++){
 		if(!(shells[i]->valid)){
 			shells[i]->valid = true;
@@ -396,8 +392,11 @@ void game(void)
 				BUTTON_PRESSED = false;	// Deassert BUTTON_PRESSED flag
 				switch(button)
 				{
-					case(BUTTON_UP)	:	
+					case(BUTTON_UP)	:	{
+						fire(player->x,player->y,player->dir);
+						printf("pressed button\n");
 						break;
+					}
 					case(BUTTON_DOWN):
 						break;
 					case(BUTTON_LEFT):
