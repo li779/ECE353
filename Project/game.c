@@ -104,8 +104,8 @@ bool contact_edge(
 }
 
 //*****************************************************************************
-// Determines if any part of the image would be off the screen if the image
-// is moved in the specified direction.
+// Determines if any part of the image would be off the screen or hit wall 
+// if the image is moved in the specified direction.
 //*****************************************************************************
 bool check_moveable(
     volatile PS2_DIR_t direction,
@@ -185,7 +185,8 @@ void clear_image(uint16_t x, uint16_t y){
 			20,       // Image Horizontal Width
 			y,          // Y Center Point
 			20,      // Image Vertical Height
-			shell_objBitmaps,           // Image
+			//shell_objBitmaps,           // Image
+			blank_tileBitmaps,
 			LCD_COLOR_BLACK,            // Foreground Color
 			LCD_COLOR_BLACK           // Background Color
 			);
@@ -278,8 +279,41 @@ bool check_bump(
 		return false;
 }
 
-bool check_shot_on_target(){
+/*
+** Check if the bullet has hit an object or a wall
+*/
+bool check_shot_on_target(volatile bullet * i){
+	uint16_t x_temp = i->x, y_temp = i->y;
 	
+	if(!(i->valid))
+		return false;
+	
+	// Check if hit wall
+	switch(i->dir)
+	{
+		case PS2_DIR_UP:
+			y_temp -= 20;
+			break;
+		case PS2_DIR_DOWN:
+			y_temp += 20;
+			break;
+		case PS2_DIR_LEFT:
+			x_temp -= 20;
+			break;
+		case PS2_DIR_RIGHT:
+			x_temp += 20;
+			break;
+		default:
+			printf("Error! Bullet direction not defined!");
+			break;
+	}
+	if(!check_moveable(i->dir, x_temp, y_temp, 20, 20))
+	{
+		//printf("Bullet hit the wall.");
+		return true;
+	}
+	
+	return false;
 }
 
 void fire(uint16_t x, uint16_t y, PS2_DIR_t dir){
@@ -313,6 +347,11 @@ void fire(uint16_t x, uint16_t y, PS2_DIR_t dir){
 			shells[i]->x = x;
 			shells[i]->y = y;
 			shells[i]->dir = dir;
+			break;
+		}
+		else
+		{
+			printf("Shell Slot: %d Already in USE\n", i);
 		}
 	}
 }
@@ -430,6 +469,12 @@ void game(void)
 			}
 			
 			for(i=0;i<shell_size;i++){
+				
+				if(check_shot_on_target(shells[i]))
+				{
+					shells[i]->valid = false;
+				}
+				
 				if(shells[i]->valid)
 					lcd_draw_image(
 						shells[i]->x,          		// X Center Point

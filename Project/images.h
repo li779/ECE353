@@ -51,6 +51,10 @@ extern const uint8_t easytank_rightBitmaps[];
 extern const uint8_t easytank_rightWidthPixels;
 extern const uint8_t easytank_rightHeightPixels;
 
+extern const uint8_t blank_tileBitmaps[];
+extern const uint8_t blank_tileWidthPixels;
+extern const uint8_t blank_tileHeightPixels;
+
 extern const uint8_t shell_objBitmaps[];
 extern const uint8_t shell_objWidthPixels;
 extern const uint8_t shell_objHeightPixels;
