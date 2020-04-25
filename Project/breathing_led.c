@@ -53,15 +53,7 @@ void breathing_led_init(void)
 	lp_io_init();
 	
 	GPIOF->DATA = 0x0E;
-<<<<<<< Updated upstream
 	
 	//PWM_init();
 	
 }
-
-=======
-	
-	//PWM_init();
-	
-}
->>>>>>> Stashed changes

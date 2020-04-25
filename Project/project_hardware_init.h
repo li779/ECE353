@@ -23,7 +23,6 @@
 #define __HARDWARE_INIT_H__
 
 #include "main.h"
-#include "breathing_led.h"
 
 void hardwareInit(void);
 

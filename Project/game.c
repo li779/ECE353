@@ -21,11 +21,8 @@ typedef struct
 
 volatile tanks* player;
 volatile tanks** enermy;
-<<<<<<< Updated upstream
-=======
 volatile bullet** shells;
 volatile const uint8_t shell_size = 4;
->>>>>>> Stashed changes
 volatile const uint8_t enermy_size = 2;
 
 void set_dir(volatile tanks* tank, PS2_DIR_t dir){tank->dir = dir;set_image(tank);}
@@ -118,14 +115,16 @@ bool check_moveable(
 )
 {
 		uint8_t map_index = get_pos(x_coord,y_coord);
-	printf("map_index:%d, x:%d, y:%d\r",map_index,x_coord,y_coord);
+	
     // Check if out of bound based on the direction requested.
     switch (direction)
     {
-    case PS2_DIR_LEFT:
-        if ((map_index%12 == 0) || (Sevastopol[map_index-1] == 1))
+    case PS2_DIR_LEFT:{
+        if ((map_index%12 == 0) || (Sevastopol[map_index-1] == 1)){
             return false;
+				}
         break;
+			}
     case PS2_DIR_RIGHT:
         if ((map_index%12 == 11) || (Sevastopol[map_index+1] == 1))
             return false;
@@ -237,29 +236,53 @@ bool check_bump(
         uint8_t invader_width
 )
 {
+		uint8_t ship_index = get_pos(ship_x_coord,ship_y_coord);
+		uint8_t invader_index = get_pos(invader_x_coord,invader_y_coord);
     // Check if any margin of the space ship is within the x/y range of the invader.
-    bool left_margin = (int)(ship_x_coord - ship_width / 2) > (int)(invader_x_coord - invader_width / 2)
-        && (int)(ship_x_coord - ship_width / 2) < (int)(invader_x_coord + invader_width / 2) && (*contact_dir ==PS2_DIR_LEFT);
-    bool right_margin = (int)(ship_x_coord + ship_width / 2) < (int)(invader_x_coord + invader_width / 2)
-        && (int)(ship_x_coord + ship_width / 2) > (int)(invader_x_coord - invader_width / 2) && (*contact_dir ==PS2_DIR_UP);
-    bool up_margin = (int)(ship_y_coord + ship_height /2) < (int)(invader_y_coord + invader_height/2) 
-        && (int)(ship_y_coord + ship_height / 2) > (int)(invader_y_coord - invader_height / 2) && (*contact_dir ==PS2_DIR_RIGHT);
-    bool down_margin = (int)(ship_y_coord - ship_height /2) > (int)(invader_y_coord - invader_height/2) 
-        && (int)(ship_y_coord - ship_height / 2) < (int)(invader_y_coord + invader_height / 2) && (*contact_dir ==PS2_DIR_DOWN);
+//		bool left_margin = (int)(ship_x_coord - ship_width / 2) > (int)(invader_x_coord - invader_width / 2)
+//        && (int)(ship_x_coord - ship_width / 2) < (int)(invader_x_coord + invader_width / 2) && (*contact_dir ==PS2_DIR_LEFT);
+//    bool right_margin = (int)(ship_x_coord + ship_width / 2) < (int)(invader_x_coord + invader_width / 2)
+//        && (int)(ship_x_coord + ship_width / 2) > (int)(invader_x_coord - invader_width / 2) && (*contact_dir ==PS2_DIR_UP);
+//    bool up_margin = (int)(ship_y_coord + ship_height /2) < (int)(invader_y_coord + invader_height/2) 
+//        && (int)(ship_y_coord + ship_height / 2) > (int)(invader_y_coord - invader_height / 2) && (*contact_dir ==PS2_DIR_RIGHT);
+//    bool down_margin = (int)(ship_y_coord - ship_height /2) > (int)(invader_y_coord - invader_height/2) 
+//        && (int)(ship_y_coord - ship_height / 2) < (int)(invader_y_coord + invader_height / 2) && (*contact_dir ==PS2_DIR_DOWN);
+    switch (*contact_dir)
+    {
+    case PS2_DIR_LEFT:{
+        if (ship_index-1 == invader_index){
+            return true;
+				}
+        break;
+			}
+    case PS2_DIR_RIGHT:
+			if (ship_index+1 == invader_index){
+            return true;
+				}
+        break;
+    case PS2_DIR_UP:
+			if (ship_index-12 == invader_index){
+            return true;
+				}
+        break;
+    case PS2_DIR_DOWN:
+			if (ship_index+12 == invader_index){
+            return true;
+				}
+        break;
+    default:
+        return false;
+    }
 		
-		bool over;
-		
-
-    // Based on the margin conditions specified above, check if the invader and space ship has overlapped.
-     over = left_margin || up_margin || down_margin || right_margin;
-
-    return over;
+		return false;
 }
 
 bool check_shot_on_target(){
 	
-<<<<<<< Updated upstream
-=======
+}
+
+void fire(uint16_t x, uint16_t y, PS2_DIR_t dir){
+	
 	int i;
 	printf("fired x:%d, y:%d\n", x,y);
 	
@@ -286,7 +309,31 @@ bool check_shot_on_target(){
 			shells[i]->dir = dir;
 		}
 	}
->>>>>>> Stashed changes
+}
+
+void initialize_obj(){
+	int index;
+	player = malloc(sizeof(tanks));
+	set_pos(1,&(player->x),&(player->y));
+	player->dir = PS2_DIR_CENTER;
+	player->image = (uint8_t*)easytank_downBitmaps;
+	player->height = easytank_downHeightPixels;
+	player->width = easytank_downWidthPixels;
+	enermy = malloc(sizeof(tanks*)*enermy_size);
+	
+	for (index = 0; index < enermy_size; index++){
+		enermy[index] = malloc(sizeof(tanks));
+		set_pos(179-2*index, &(enermy[index]->x), &(enermy[index]->y));
+		enermy[index]->dir = PS2_DIR_CENTER;
+		enermy[index]->image = (uint8_t*)easytank_downBitmaps;
+		enermy[index]->height = easytank_downHeightPixels;
+		enermy[index]->width = easytank_downWidthPixels;
+	}
+	shells = malloc(sizeof(bullet*)*shell_size);
+	for (index=0; index<shell_size; index++){
+		shells[index] = malloc(sizeof(bullet));
+		shells[index]->valid = false;
+	}
 }
 
 //*****************************************************************************
@@ -298,24 +345,8 @@ void game(void)
 	int index;
 	bool game_over = false;
 	for (i = 0; i<10;i++){ ALERT_SPACE_SHIP[i] = true;}
-	player = malloc(sizeof(tanks));
-	set_pos(1,&(player->x),&(player->y));
-	player->dir = PS2_DIR_CENTER;
-	player->image = (uint8_t*)easytank_downBitmaps;
-	player->height = easytank_downHeightPixels;
-	player->width = easytank_downWidthPixels;
-	enermy = malloc(sizeof(tanks*)*enermy_size);
 	
-	for (index = 0; index < enermy_size; index++){
-		enermy[index] = malloc(sizeof(tanks));
-		enermy[index]->x = 190-index*60;
-		enermy[index]->y = 270;
-		enermy[index]->dir = PS2_DIR_CENTER;
-		enermy[index]->image = (uint8_t*)easytank_downBitmaps;
-		enermy[index]->height = easytank_downHeightPixels;
-		enermy[index]->width = easytank_downWidthPixels;
-	}
-	
+	initialize_obj();
 	printf("Drawing map...\n");
 	// Map Test
 	drawMap(Sevastopol);
@@ -328,32 +359,23 @@ void game(void)
 	//				sprintf(data,"%d\n\r",player->x);
 	//				put_string(data);
 
-//		for (index = 0; index < enermy_size; index++){
-//		if(ALERT_SPACE_SHIP[index])
-//		{
-//			ALERT_SPACE_SHIP[index] = false;
-//			lcd_draw_image(
-//				enermy[index]->x,                       // X Center Point
-//				enermy[index]->width,   // Image Horizontal Width
-//				enermy[index]->y,                       // Y Center Point
-//				enermy[index]->height,  // Image Vertical Height
-//				enermy[index]->image,       // Image
-//				LCD_COLOR_BLUE,           // Foreground Color
-//				LCD_COLOR_BLACK          // Background Color
-//			);
+		for (index = 0; index < enermy_size; index++){
+		if(ALERT_SPACE_SHIP[index])
+		{
+			ALERT_SPACE_SHIP[index] = false;
+			lcd_draw_image(
+				enermy[index]->x,                       // X Center Point
+				enermy[index]->width,   // Image Horizontal Width
+				enermy[index]->y,                       // Y Center Point
+				enermy[index]->height,  // Image Vertical Height
+				enermy[index]->image,       // Image
+				LCD_COLOR_BLUE,           // Foreground Color
+				LCD_COLOR_BLACK          // Background Color
+			);
 
-//		//            game_over = check_game_over(
-//		//                                        SHIP_X_COORD,
-//		//                                        SHIP_Y_COORD,
-//		//                                        space_shipHeightPixels,
-//		//                                        space_shipWidthPixels,
-//		//                                        INVADER_X_COORD,
-//		//                                        INVADER_Y_COORD,
-//		//                                        easytank_rightHeightPixels,
-//		//                                        easytank_rightWidthPixels
-//		//                                    );
-//		}
-//		}
+
+		}
+		}
 
 		if(ALERT_INVADER)
 		{
@@ -386,14 +408,11 @@ void game(void)
 				BUTTON_PRESSED = false;	// Deassert BUTTON_PRESSED flag
 				switch(button)
 				{
-<<<<<<< Updated upstream
-					case(BUTTON_UP)	:	
-=======
 					case(BUTTON_UP)	:	{
 						fire(player->x,player->y,player->dir);
 						//printf("pressed button\n");
->>>>>>> Stashed changes
 						break;
+					}
 					case(BUTTON_DOWN):
 						break;
 					case(BUTTON_LEFT):
@@ -403,6 +422,19 @@ void game(void)
 					default:
 						break;
 				}
+			}
+			
+						for(i=0;i<shell_size;i++){
+							if(shells[i]->valid)
+				lcd_draw_image(
+				shells[i]->x,          // X Center Point
+				shell_objWidthPixels,       // Image Horizontal Width
+				shells[i]->y,          // Y Center Point
+				shell_objHeightPixels,      // Image Vertical Height
+				shell_objBitmaps,           // Image
+				LCD_COLOR_YELLOW,            // Foreground Color
+				LCD_COLOR_BLACK           // Background Color
+			);
 			}
 
 	}   
