@@ -79,21 +79,22 @@ const uint8_t Sevastopol[] =
 void drawMap(const uint8_t map[])
 {
 	int i, j, x, y;
-	x =15, y =15;
+	x = -10, y = 10;
 	
-	lcd_draw_image(x, wall_tileWidthPixels, y, wall_tileHeightPixels, wall_tileBitmaps, 0xFFFF, 0x0000);
-	/*
-	for (i = 0; i < 15; i++)
+	lcd_draw_image(230, wall_tileWidthPixels, 310, wall_tileHeightPixels, wall_tileBitmaps, 0xFFFF, 0x0000);
+	
+	/*for (i = 0; i < 15; i++)
 	{
+		y += 20;
 		for (j = 0; j < 12; j++)
 		{
+			x += 20;
 			if (map[i * 12 + j] == 1)
 			{
 				lcd_draw_image(x, wall_tileWidthPixels, y, wall_tileHeightPixels, wall_tileBitmaps, 0xFFFF, 0x0000);
 			}
-			x += 20;
 		}
-		y += 20;
+		
 	}*/
 
     return;

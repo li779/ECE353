@@ -27,31 +27,31 @@ Project File Date:  04/24/2020
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Rebuild target 'Project-F19'
+compiling images.c...
 compiling pc_buffer.c...
-compiling uart.c...
-..\drivers\c\uart.c(184): warning:  #188-D: enumerated type mixed with another type
-         return 0;
-..\drivers\c\uart.c: 1 warning, 0 errors
 compiling gpio_port.c...
 ..\drivers\c\gpio_port.c(82): warning:  #188-D: enumerated type mixed with another type
          return 0;
 ..\drivers\c\gpio_port.c: 1 warning, 0 errors
+compiling timers.c...
+..\drivers\c\timers.c(60): warning:  #188-D: enumerated type mixed with another type
+         return 0;
+..\drivers\c\timers.c: 1 warning, 0 errors
 compiling map.c...
 map.c(81): warning:  #177-D: variable "i"  was declared but never referenced
   	int i, j, x, y;
 map.c(81): warning:  #177-D: variable "j"  was declared but never referenced
   	int i, j, x, y;
-map.c(110): warning:  #1-D: last line of file ends without a newline
+map.c(81): warning:  #550-D: variable "x"  was set but never used
+  	int i, j, x, y;
+map.c(81): warning:  #550-D: variable "y"  was set but never used
+  	int i, j, x, y;
+map.c(112): warning:  #1-D: last line of file ends without a newline
   );*/
-map.c: 3 warnings, 0 errors
-compiling images.c...
-compiling eeprom.c...
+map.c: 5 warnings, 0 errors
 compiling i2c.c...
-compiling timers.c...
-..\drivers\c\timers.c(60): warning:  #188-D: enumerated type mixed with another type
-         return 0;
-..\drivers\c\timers.c: 1 warning, 0 errors
 compiling ft6x06.c...
+compiling eeprom.c...
 compiling adc.c...
 ..\drivers\c\adc.c(54): warning:  #188-D: enumerated type mixed with another type
          return ADC0SS0_IRQn + ss_num;
@@ -62,13 +62,16 @@ compiling adc.c...
 ..\drivers\c\adc.c(29): warning:  #177-D: function "verify_base_addr"  was declared but never referenced
   static bool verify_base_addr(uint32_t baseAddr)
 ..\drivers\c\adc.c: 4 warnings, 0 errors
+compiling uart.c...
+..\drivers\c\uart.c(184): warning:  #188-D: enumerated type mixed with another type
+         return 0;
+..\drivers\c\uart.c: 1 warning, 0 errors
+compiling main.c...
 compiling project_hardware_init.c...
-compiling staff.c...
-staff.c(34): warning:  #188-D: enumerated type mixed with another type
-  		new_direction = (curr_direction+1)%4;
-staff.c(6): warning:  #177-D: variable "MOV_DIR"  was declared but never referenced
-  static const PS2_DIR_t  MOV_DIR[] = {PS2_DIR_UP, PS2_DIR_DOWN, PS2_DIR_LEFT, PS2_DIR_RIGHT};
-staff.c: 2 warnings, 0 errors
+compiling project_interrupts.c...
+project_interrupts.c(129): warning:  #177-D: variable "data"  was declared but never referenced
+  	char data[80];
+project_interrupts.c: 1 warning, 0 errors
 compiling game.c...
 game.c(204): warning:  #940-D: missing return statement at end of non-void function "check_shot_on_target" 
   }
@@ -79,26 +82,27 @@ game.c(211): warning:  #177-D: variable "data"  was declared but never reference
 game.c(213): warning:  #177-D: variable "game_over"  was declared but never referenced
   	bool game_over = false;
 game.c: 4 warnings, 0 errors
+compiling staff.c...
+staff.c(34): warning:  #188-D: enumerated type mixed with another type
+  		new_direction = (curr_direction+1)%4;
+staff.c(6): warning:  #177-D: variable "MOV_DIR"  was declared but never referenced
+  static const PS2_DIR_t  MOV_DIR[] = {PS2_DIR_UP, PS2_DIR_DOWN, PS2_DIR_LEFT, PS2_DIR_RIGHT};
+staff.c: 2 warnings, 0 errors
 compiling launchpad_io.c...
-compiling main.c...
-compiling project_interrupts.c...
-project_interrupts.c(129): warning:  #177-D: variable "data"  was declared but never referenced
-  	char data[80];
-project_interrupts.c: 1 warning, 0 errors
 assembling startup_TM4C123.s...
-compiling serial_debug.c...
-compiling system_TM4C123.c...
 compiling lcd.c...
 compiling ps2.c...
+compiling serial_debug.c...
 compiling io_expander.c...
 ..\peripherals\c\io_expander.c(61): warning:  #550-D: variable "status"  was set but never used
       i2c_status_t status;
 ..\peripherals\c\io_expander.c(76): warning:  #550-D: variable "status"  was set but never used
       i2c_status_t status;
 ..\peripherals\c\io_expander.c: 2 warnings, 0 errors
+compiling system_TM4C123.c...
 linking...
-Program Size: Code=11412 RO-data=2680 RW-data=88 ZI-data=4168  
-".\obj\ece353_base_project.axf" - 0 Error(s), 19 Warning(s).
+Program Size: Code=11332 RO-data=2680 RW-data=88 ZI-data=4168  
+".\obj\ece353_base_project.axf" - 0 Error(s), 21 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -125,9 +129,9 @@ Package Vendor: Keil
 
    * Component: Keil::Device:Startup:1.0.1
       Include file:  Device\Include\TM4C123\TM4C123.h
-      Source file:   Device\Source\ARM\startup_TM4C123.s
       Source file:   Device\Source\system_TM4C123.c
-Build Time Elapsed:  00:00:04
+      Source file:   Device\Source\ARM\startup_TM4C123.s
+Build Time Elapsed:  00:00:03
 </pre>
 </body>
 </html>

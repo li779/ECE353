@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\obj\ece353_base_project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\obj\ece353_base_project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Fri Apr 24 16:53:40 2020
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Fri Apr 24 19:35:46 2020
 <BR><P>
 <H3>Maximum Stack Usage =        160 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -436,7 +436,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER3A_Handler
 </UL>
 
-<P><STRONG><a name="[96]"></a>drawMap</STRONG> (Thumb, 36 bytes, Stack size 32 bytes, map.o(.text))
+<P><STRONG><a name="[96]"></a>drawMap</STRONG> (Thumb, 38 bytes, Stack size 32 bytes, map.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = drawMap &rArr; lcd_draw_image &rArr; lcd_set_pos &rArr; lcd_write_data_u16
 </UL>
 <BR>[Calls]<UL><LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_image
@@ -530,12 +530,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_init
 </UL>
 
-<P><STRONG><a name="[a5]"></a>gpio_config_falling_edge_irq</STRONG> (Thumb, 56 bytes, Stack size 16 bytes, gpio_port.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = gpio_config_falling_edge_irq
-</UL>
-<BR>[Calls]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_base_addr
-</UL>
-<BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_init
+<P><STRONG><a name="[a5]"></a>gpio_config_falling_edge_irq</STRONG> (Thumb, 56 bytes, Stack size 16 bytes, gpio_port.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_base_addr
 </UL>
 
 <P><STRONG><a name="[a6]"></a>gpio_config_rising_edge_irq</STRONG> (Thumb, 62 bytes, Stack size 16 bytes, gpio_port.o(.text), UNUSED)
@@ -910,11 +906,10 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_init
 </UL>
 
-<P><STRONG><a name="[87]"></a>io_expander_init</STRONG> (Thumb, 226 bytes, Stack size 8 bytes, io_expander.o(.text))
+<P><STRONG><a name="[87]"></a>io_expander_init</STRONG> (Thumb, 148 bytes, Stack size 8 bytes, io_expander.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = io_expander_init &rArr; set_io_expander_GPIO &rArr; io_expander_write_reg &rArr; i2cSendByte &rArr; I2CMasterBusy
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initializeI2CMaster
-<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_falling_edge_irq
 <LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_open_drain
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_port_control
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_config_alternate_function
