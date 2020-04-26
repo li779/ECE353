@@ -181,54 +181,97 @@ void TIMER2A_Handler(void)
 		}
 		PS2_MOVE = false;
 	}
+	
 	player_bump = false;
 	enermy_bump = false;
+	
 	for (index = 0; index < enermy_size; index++){
-	if (enermy[index]->health>0){
-//    if (MOVE_COUNT[index] == 0)   // if moved, then look for new values
-//    {
-//        MOVE_COUNT[index] = get_new_move_count();
-//		//        SHIP_DIRECTION = get_new_direction(SHIP_DIRECTION);
-//			
-//    }
-		set_dir(enermy[index],get_new_direction(&bump[index],index,enermy[index]->dir));
-    // Check if edge contact, if not then move the image
-		
-		for(i = 0; i < enermy_size; i++){
-			if(i != index && (enermy[i]->health > 0)){
-				enermy_bump = check_bump(&(enermy[index]->dir),enermy[index]->x,enermy[index]->y,enermy[index]->height, enermy[index]->width,
-													enermy[i]->x,enermy[i]->y,enermy[i]->height, enermy[i]->width);
-			bump[index] = bump[index] || enermy_bump;
+		if (enermy[index]->health>0){
+	
+			set_dir(enermy[index],get_new_direction(&bump[index],index,enermy[index]->dir));
+			
+			for(i = 0; i < enermy_size; i++){
+				if(i != index && (enermy[i]->health > 0)){
+					enermy_bump = check_bump(&(enermy[index]->dir),enermy[index]->x,enermy[index]->y,enermy[index]->height, enermy[index]->width,
+														enermy[i]->x,enermy[i]->y,enermy[i]->height, enermy[i]->width);
+					bump[index] = bump[index] || enermy_bump;
+				}
 			}
-		}
-		player_bump = check_bump(&(enermy[index]->dir),enermy[index]->x,enermy[index]->y,enermy[index]->height, enermy[index]->width,
-													player->x,player->y,player->height, player->width);
-		bump[index] = bump[index] || player_bump;
-		
-		
-		not_moveable = (!(check_moveable((enermy[index]->dir),enermy[index]->x,enermy[index]->y,enermy[index]->height, enermy[index]->width)));
-		bump[index] = bump[index] || not_moveable;
-		
-		if (bump[index]){
-			//printf("tank: %d is bumping at dir: %d\n", index,enermy[index]->dir);
+			
+			player_bump = check_bump(&(enermy[index]->dir),enermy[index]->x,enermy[index]->y,enermy[index]->height, enermy[index]->width,
+														player->x,player->y,player->height, player->width);
+			bump[index] = bump[index] || player_bump;
+			
+			
+			not_moveable = (!(check_moveable((enermy[index]->dir),enermy[index]->x,enermy[index]->y,enermy[index]->height, enermy[index]->width)));
+			bump[index] = bump[index] || not_moveable;
+			
+			if (bump[index]){
+				//printf("tank: %d is bumping at dir: %d\n", index,enermy[index]->dir);	
+			}
+			if(!bump[index])
+			{
+				move_image(enermy[index]->dir, &(enermy[index]->x), &(enermy[index]->y), enermy[index]->height, enermy[index]->width);
+				ALERT_SPACE_SHIP[index] = true;
+			}
+				auto_shoot(index);
+			// Decrement MOVE_COUNT
+			//MOVE_COUNT[index]--;
+			
 			
 		}
-    if(!bump[index])
-    {
-        move_image(enermy[index]->dir, &(enermy[index]->x), &(enermy[index]->y), enermy[index]->height, enermy[index]->width);
-        ALERT_SPACE_SHIP[index] = true;
-    }
-		auto_shoot(index);
-    // Decrement MOVE_COUNT
-    //MOVE_COUNT[index]--;
+	
 	}
-}
+	
+	// Check Button status and fire if needed
+	if(BUTTON_PRESSED)
+	{
+		switch(button)
+		{
+			case(BUTTON_UP)	:	
+			{
+				fire(player->x,player->y,player->dir);
+				break;
+			}
+			case(BUTTON_DOWN):
+				break;
+			case(BUTTON_LEFT):
+				break;
+			case(BUTTON_RIGHT):
+				break;
+			default:
+				break;
+		}
+	}
+	
+	// Update Shells
+	if (SHELL_MOVE){
+		for(i=0;i<shell_size;i++){
+			
+			if(check_shot_on_target(shells[i]))
+			{
+				shells[i]->valid = false;
+			}
+			
+			if(shells[i]->valid)
+				lcd_draw_image(
+					shells[i]->x,          		// X Center Point
+					shell_objWidthPixels,       // Image Horizontal Width
+					shells[i]->y,          		// Y Center Point
+					shell_objHeightPixels,      // Image Vertical Height
+					shell_objBitmaps,           // Image
+					LCD_COLOR_YELLOW,            // Foreground Color
+					LCD_COLOR_BLACK           // Background Color
+				);
+		}
+	SHELL_MOVE = false;
+	}	
 	
 	// Clear the button status in case anything jams
 	BUTTON_PRESSED = false;
-	io_expander_read_reg(MCP23017_GPIOB_R, &data);
 	GPIOF->ICR = 0xFF;
-	
+	io_expander_read_reg(MCP23017_GPIOB_R, &data);
+
     // Clear the interrupt
 	TIMER2->ICR |= TIMER_ICR_TATOCINT;
 }
@@ -240,7 +283,7 @@ void TIMER3A_Handler(void)
 {	
 	int i;
 	
-	//drawMap(getMap());
+	drawMap(getMap());
 	
 	SHELL_MOVE = true;
 	for (i=0; i<shell_size; i++){

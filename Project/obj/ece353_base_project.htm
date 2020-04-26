@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\obj\ece353_base_project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\obj\ece353_base_project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Sun Apr 26 12:36:04 2020
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Sun Apr 26 13:51:02 2020
 <BR><P>
 <H3>Maximum Stack Usage =        200 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -341,24 +341,29 @@ Global Symbols
 <P><STRONG><a name="[1f]"></a>TIMER1A_Handler</STRONG> (Thumb, 254 bytes, Stack size 0 bytes, project_interrupts.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_tm4c123.o(RESET)
 </UL>
-<P><STRONG><a name="[21]"></a>TIMER2A_Handler</STRONG> (Thumb, 1012 bytes, Stack size 48 bytes, project_interrupts.o(.text))
+<P><STRONG><a name="[21]"></a>TIMER2A_Handler</STRONG> (Thumb, 1182 bytes, Stack size 48 bytes, project_interrupts.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 200<LI>Call Chain = TIMER2A_Handler &rArr; move_image &rArr; clear_image &rArr; lcd_draw_image &rArr; lcd_set_pos &rArr; lcd_write_data_u16
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_dir
 <LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;move_image
+<LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_image
 <LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_read_reg
 <LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_new_direction
+<LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fire
+<LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;check_shot_on_target
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;check_moveable
 <LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;check_bump
 <LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;auto_shoot
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_tm4c123.o(RESET)
 </UL>
-<P><STRONG><a name="[2d]"></a>TIMER3A_Handler</STRONG> (Thumb, 150 bytes, Stack size 16 bytes, project_interrupts.o(.text))
+<P><STRONG><a name="[2d]"></a>TIMER3A_Handler</STRONG> (Thumb, 160 bytes, Stack size 16 bytes, project_interrupts.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = TIMER3A_Handler &rArr; move_image &rArr; clear_image &rArr; lcd_draw_image &rArr; lcd_set_pos &rArr; lcd_write_data_u16
 </UL>
 <BR>[Calls]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;move_image
-<LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;check_shot_on_target
+<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getMap
+<LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawMap
+<LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;check_shot_on_target
 <LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_tm4c123.o(RESET)
@@ -373,14 +378,14 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_tm4c123.o(RESET)
 </UL>
-<P><STRONG><a name="[97]"></a>set_image</STRONG> (Thumb, 98 bytes, Stack size 0 bytes, game.o(.text))
+<P><STRONG><a name="[9b]"></a>set_image</STRONG> (Thumb, 98 bytes, Stack size 0 bytes, game.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_dir
 </UL>
 
 <P><STRONG><a name="[8f]"></a>set_dir</STRONG> (Thumb, 16 bytes, Stack size 4 bytes, game.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = set_dir
 </UL>
-<BR>[Calls]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_image
+<BR>[Calls]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_image
 </UL>
 <BR>[Called By]<UL><LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER2A_Handler
 <LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ps2_get_direction
@@ -395,17 +400,17 @@ Global Symbols
 <P><STRONG><a name="[92]"></a>check_moveable</STRONG> (Thumb, 186 bytes, Stack size 32 bytes, game.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = check_moveable &rArr; get_pos
 </UL>
-<BR>[Calls]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_pos
+<BR>[Calls]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_pos
 <LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getMap
 </UL>
-<BR>[Called By]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;check_shot_on_target
+<BR>[Called By]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;check_shot_on_target
 <LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER2A_Handler
 </UL>
 
-<P><STRONG><a name="[9a]"></a>clear_image</STRONG> (Thumb, 30 bytes, Stack size 24 bytes, game.o(.text))
+<P><STRONG><a name="[9d]"></a>clear_image</STRONG> (Thumb, 30 bytes, Stack size 24 bytes, game.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = clear_image &rArr; lcd_draw_image &rArr; lcd_set_pos &rArr; lcd_write_data_u16
 </UL>
-<BR>[Calls]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_image
+<BR>[Calls]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_image
 </UL>
 <BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;move_image
 </UL>
@@ -413,13 +418,13 @@ Global Symbols
 <P><STRONG><a name="[93]"></a>move_image</STRONG> (Thumb, 80 bytes, Stack size 40 bytes, game.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = move_image &rArr; clear_image &rArr; lcd_draw_image &rArr; lcd_set_pos &rArr; lcd_write_data_u16
 </UL>
-<BR>[Calls]<UL><LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clear_image
+<BR>[Calls]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clear_image
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER3A_Handler
 <LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER2A_Handler
 </UL>
 
-<P><STRONG><a name="[9c]"></a>check_game_over</STRONG> (Thumb, 64 bytes, Stack size 16 bytes, game.o(.text))
+<P><STRONG><a name="[9e]"></a>check_game_over</STRONG> (Thumb, 64 bytes, Stack size 16 bytes, game.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = check_game_over &rArr; __2printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
@@ -430,13 +435,13 @@ Global Symbols
 <P><STRONG><a name="[91]"></a>check_bump</STRONG> (Thumb, 126 bytes, Stack size 48 bytes, game.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = check_bump &rArr; get_pos
 </UL>
-<BR>[Calls]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_pos
+<BR>[Calls]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_pos
 </UL>
-<BR>[Called By]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;check_shot_on_target
+<BR>[Called By]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;check_shot_on_target
 <LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER2A_Handler
 </UL>
 
-<P><STRONG><a name="[96]"></a>check_shot_on_target</STRONG> (Thumb, 508 bytes, Stack size 40 bytes, game.o(.text))
+<P><STRONG><a name="[97]"></a>check_shot_on_target</STRONG> (Thumb, 508 bytes, Stack size 40 bytes, game.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = check_shot_on_target &rArr; check_bump &rArr; get_pos
 </UL>
 <BR>[Calls]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;check_moveable
@@ -444,41 +449,39 @@ Global Symbols
 <LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER3A_Handler
-<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game
+<LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER2A_Handler
 </UL>
 
-<P><STRONG><a name="[9d]"></a>fire</STRONG> (Thumb, 140 bytes, Stack size 24 bytes, game.o(.text))
+<P><STRONG><a name="[96]"></a>fire</STRONG> (Thumb, 164 bytes, Stack size 24 bytes, game.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = fire &rArr; __2printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;auto_shoot
-<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game
+<LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER2A_Handler
 </UL>
 
-<P><STRONG><a name="[9e]"></a>initialize_obj</STRONG> (Thumb, 266 bytes, Stack size 8 bytes, game.o(.text))
+<P><STRONG><a name="[9f]"></a>initialize_obj</STRONG> (Thumb, 266 bytes, Stack size 8 bytes, game.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = initialize_obj &rArr; malloc
 </UL>
-<BR>[Calls]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_pos
+<BR>[Calls]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_pos
 <LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
 </UL>
 <BR>[Called By]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game
 </UL>
 
-<P><STRONG><a name="[81]"></a>game</STRONG> (Thumb, 498 bytes, Stack size 32 bytes, game.o(.text))
+<P><STRONG><a name="[81]"></a>game</STRONG> (Thumb, 284 bytes, Stack size 32 bytes, game.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = game &rArr; game_transition_success_page &rArr; game_start_page &rArr; lcd_draw_image &rArr; lcd_set_pos &rArr; lcd_write_data_u16
 </UL>
-<BR>[Calls]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_image
-<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getMap
-<LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_transition_success_page
+<BR>[Calls]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_transition_success_page
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_transition_fail_page
-<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_start_page
-<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawMap
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_start_page
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawHP
-<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initialize_obj
-<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fire
-<LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;check_game_over
-<LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;check_shot_on_target
+<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initialize_obj
+<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;check_game_over
+<LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_image
+<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getMap
+<LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawMap
 <LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
@@ -501,7 +504,7 @@ Global Symbols
 <P><STRONG><a name="[95]"></a>auto_shoot</STRONG> (Thumb, 254 bytes, Stack size 8 bytes, staff.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = auto_shoot &rArr; fire &rArr; __2printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fire
+<BR>[Calls]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fire
 <LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER2A_Handler
@@ -511,30 +514,32 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;generate_random_number
 </UL>
 
-<P><STRONG><a name="[a1]"></a>drawMap</STRONG> (Thumb, 242 bytes, Stack size 40 bytes, map.o(.text))
+<P><STRONG><a name="[9a]"></a>drawMap</STRONG> (Thumb, 242 bytes, Stack size 40 bytes, map.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = drawMap &rArr; lcd_draw_image &rArr; lcd_set_pos &rArr; lcd_write_data_u16
 </UL>
-<BR>[Calls]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_image
+<BR>[Calls]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_image
 </UL>
-<BR>[Called By]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game
+<BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER3A_Handler
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game
 </UL>
 
 <P><STRONG><a name="[99]"></a>getMap</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, map.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;check_moveable
+<LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER3A_Handler
 <LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game
 </UL>
 
-<P><STRONG><a name="[98]"></a>get_pos</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, map.o(.text))
+<P><STRONG><a name="[9c]"></a>get_pos</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, map.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = get_pos
 </UL>
 <BR>[Called By]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;check_moveable
 <LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;check_bump
 </UL>
 
-<P><STRONG><a name="[9f]"></a>set_pos</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, map.o(.text))
+<P><STRONG><a name="[a0]"></a>set_pos</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, map.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = set_pos
 </UL>
-<BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initialize_obj
+<BR>[Called By]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initialize_obj
 </UL>
 
 <P><STRONG><a name="[fa]"></a>get_x</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, map.o(.text), UNUSED)
@@ -544,17 +549,17 @@ Global Symbols
 <P><STRONG><a name="[a2]"></a>drawHP</STRONG> (Thumb, 566 bytes, Stack size 32 bytes, top_row_display.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = drawHP &rArr; lcd_draw_image &rArr; lcd_set_pos &rArr; lcd_write_data_u16
 </UL>
-<BR>[Calls]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_image
+<BR>[Calls]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_image
 </UL>
 <BR>[Called By]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game
 </UL>
 
-<P><STRONG><a name="[a0]"></a>game_start_page</STRONG> (Thumb, 236 bytes, Stack size 24 bytes, transition.o(.text))
+<P><STRONG><a name="[a1]"></a>game_start_page</STRONG> (Thumb, 236 bytes, Stack size 24 bytes, transition.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = game_start_page &rArr; lcd_draw_image &rArr; lcd_set_pos &rArr; lcd_write_data_u16
 </UL>
 <BR>[Calls]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableInterrupts
 <LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DisableInterrupts
-<LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_image
+<LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_image
 <LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_read_reg
 <LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_clear_screen
 </UL>
@@ -563,25 +568,26 @@ Global Symbols
 <LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game
 </UL>
 
-<P><STRONG><a name="[a4]"></a>game_transition_success_page</STRONG> (Thumb, 168 bytes, Stack size 24 bytes, transition.o(.text))
+<P><STRONG><a name="[a4]"></a>game_transition_success_page</STRONG> (Thumb, 172 bytes, Stack size 24 bytes, transition.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = game_transition_success_page &rArr; game_start_page &rArr; lcd_draw_image &rArr; lcd_set_pos &rArr; lcd_write_data_u16
 </UL>
 <BR>[Calls]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableInterrupts
 <LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DisableInterrupts
-<LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_image
-<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_start_page
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_start_page
+<LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_image
 <LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_read_reg
 <LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_clear_screen
 </UL>
 <BR>[Called By]<UL><LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game
 </UL>
 
-<P><STRONG><a name="[a3]"></a>game_transition_fail_page</STRONG> (Thumb, 86 bytes, Stack size 24 bytes, transition.o(.text))
+<P><STRONG><a name="[a3]"></a>game_transition_fail_page</STRONG> (Thumb, 90 bytes, Stack size 24 bytes, transition.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = game_transition_fail_page &rArr; game_start_page &rArr; lcd_draw_image &rArr; lcd_set_pos &rArr; lcd_write_data_u16
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DisableInterrupts
-<LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_image
-<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_start_page
+<BR>[Calls]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableInterrupts
+<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DisableInterrupts
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_start_page
+<LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_image
 <LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_read_reg
 <LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_clear_screen
 </UL>
@@ -860,7 +866,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_write_data_u16
 <LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_write_cmd_u8
 </UL>
-<BR>[Called By]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_image
+<BR>[Called By]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_image
 <LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_clear_screen
 <LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_color_image
 <LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_char
@@ -878,7 +884,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_transition_success_page
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_transition_fail_page
-<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_start_page
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_start_page
 <LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;hardwareInit
 </UL>
 
@@ -910,7 +916,7 @@ Global Symbols
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_write_data_u16
 </UL>
 
-<P><STRONG><a name="[9b]"></a>lcd_draw_image</STRONG> (Thumb, 242 bytes, Stack size 56 bytes, lcd.o(.text))
+<P><STRONG><a name="[98]"></a>lcd_draw_image</STRONG> (Thumb, 242 bytes, Stack size 56 bytes, lcd.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = lcd_draw_image &rArr; lcd_set_pos &rArr; lcd_write_data_u16
 </UL>
 <BR>[Calls]<UL><LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_set_pos
@@ -918,10 +924,11 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_transition_success_page
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_transition_fail_page
-<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_start_page
-<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawMap
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_start_page
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawHP
-<LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clear_image
+<LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clear_image
+<LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawMap
+<LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER2A_Handler
 <LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game
 </UL>
 
@@ -1090,7 +1097,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_transition_success_page
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_transition_fail_page
-<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_start_page
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_start_page
 <LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER2A_Handler
 <LI><a href="#[28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOF_Handler
 </UL>
@@ -1958,9 +1965,9 @@ Global Symbols
 <P><STRONG><a name="[7f]"></a>__2printf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printf5.o(i.__0printf$5))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = __2printf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fire
-<LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;check_game_over
-<LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;check_shot_on_target
+<BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;check_game_over
+<LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fire
+<LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;check_shot_on_target
 <LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;auto_shoot
 <LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER3A_Handler
 <LI><a href="#[28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOF_Handler
@@ -1984,7 +1991,7 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = malloc
 </UL>
 <BR>[Called By]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pc_buffer_init
-<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initialize_obj
+<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;initialize_obj
 <LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 <P>
@@ -1994,12 +2001,13 @@ Local Symbols
 <P><STRONG><a name="[a9]"></a>DisableInterrupts</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, transition.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_transition_success_page
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_transition_fail_page
-<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_start_page
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_start_page
 </UL>
 
 <P><STRONG><a name="[aa]"></a>EnableInterrupts</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, transition.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_transition_success_page
-<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_start_page
+<LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_transition_fail_page
+<LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game_start_page
 </UL>
 
 <P><STRONG><a name="[ac]"></a>verify_base_addr</STRONG> (Thumb, 64 bytes, Stack size 0 bytes, gpio_port.o(.text))
@@ -2039,7 +2047,7 @@ Local Symbols
 <P><STRONG><a name="[ce]"></a>lcd_write_data_u16</STRONG> (Thumb, 48 bytes, Stack size 8 bytes, lcd.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = lcd_write_data_u16
 </UL>
-<BR>[Called By]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_image
+<BR>[Called By]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_image
 <LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_clear_screen
 <LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_color_image
 <LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_draw_char

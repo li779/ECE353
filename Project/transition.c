@@ -2113,6 +2113,8 @@ void game_transition_success_page(void)
 		
 		game_start_page();
 		
+		EnableInterrupts();
+		
 		return;
 	}
 }
@@ -2140,6 +2142,8 @@ void game_transition_fail_page(void)
 	io_expander_read_reg(MCP23017_INTCAPB_R, &data);
 	
 	game_start_page();
+	
+	EnableInterrupts();
 		
 	return;
 	

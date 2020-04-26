@@ -333,16 +333,16 @@ void fire(uint16_t x, uint16_t y, PS2_DIR_t dir){
 	switch(dir)
 	{
 		case PS2_DIR_UP:
-			//y -= 20;
+			y -= 20;
 			break;
 		case PS2_DIR_DOWN:
-			//y += 20;
+			y += 20;
 			break;
 		case PS2_DIR_LEFT:
-			//x -= 20;
+			x -= 20;
 			break;
 		case PS2_DIR_RIGHT:
-			//x += 20;
+			x += 20;
 			break;
 		default:
 			printf("Error: shell direction not detected!\n Failed to fire!");
@@ -443,55 +443,17 @@ void game(void)
 			ALERT_INVADER = false;
 			if (player->health > 0){
 				lcd_draw_image(
-				player->x,          // X Center Point
-				player->width,      // Image Horizontal Width
-				player->y,          // Y Center Point
-				player->height,     // Image Vertical Height
-				player->image,      // Image
-				LCD_COLOR_RED,      // Foreground Color
-				LCD_COLOR_BLACK     // Background Color
+					player->x,          // X Center Point
+					player->width,      // Image Horizontal Width
+					player->y,          // Y Center Point
+					player->height,     // Image Vertical Height
+					player->image,      // Image
+					LCD_COLOR_RED,      // Foreground Color
+					LCD_COLOR_BLACK     // Background Color
 				);
 			}
+			
 
-			if(BUTTON_PRESSED)
-			{
-				BUTTON_PRESSED = false;	// Deassert BUTTON_PRESSED flag
-				switch(button)
-				{
-					case(BUTTON_UP)	:	{
-						fire(player->x,player->y,player->dir);
-						break;
-					}
-					case(BUTTON_DOWN):
-						break;
-					case(BUTTON_LEFT):
-						break;
-					case(BUTTON_RIGHT):
-						break;
-					default:
-						break;
-				}
-			}
-			if (SHELL_MOVE){
-			for(i=0;i<shell_size;i++){
-				
-				if(check_shot_on_target(shells[i]))
-				{
-					shells[i]->valid = false;
-				}
-				
-				if(shells[i]->valid)
-					lcd_draw_image(
-						shells[i]->x,          		// X Center Point
-						shell_objWidthPixels,       // Image Horizontal Width
-						shells[i]->y,          		// Y Center Point
-						shell_objHeightPixels,      // Image Vertical Height
-						shell_objBitmaps,           // Image
-						LCD_COLOR_YELLOW,            // Foreground Color
-						LCD_COLOR_BLACK           // Background Color
-					);
-			}
-			SHELL_MOVE = false;
 			
 			switch(check_game_over())
 			{
@@ -504,9 +466,7 @@ void game(void)
 					return;
 					break;
 			}
-			
 
-			}
 		}   
 	}
 }
