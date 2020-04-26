@@ -34,6 +34,7 @@
 .\obj\project_interrupts.o: map.h
 .\obj\project_interrupts.o: top_row_display.h
 .\obj\project_interrupts.o: transition.h
+.\obj\project_interrupts.o: map.h
 .\obj\project_interrupts.o: project_interrupts.h
 .\obj\project_interrupts.o: project_hardware_init.h
 .\obj\project_interrupts.o: main.h

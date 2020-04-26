@@ -28,3 +28,4 @@
 .\obj\game.o: top_row_display.h
 .\obj\game.o: transition.h
 .\obj\game.o: ..\peripherals\include\launchpad_io.h
+.\obj\game.o: map.h

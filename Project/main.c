@@ -68,6 +68,8 @@ main(void)
 	
 	printf("======ECE 353 Final Project=======\nBy: Yichen Li and Marvin Zhang\n");
 	
+	delay(10);
+	
 	while(1)
 	{
 		if(RESTART)

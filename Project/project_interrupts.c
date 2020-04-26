@@ -39,8 +39,8 @@ void GPIOF_Handler(void)
 		// Assert button_pressed flag only if flag has been de-asserted
 		if(BUTTON_PRESSED)
 		{
-			GPIOF->ICR |= 0xFF;
 			io_expander_read_reg(MCP23017_GPIOB_R, &data);
+			GPIOF->ICR |= 0xFF;
 			return;
 		}
 		else
@@ -81,6 +81,8 @@ void GPIOF_Handler(void)
 		
     // Clear the interrupt status on PF0
     GPIOF->ICR |= 0xFF;
+		
+	return;
 }
 
 //*****************************************************************************
@@ -182,7 +184,7 @@ void TIMER2A_Handler(void)
 	player_bump = false;
 	enermy_bump = false;
 	for (index = 0; index < enermy_size; index++){
-		if (enermy[index]->health>0){
+	if (enermy[index]->health>0){
 //    if (MOVE_COUNT[index] == 0)   // if moved, then look for new values
 //    {
 //        MOVE_COUNT[index] = get_new_move_count();
@@ -225,6 +227,7 @@ void TIMER2A_Handler(void)
 	// Clear the button status in case anything jams
 	BUTTON_PRESSED = false;
 	io_expander_read_reg(MCP23017_GPIOB_R, &data);
+	GPIOF->ICR = 0xFF;
 	
     // Clear the interrupt
 	TIMER2->ICR |= TIMER_ICR_TATOCINT;
@@ -236,6 +239,8 @@ void TIMER2A_Handler(void)
 void TIMER3A_Handler(void)
 {	
 	int i;
+	
+	//drawMap(getMap());
 	
 	SHELL_MOVE = true;
 	for (i=0; i<shell_size; i++){

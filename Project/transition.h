@@ -13,12 +13,12 @@
 #include "gpio_port.h"
 #include "lcd.h"
 #include "io_expander.h"
+#include "map.h"
 
 extern const uint8_t start_pageBitmaps[];
 extern const uint16_t start_pageWidthPixels;
 extern const uint16_t start_pageHeightPixels;
 
-
-
-
 void game_start_page(void);
+void game_transition_success_page(void);
+void game_transition_fail_page(void);

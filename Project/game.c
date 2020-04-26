@@ -114,27 +114,27 @@ bool check_moveable(
 )
 {
 		uint8_t map_index = get_pos(x_coord,y_coord);
-		if(Sevastopol[map_index] == 1) return false;
+		if(getMap()[map_index] == 1) return false;
 	
     // Check if out of bound based on the direction requested.
     switch (direction)
     {
     case PS2_DIR_LEFT:{
-        if ((map_index%12 == 0) || (Sevastopol[map_index-1] == 1)){
+        if ((map_index%12 == 0) || (getMap()[map_index-1] == 1)){
             return false;
 				}
         break;
 			}
     case PS2_DIR_RIGHT:
-        if ((map_index%12 == 11) || (Sevastopol[map_index+1] == 1))
+        if ((map_index%12 == 11) || (getMap()[map_index+1] == 1))
             return false;
         break;
     case PS2_DIR_UP:
-        if ((map_index/12 == 0) || (Sevastopol[map_index-12] == 1))
+        if ((map_index/12 == 0) || (getMap()[map_index-12] == 1))
             return false;
         break;
     case PS2_DIR_DOWN:
-        if ((map_index/12 == 14) || (Sevastopol[map_index+12] == 1))
+        if ((map_index/12 == 14) || (getMap()[map_index+12] == 1))
             return false;
         break;
     default:
@@ -181,9 +181,9 @@ void move_image(
 void clear_image(uint16_t x, uint16_t y){
 	lcd_draw_image(
 			x,          // X Center Point
-			20,       // Image Horizontal Width
+			20,       	// Image Horizontal Width
 			y,          // Y Center Point
-			20,      // Image Vertical Height
+			20,      	// Image Vertical Height
 			//shell_objBitmaps,           // Image
 			blank_tileBitmaps,
 			LCD_COLOR_BLACK,            // Foreground Color
@@ -409,9 +409,8 @@ void game(void)
 	initialize_obj();
 	
 	printf("Drawing map...\n");
-	// Map Test
-	drawMap(Sevastopol);
-	//while (true){};
+	MAP_SEL = 0;
+	drawMap(getMap());
 	
 	while(true)
 	{	
@@ -425,13 +424,13 @@ void game(void)
 			ALERT_SPACE_SHIP[index] = false;
 			if (enermy[index]->health > 0){
 			lcd_draw_image(
-				enermy[index]->x,                       // X Center Point
+				enermy[index]->x,       // X Center Point
 				enermy[index]->width,   // Image Horizontal Width
-				enermy[index]->y,                       // Y Center Point
+				enermy[index]->y,       // Y Center Point
 				enermy[index]->height,  // Image Vertical Height
-				enermy[index]->image,       // Image
-				LCD_COLOR_BLUE,           // Foreground Color
-				LCD_COLOR_BLACK          // Background Color
+				enermy[index]->image,   // Image
+				LCD_COLOR_BLUE,         // Foreground Color
+				LCD_COLOR_BLACK         // Background Color
 			);
 			}
 
@@ -442,26 +441,15 @@ void game(void)
 		{
 			ALERT_INVADER = false;
 			if (player->health > 0){
-			lcd_draw_image(
-			player->x,          // X Center Point
-			player->width,       // Image Horizontal Width
-			player->y,          // Y Center Point
-			player->height,      // Image Vertical Height
-			player->image,           // Image
-			LCD_COLOR_RED,            // Foreground Color
-			LCD_COLOR_BLACK           // Background Color
-			);
-			}
-			//             game_over = check_game_over(
-			//                                            SHIP_X_COORD,
-			//                                            SHIP_Y_COORD,
-			//                                            space_shipHeightPixels,
-			//                                            space_shipWidthPixels,
-			//                                            player->x,
-			//                                            player->y,
-			//                                            player->height,
-			//                                            player->width
-			//                                        );
+				lcd_draw_image(
+				player->x,          // X Center Point
+				player->width,      // Image Horizontal Width
+				player->y,          // Y Center Point
+				player->height,     // Image Vertical Height
+				player->image,      // Image
+				LCD_COLOR_RED,      // Foreground Color
+				LCD_COLOR_BLACK     // Background Color
+				);
 			}
 
 			if(BUTTON_PRESSED)
@@ -504,9 +492,21 @@ void game(void)
 			}
 			SHELL_MOVE = false;
 			
-			// Update player's HP display
-			drawHP(player->health);
-		}
-
-	}   
+			switch(check_game_over())
+			{
+				case 1:
+					game_transition_fail_page();
+					return;
+					break;
+				case 2:
+					game_transition_success_page();
+					return;
+					break;
+			}
+			
+				// Update player's HP display
+				drawHP(player->health);
+			}
+		}   
+	}
 }

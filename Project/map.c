@@ -76,6 +76,46 @@ const uint8_t Sevastopol[] =
     1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0
 };
 
+const uint8_t Kursk[] =
+{
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 
+    0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+};
+
+const uint8_t Berlin[] =
+{
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 2, 2, 2, 2, 2, 2, 0, 0, 0,
+    0, 1, 0, 2, 2, 0, 0, 0, 2, 0, 1, 0, 
+    0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 
+    2, 0, 2, 2, 0, 0, 0, 0, 2, 2, 0, 2, 
+    2, 0, 2, 2, 2, 0, 0, 2, 2, 2, 0, 2, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+};
+
+uint8_t MAP_SEL = 0;	// 0 - Sevastopol    1 - Kursk     2 - Berlin
+
 void drawMap(const uint8_t map[])
 {
 	int i, j, x, y;
@@ -90,15 +130,44 @@ void drawMap(const uint8_t map[])
 		for (j = 0; j < 12; j++)
 		{
 			x += 20;
-			if (map[i * 12 + j] == 1)
+			if (map[i * 12 + j] == 1 && MAP_SEL == 0)
 			{
 				lcd_draw_image(x, wall_tileWidthPixels, y, wall_tileHeightPixels, wall_tileBitmaps, LCD_COLOR_GRAY, LCD_COLOR_BLACK);
+			}
+			else if (map[i * 12 + j] == 1 && MAP_SEL == 1)
+			{
+				lcd_draw_image(x, wall_tileWidthPixels, y, wall_tileHeightPixels, wall_tileBitmaps, LCD_COLOR_BROWN, LCD_COLOR_BLACK);
+			}
+			else if (map[i * 12 + j] == 1 && MAP_SEL == 2)
+			{
+				lcd_draw_image(x, wall_tileWidthPixels, y, wall_tileHeightPixels, wall_tileBitmaps, LCD_COLOR_WHITE, LCD_COLOR_BLACK);
+			}
+			else if (map[i * 12 + j] == 2)
+			{
+				lcd_draw_image(x, water_tileWidthPixels, y, water_tileHeightPixels, water_tileBitmaps, LCD_COLOR_BLUE, LCD_COLOR_BLACK);
 			}
 		}
 	}
 
     return;
 }
+
+const uint8_t * getMap(void)
+{
+	switch(MAP_SEL)
+	{
+		case 0:
+			return Sevastopol;
+			break;
+		case 1:
+			return Kursk;
+			break;
+		case 2:
+			return Berlin;
+			break;
+	}
+}
+
 uint8_t get_pos(uint16_t x, uint16_t y){
 	return (uint8_t)((x/20)+((y-20)/20)*12);
 }
