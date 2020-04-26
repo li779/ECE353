@@ -241,6 +241,7 @@ bool check_bump(
 {
 	uint8_t ship_index = get_pos(ship_x_coord,ship_y_coord);
 	uint8_t invader_index = get_pos(invader_x_coord,invader_y_coord);
+	
     // Check if any margin of the space ship is within the x/y range of the invader.
 	//bool left_margin = (int)(ship_x_coord - ship_width / 2) > (int)(invader_x_coord - invader_width / 2)
 	//        && (int)(ship_x_coord - ship_width / 2) < (int)(invader_x_coord + invader_width / 2) && (*contact_dir ==PS2_DIR_LEFT);
@@ -285,6 +286,7 @@ bool check_bump(
 */
 bool check_shot_on_target(volatile bullet * i){
 	uint16_t x_temp = i->x, y_temp = i->y;
+	int index;
 	
 	if(!(i->valid))
 		return false;
@@ -308,9 +310,27 @@ bool check_shot_on_target(volatile bullet * i){
 			//printf("Error! Bullet direction not defined!\n");
 			break;
 	}
-	if(!check_moveable(i->dir, x_temp, y_temp, 20, 20))
+	for(index = 0; index < enermy_size; index++){
+		if(check_bump(&(i->dir),i->x,i->y,shell_objHeightPixels, shell_objWidthPixels,
+													enermy[index]->x,enermy[index]->y,enermy[index]->height, enermy[index]->width)){
+					if (enermy[index]->health >0)
+					enermy[index]->health -= 20;
+					printf("enermy %d health",enermy[index]->health);
+					printf("hit at enermy %d pos: (%d,%d)\n",index, i->x, i->y);
+					return true;
+													}
+	}
+	if(check_bump(&(i->dir),i->x,i->y,shell_objHeightPixels, shell_objWidthPixels,
+													player->x,player->y,player->height, player->width)){
+					if (player->health >0)
+					player->health -= 20;
+					printf("hit at player pos: (%d,%d)\n", i->x, i->y);
+					return true;
+													}
+	if(!check_moveable(i->dir, i->x, i->y, 20, 20))
 	{
 		//printf("Bullet hit the wall.");
+		printf("hit at wall pos: (%d,%d)\n", i->x, i->y);
 		return true;
 	}
 	
@@ -366,6 +386,7 @@ void initialize_obj(){
 	player->image = (uint8_t*)easytank_downBitmaps;
 	player->height = easytank_downHeightPixels;
 	player->width = easytank_downWidthPixels;
+	player->health = 100;
 	enermy = malloc(sizeof(tanks*)*enermy_size);
 	
 	for (index = 0; index < enermy_size; index++){
@@ -375,6 +396,7 @@ void initialize_obj(){
 		enermy[index]->image = (uint8_t*)easytank_downBitmaps;
 		enermy[index]->height = easytank_downHeightPixels;
 		enermy[index]->width = easytank_downWidthPixels;
+		enermy[index]->health = 100;
 	}
 	shells = malloc(sizeof(bullet*)*shell_size);
 	for (index=0; index<shell_size; index++){
@@ -413,6 +435,7 @@ void game(void)
 		if(ALERT_SPACE_SHIP[index])
 		{
 			ALERT_SPACE_SHIP[index] = false;
+			if (enermy[index]->health > 0){
 			lcd_draw_image(
 				enermy[index]->x,                       // X Center Point
 				enermy[index]->width,   // Image Horizontal Width
@@ -422,7 +445,7 @@ void game(void)
 				LCD_COLOR_BLUE,           // Foreground Color
 				LCD_COLOR_BLACK          // Background Color
 			);
-
+			}
 
 		}
 		}
@@ -430,7 +453,7 @@ void game(void)
 		if(ALERT_INVADER)
 		{
 			ALERT_INVADER = false;
-
+			if (player->health > 0){
 			lcd_draw_image(
 			player->x,          // X Center Point
 			player->width,       // Image Horizontal Width
@@ -440,7 +463,7 @@ void game(void)
 			LCD_COLOR_RED,            // Foreground Color
 			LCD_COLOR_BLACK           // Background Color
 			);
-
+			}
 			//             game_over = check_game_over(
 			//                                            SHIP_X_COORD,
 			//                                            SHIP_Y_COORD,

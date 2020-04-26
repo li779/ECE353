@@ -54,6 +54,37 @@ PS2_DIR_t get_new_direction(bool* bump, int tank_index, PS2_DIR_t curr_direction
     return new_direction;
 }
 
+void auto_shoot(int index){
+	switch(enermy[index]->dir)
+	{
+		case PS2_DIR_UP:
+			if ((enermy[index]->x == player->x) && (enermy[index]->y > player->y))
+				break;
+			else 
+				return;
+		case PS2_DIR_DOWN:
+			if ((enermy[index]->x == player->x) && (enermy[index]->y < player->y))
+				break;
+			else 
+				return;
+		case PS2_DIR_LEFT:
+			if ((enermy[index]->y == player->y) && (enermy[index]->x > player->x))
+				break;
+			else 
+				return;
+		case PS2_DIR_RIGHT:
+			if ((enermy[index]->y == player->y) && (enermy[index]->x < player->x))
+				break;
+			else 
+				return;
+		default:
+			printf("Error: enermy shell direction not detected!\n Failed to fire!");
+			return;
+			break;
+	}
+		fire(enermy[index]->dir, enermy[index]->x, enermy[index]->y);
+}
+
 //*****************************************************************************
 // Generates the the new direction and number of pixels  -- DO NOT MODIFY
 //*****************************************************************************

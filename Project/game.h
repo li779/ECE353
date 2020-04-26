@@ -42,6 +42,7 @@ typedef struct
 	uint8_t* image;
 	uint8_t width;
 	uint8_t height;
+	uint8_t health;
 } tanks;
 
 typedef struct
@@ -139,6 +140,7 @@ bool check_moveable(
 		
 		void clear_image(uint16_t x, uint16_t y);
 		bool check_shot_on_target(volatile bullet * i);
+		void fire(uint16_t x, uint16_t y, PS2_DIR_t dir);
 //*****************************************************************************
 // Initializes all of the peripherls used in HW3
 //*****************************************************************************
