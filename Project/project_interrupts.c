@@ -163,9 +163,11 @@ void TIMER2A_Handler(void)
 	bool test;
 	bool not_moveable;
 	for(i = 0; i < enermy_size; i++){
+		if (enermy[i]->health > 0){
 				enermy_bump = check_bump(&(player->dir),player->x,player->y,player->height, player->width,
 													enermy[i]->x,enermy[i]->y,enermy[i]->height, enermy[i]->width);
 			player_bump = player_bump || enermy_bump;
+		}
 	}
 			
 	if(PS2_MOVE && (player->health > 0))
@@ -191,7 +193,7 @@ void TIMER2A_Handler(void)
     // Check if edge contact, if not then move the image
 		
 		for(i = 0; i < enermy_size; i++){
-			if(i != index){
+			if(i != index && (enermy[i]->health > 0)){
 				enermy_bump = check_bump(&(enermy[index]->dir),enermy[index]->x,enermy[index]->y,enermy[index]->height, enermy[index]->width,
 													enermy[i]->x,enermy[i]->y,enermy[i]->height, enermy[i]->width);
 			bump[index] = bump[index] || enermy_bump;

@@ -323,7 +323,7 @@ bool check_shot_on_target(volatile bullet * i){
 	if(check_bump(&(i->dir),i->x,i->y,shell_objHeightPixels, shell_objWidthPixels,
 													player->x,player->y,player->height, player->width)){
 					if (player->health >0)
-					player->health -= 20;
+					player->health -= 5;
 					printf("hit at player pos: (%d,%d)\n", i->x, i->y);
 					return true;
 													}

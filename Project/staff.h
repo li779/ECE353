@@ -27,6 +27,8 @@ uint16_t generate_random_number(void);
 //*****************************************************************************
 PS2_DIR_t get_new_direction(bool* bump, int tank_index, PS2_DIR_t curr_direction);
 
+void auto_shoot(int index);
+
 //*****************************************************************************
 // Generates the the new direction and number of pixels  -- DO NOT MODIFY
 //*****************************************************************************

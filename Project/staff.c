@@ -78,11 +78,13 @@ void auto_shoot(int index){
 			else 
 				return;
 		default:
+			
 			printf("Error: enermy shell direction not detected!\n Failed to fire!");
 			return;
 			break;
 	}
-		fire(enermy[index]->dir, enermy[index]->x, enermy[index]->y);
+	//printf("DIR: %d", enermy[index]->dir);
+		fire( enermy[index]->x, enermy[index]->y, enermy[index]->dir);
 }
 
 //*****************************************************************************
