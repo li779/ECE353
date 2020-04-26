@@ -33,6 +33,7 @@
 .\obj\breathing_led.o: game.h
 .\obj\breathing_led.o: map.h
 .\obj\breathing_led.o: top_row_display.h
+.\obj\breathing_led.o: transition.h
 .\obj\breathing_led.o: project_interrupts.h
 .\obj\breathing_led.o: main.h
 .\obj\breathing_led.o: staff.h

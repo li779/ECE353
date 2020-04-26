@@ -26,3 +26,5 @@
 .\obj\game.o: ..\drivers\include\i2c.h
 .\obj\game.o: map.h
 .\obj\game.o: top_row_display.h
+.\obj\game.o: transition.h
+.\obj\game.o: ..\peripherals\include\launchpad_io.h

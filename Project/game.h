@@ -15,6 +15,7 @@
 #include "io_expander.h"
 #include "map.h"
 #include "top_row_display.h"
+#include "transition.h"
 
 typedef enum{
   PS2_DIR_UP,

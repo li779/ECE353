@@ -391,9 +391,12 @@ void game(void)
 	char data[80];
 	int index;
 	bool game_over = false;
-	for (i = 0; i<10;i++){ ALERT_SPACE_SHIP[i] = true;}
 	
+	game_start_page();
+	
+	for (i = 0; i<10;i++){ ALERT_SPACE_SHIP[i] = true;}
 	initialize_obj();
+	
 	printf("Drawing map...\n");
 	// Map Test
 	drawMap(Sevastopol);

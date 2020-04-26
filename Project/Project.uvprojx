@@ -451,6 +451,11 @@
               <FileType>1</FileType>
               <FilePath>.\breathing_led.c</FilePath>
             </File>
+            <File>
+              <FileName>transition.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\transition.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
