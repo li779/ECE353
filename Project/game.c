@@ -419,22 +419,23 @@ void game(void)
 	//				put_string(data);
 
 		for (index = 0; index < enermy_size; index++){
-		if(ALERT_SPACE_SHIP[index])
-		{
-			ALERT_SPACE_SHIP[index] = false;
-			if (enermy[index]->health > 0){
-			lcd_draw_image(
-				enermy[index]->x,       // X Center Point
-				enermy[index]->width,   // Image Horizontal Width
-				enermy[index]->y,       // Y Center Point
-				enermy[index]->height,  // Image Vertical Height
-				enermy[index]->image,   // Image
-				LCD_COLOR_BLUE,         // Foreground Color
-				LCD_COLOR_BLACK         // Background Color
-			);
+			if(ALERT_SPACE_SHIP[index])
+			{
+				ALERT_SPACE_SHIP[index] = false;
+				if (enermy[index]->health > 0){
+				lcd_draw_image(
+					enermy[index]->x,       // X Center Point
+					enermy[index]->width,   // Image Horizontal Width
+					enermy[index]->y,       // Y Center Point
+					enermy[index]->height,  // Image Vertical Height
+					enermy[index]->image,   // Image
+					LCD_COLOR_BLUE,         // Foreground Color
+					LCD_COLOR_BLACK         // Background Color
+				);
+				}
+				// Update player's HP display
+				drawHP(player->health);
 			}
-
-		}
 		}
 
 		if(ALERT_INVADER)
@@ -504,8 +505,7 @@ void game(void)
 					break;
 			}
 			
-				// Update player's HP display
-				drawHP(player->health);
+
 			}
 		}   
 	}
