@@ -35,20 +35,27 @@ uint8_t data;
 // PF0 Interrupt 
 void GPIOF_Handler(void)
 {
-		// Read from MCP23017
-		io_expander_read_reg(MCP23017_GPIOB_R, &data);
 	
 		// Assert button_pressed flag only if flag has been de-asserted
 		if(BUTTON_PRESSED)
 		{
 			GPIOF->ICR |= 0xFF;
+			io_expander_read_reg(MCP23017_GPIOB_R, &data);
 			return;
 		}
-			
 		else
 		{
+			io_expander_read_reg(MCP23017_GPIOB_R, &data);
+			
 			if((data & 0x0F) != 0x0F)
+			{
 				BUTTON_PRESSED = true;
+			}
+			else
+			{
+				GPIOF->ICR |= 0xFF;
+				return;
+			}
 		}
 	
 		switch((data & 0x0F))
@@ -210,12 +217,16 @@ void TIMER2A_Handler(void)
     //MOVE_COUNT[index]--;
 	}
 	
+	// Clear the button status in case anything jams
+	BUTTON_PRESSED = false;
+	io_expander_read_reg(MCP23017_GPIOB_R, &data);
+	
     // Clear the interrupt
 	TIMER2->ICR |= TIMER_ICR_TATOCINT;
 }
 
 //*****************************************************************************
-// TIMER3 ISR is used to determine when to move the enemy
+// TIMER3 ISR is used to determine when to move the shell
 //*****************************************************************************
 void TIMER3A_Handler(void)
 {	
@@ -223,14 +234,14 @@ void TIMER3A_Handler(void)
 	
 	SHELL_MOVE = true;
 	for (i=0; i<shell_size; i++){
-		if (shells[i]->valid){
-			printf("shell index: %d\n",i);
-		if (check_shot_on_target(shells[i])){
-			shells[i]->valid = false;
-		} else {
-			move_image(shells[i]->dir, &(shells[i]->x), &(shells[i]->y), shell_objHeightPixels, shell_objWidthPixels);
+		if (shells[i]->valid)
+		{
+			printf("Shell index: %d, (%d, %d)\n",i, shells[i]->x, shells[i]->y);
+			if (check_shot_on_target(shells[i]))
+				shells[i]->valid = false;
+			else 
+				move_image(shells[i]->dir, &(shells[i]->x), &(shells[i]->y), shell_objHeightPixels, shell_objWidthPixels);
 		}
-	}
 		
 	}
 	// Clear the interrupt

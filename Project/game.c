@@ -24,7 +24,7 @@ typedef struct
 volatile tanks* player;
 volatile tanks** enermy;
 volatile bullet** shells;
-volatile const uint8_t shell_size = 4;
+volatile const uint8_t shell_size = 10;
 volatile const uint8_t enermy_size = 2;
 
 void set_dir(volatile tanks* tank, PS2_DIR_t dir){tank->dir = dir;set_image(tank);}
@@ -305,7 +305,7 @@ bool check_shot_on_target(volatile bullet * i){
 			x_temp += 20;
 			break;
 		default:
-			printf("Error! Bullet direction not defined!");
+			//printf("Error! Bullet direction not defined!\n");
 			break;
 	}
 	if(!check_moveable(i->dir, x_temp, y_temp, 20, 20))
@@ -336,7 +336,8 @@ void fire(uint16_t x, uint16_t y, PS2_DIR_t dir){
 			x += 20;
 			break;
 		default:
-			printf("Error: shell direction not detected!");
+			printf("Error: shell direction not detected!\n Failed to fire!");
+			return;
 			break;
 	}
 	

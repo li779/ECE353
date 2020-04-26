@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\obj\ece353_base_project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\obj\ece353_base_project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Sat Apr 25 14:55:15 2020
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Sat Apr 25 20:13:06 2020
 <BR><P>
 <H3>Maximum Stack Usage =        200 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -316,7 +316,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[28]"></a>GPIOF_Handler</STRONG> (Thumb, 140 bytes, Stack size 8 bytes, project_interrupts.o(.text))
+<P><STRONG><a name="[28]"></a>GPIOF_Handler</STRONG> (Thumb, 164 bytes, Stack size 8 bytes, project_interrupts.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = GPIOF_Handler &rArr; io_expander_read_reg &rArr; i2cGetByte &rArr; I2CMasterBusy
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_read_reg
@@ -338,18 +338,19 @@ Global Symbols
 <P><STRONG><a name="[1f]"></a>TIMER1A_Handler</STRONG> (Thumb, 254 bytes, Stack size 0 bytes, project_interrupts.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_tm4c123.o(RESET)
 </UL>
-<P><STRONG><a name="[21]"></a>TIMER2A_Handler</STRONG> (Thumb, 934 bytes, Stack size 48 bytes, project_interrupts.o(.text))
+<P><STRONG><a name="[21]"></a>TIMER2A_Handler</STRONG> (Thumb, 950 bytes, Stack size 48 bytes, project_interrupts.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 200<LI>Call Chain = TIMER2A_Handler &rArr; move_image &rArr; clear_image &rArr; lcd_draw_image &rArr; lcd_set_pos &rArr; lcd_write_data_u16
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_dir
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;move_image
+<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_read_reg
 <LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_new_direction
 <LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;check_moveable
 <LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;check_bump
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_tm4c123.o(RESET)
 </UL>
-<P><STRONG><a name="[2d]"></a>TIMER3A_Handler</STRONG> (Thumb, 128 bytes, Stack size 16 bytes, project_interrupts.o(.text))
+<P><STRONG><a name="[2d]"></a>TIMER3A_Handler</STRONG> (Thumb, 150 bytes, Stack size 16 bytes, project_interrupts.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = TIMER3A_Handler &rArr; move_image &rArr; clear_image &rArr; lcd_draw_image &rArr; lcd_set_pos &rArr; lcd_write_data_u16
 </UL>
 <BR>[Calls]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;move_image
@@ -423,17 +424,16 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER2A_Handler
 </UL>
 
-<P><STRONG><a name="[94]"></a>check_shot_on_target</STRONG> (Thumb, 102 bytes, Stack size 24 bytes, game.o(.text))
+<P><STRONG><a name="[94]"></a>check_shot_on_target</STRONG> (Thumb, 96 bytes, Stack size 24 bytes, game.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = check_shot_on_target &rArr; check_moveable &rArr; get_pos
 </UL>
 <BR>[Calls]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;check_moveable
-<LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER3A_Handler
 <LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game
 </UL>
 
-<P><STRONG><a name="[99]"></a>fire</STRONG> (Thumb, 162 bytes, Stack size 24 bytes, game.o(.text))
+<P><STRONG><a name="[99]"></a>fire</STRONG> (Thumb, 164 bytes, Stack size 24 bytes, game.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = fire &rArr; __2printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
@@ -1009,7 +1009,8 @@ Global Symbols
 <LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
 <LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;i2cSetSlaveAddr
 </UL>
-<BR>[Called By]<UL><LI><a href="#[28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOF_Handler
+<BR>[Called By]<UL><LI><a href="#[21]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER2A_Handler
+<LI><a href="#[28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOF_Handler
 </UL>
 
 <P><STRONG><a name="[7a]"></a>Reset_Handler</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, startup_tm4c123.o(.text))
@@ -1876,7 +1877,6 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = __2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fire
-<LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;check_shot_on_target
 <LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMER3A_Handler
 <LI><a href="#[28]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOF_Handler
 <LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;game
