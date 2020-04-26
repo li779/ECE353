@@ -168,7 +168,7 @@ void TIMER2A_Handler(void)
 			player_bump = player_bump || enermy_bump;
 	}
 			
-	if(PS2_MOVE)
+	if(PS2_MOVE && (player->health > 0))
 	{
 		if (check_moveable(player->dir, player->x, player->y, player->height, player->width) && (!player_bump))
 		{
@@ -180,6 +180,7 @@ void TIMER2A_Handler(void)
 	player_bump = false;
 	enermy_bump = false;
 	for (index = 0; index < enermy_size; index++){
+		if (enermy[index]->health>0){
 //    if (MOVE_COUNT[index] == 0)   // if moved, then look for new values
 //    {
 //        MOVE_COUNT[index] = get_new_move_count();
@@ -213,9 +214,11 @@ void TIMER2A_Handler(void)
         move_image(enermy[index]->dir, &(enermy[index]->x), &(enermy[index]->y), enermy[index]->height, enermy[index]->width);
         ALERT_SPACE_SHIP[index] = true;
     }
+		auto_shoot(index);
     // Decrement MOVE_COUNT
     //MOVE_COUNT[index]--;
 	}
+}
 	
 	// Clear the button status in case anything jams
 	BUTTON_PRESSED = false;
