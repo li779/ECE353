@@ -444,8 +444,6 @@ void game(void)
 	int index;
 	bool game_over = false;
 	
-	game_start_page();
-	
 	for (i = 0; i<10;i++){ ALERT_SPACE_SHIP[i] = true;}
 	initialize_obj();
 	

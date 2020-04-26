@@ -76,24 +76,21 @@ main(void)
 		if(RESTART | CONTINUE)
 		{
 			
-			if(RESTART)
+			if(RESTART | GAME_OVER)
+			{
 				RESTART = false;
-			
+				GAME_OVER = false;
+				game_start_page();
+			}
+	
 			if(CONTINUE)
 				CONTINUE = false;
 			
+			game_story_page();
 			EnableInterrupts();
 			game();
 			DisableInterrupts();
 		}
 		
-		if(GAME_OVER)
-		{
-			GAME_OVER = false;
-			
-			EnableInterrupts();
-			game();
-			DisableInterrupts();
-		}
 	}
 }
