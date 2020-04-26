@@ -422,7 +422,6 @@ void game(void)
 	printf("Drawing map...\n");
 	// Map Test
 	drawMap(Sevastopol);
-	drawHP(100);
 	//while (true){};
 	
 	while(true)
@@ -515,6 +514,9 @@ void game(void)
 					);
 			}
 			SHELL_MOVE = false;
+			
+			// Update player's HP display
+			drawHP(100);
 		}
 
 	}   
