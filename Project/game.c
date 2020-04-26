@@ -117,6 +117,7 @@ bool check_moveable(
 )
 {
 		uint8_t map_index = get_pos(x_coord,y_coord);
+		if(Sevastopol[map_index] == 1) return false;
 	
     // Check if out of bound based on the direction requested.
     switch (direction)
@@ -344,16 +345,16 @@ void fire(uint16_t x, uint16_t y, PS2_DIR_t dir){
 	switch(dir)
 	{
 		case PS2_DIR_UP:
-			y -= 20;
+			//y -= 20;
 			break;
 		case PS2_DIR_DOWN:
-			y += 20;
+			//y += 20;
 			break;
 		case PS2_DIR_LEFT:
-			x -= 20;
+			//x -= 20;
 			break;
 		case PS2_DIR_RIGHT:
-			x += 20;
+			//x += 20;
 			break;
 		default:
 			printf("Error: shell direction not detected!\n Failed to fire!");
@@ -516,7 +517,7 @@ void game(void)
 			SHELL_MOVE = false;
 			
 			// Update player's HP display
-			drawHP(100);
+			drawHP(player->health);
 		}
 
 	}   
