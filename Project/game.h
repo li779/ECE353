@@ -57,10 +57,7 @@ typedef struct
 extern void initialize_serial_debug(void);
 extern void put_string(char *data);
 
-extern volatile uint16_t SHIP_X_COORD;
-extern volatile uint16_t SHIP_Y_COORD;
-extern volatile uint16_t INVADER_X_COORD;
-extern volatile uint16_t INVADER_Y_COORD;
+
 extern volatile bool ALERT_SPACE_SHIP[10];
 extern volatile bool ALERT_INVADER;
 extern volatile bool SHELL_MOVE;
@@ -101,22 +98,13 @@ void move_image(
 );
 
 //*****************************************************************************
-// Determines is any portion of the two images are overlapping.  An image is
-// considered to be overlapping if the two rectangles determined by the image
-// height and widths are overlapping.  An overlap occurs even if the area that
-// overlaps are portions of the images where the pixels do not display on the
-// screen.
+// 1: game lost
+// 2 : game win
+// 0: game continue
+// 
+// 
 //*****************************************************************************
-bool check_game_over(
-    volatile uint16_t ship_x_coord, 
-    volatile uint16_t ship_y_coord, 
-    uint8_t ship_height, 
-    uint8_t ship_width,
-    volatile uint16_t invader_x_coord, 
-    volatile uint16_t invader_y_coord, 
-    uint8_t invader_height, 
-    uint8_t invader_width
-);
+uint8_t check_game_over();
 				
 bool check_bump(
 	volatile PS2_DIR_t* contact_dir,

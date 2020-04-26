@@ -1,9 +1,6 @@
 #include "game.h"
 
-volatile uint16_t SHIP_X_COORD = 190;
-volatile uint16_t SHIP_Y_COORD = 270;
-volatile uint16_t INVADER_X_COORD = 50;
-volatile uint16_t INVADER_Y_COORD = 40;
+
 volatile bool ALERT_SPACE_SHIP[10];
 volatile bool ALERT_INVADER = true;
 volatile bool BUTTON_PRESSED = false;
@@ -195,37 +192,28 @@ void clear_image(uint16_t x, uint16_t y){
 }
 
 //*****************************************************************************
-// Determines is any portion of the two images are overlapping.  An image is
-// considered to be overlapping if the two rectangles determined by the image
-// height and widths are overlapping.  An overlap occurs even if the area that
-// overlaps are portions of the images where the pixels do not display on the
-// screen.
+// 1: game lost
+// 2 : game win
+// 0: game continue
+// 
+// 
 //*****************************************************************************
-bool check_game_over(
-        volatile uint16_t ship_x_coord, 
-        volatile uint16_t ship_y_coord, 
-        uint8_t ship_height, 
-        uint8_t ship_width,
-        volatile uint16_t invader_x_coord, 
-        volatile uint16_t invader_y_coord, 
-        uint8_t invader_height, 
-        uint8_t invader_width
-)
+uint8_t check_game_over()
 {
-    // Check if any margin of the space ship is within the x/y range of the invader.
-    bool left_margin = (int)(ship_x_coord - ship_width / 2) > (int)(invader_x_coord - invader_width / 2)
-        && (int)(ship_x_coord - ship_width / 2) < (int)(invader_x_coord + invader_width / 2);
-    bool right_margin = (int)(ship_x_coord + ship_width / 2) < (int)(invader_x_coord + invader_width / 2)
-        && (int)(ship_x_coord + ship_width / 2) > (int)(invader_x_coord - invader_width / 2);
-    bool up_margin = (int)(ship_y_coord + ship_height /2) < (int)(invader_y_coord + invader_height/2) 
-        && (int)(ship_y_coord + ship_height / 2) > (int)(invader_y_coord - invader_height / 2);
-    bool down_margin = (int)(ship_y_coord - ship_height /2) > (int)(invader_y_coord - invader_height/2) 
-        && (int)(ship_y_coord - ship_height / 2) < (int)(invader_y_coord + invader_height / 2);
-
-    // Based on the margin conditions specified above, check if the invader and space ship has overlapped.
-    bool over = (left_margin) ? up_margin | down_margin : (right_margin) ? up_margin | down_margin : false;
-
-    return over;
+		int count = 0;
+		int i;
+    if(player->health == 0){
+			printf("Game lost\n");
+			return 1;
+		}
+		for(i=0;i<enermy_size;i++){
+			count += enermy[i]->health;
+		}
+		if (count==0){
+			printf("Game Win\n");
+			return 2;
+		}
+		return 0;
 }
 
 bool check_bump(
