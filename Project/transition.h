@@ -22,3 +22,4 @@ extern const uint16_t start_pageHeightPixels;
 void game_start_page(void);
 void game_transition_success_page(void);
 void game_transition_fail_page(void);
+void game_transition_victory_page(void);

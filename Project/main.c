@@ -21,9 +21,6 @@
 // EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "main.h"
-#include "game.h"
-
-volatile bool RESTART;
 
 //*****************************************************************************
 //*****************************************************************************
@@ -70,12 +67,33 @@ main(void)
 	
 	delay(10);
 	
+	MAP_SEL = 0;
+	
+	DisableInterrupts();
+	
 	while(1)
 	{
-		if(RESTART)
+		if(RESTART | CONTINUE)
 		{
-			RESTART = false;
+			
+			if(RESTART)
+				RESTART = false;
+			
+			if(CONTINUE)
+				CONTINUE = false;
+			
+			EnableInterrupts();
 			game();
+			DisableInterrupts();
+		}
+		
+		if(GAME_OVER)
+		{
+			GAME_OVER = false;
+			
+			EnableInterrupts();
+			game();
+			DisableInterrupts();
 		}
 	}
 }

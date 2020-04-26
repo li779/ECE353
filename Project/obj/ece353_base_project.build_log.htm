@@ -27,34 +27,9 @@ Project File Date:  04/25/2020
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Rebuild target 'Project-F19'
-compiling gpio_port.c...
-..\drivers\c\gpio_port.c(82): warning:  #188-D: enumerated type mixed with another type
-         return 0;
-..\drivers\c\gpio_port.c: 1 warning, 0 errors
-compiling pc_buffer.c...
 compiling images.c...
+compiling pc_buffer.c...
 compiling i2c.c...
-compiling transition.c...
-compiling timers.c...
-..\drivers\c\timers.c(60): warning:  #188-D: enumerated type mixed with another type
-         return 0;
-..\drivers\c\timers.c: 1 warning, 0 errors
-compiling game.c...
-top_row_display.h(8): warning:  #1-D: last line of file ends without a newline
-  #endif
-game.h(107): warning:  #1295-D: Deprecated declaration check_game_over - give arg types
-  uint8_t check_game_over();
-game.c(350): warning:  #111-D: statement is unreachable
-  			break;
-game.c(463): warning:  #111-D: statement is unreachable
-  					break;
-game.c(467): warning:  #111-D: statement is unreachable
-  					break;
-game.c(402): warning:  #177-D: variable "data"  was declared but never referenced
-  	char data[80];
-game.c(404): warning:  #177-D: variable "game_over"  was declared but never referenced
-  	bool game_over = false;
-game.c: 7 warnings, 0 errors
 compiling map.c...
 map.c(161): warning:  #111-D: statement is unreachable
   			break;
@@ -67,6 +42,18 @@ map.c(169): warning:  #940-D: missing return statement at end of non-void functi
 map.c(194): warning:  #1-D: last line of file ends without a newline
   );*/
 map.c: 5 warnings, 0 errors
+compiling gpio_port.c...
+..\drivers\c\gpio_port.c(82): warning:  #188-D: enumerated type mixed with another type
+         return 0;
+..\drivers\c\gpio_port.c: 1 warning, 0 errors
+compiling timers.c...
+..\drivers\c\timers.c(60): warning:  #188-D: enumerated type mixed with another type
+         return 0;
+..\drivers\c\timers.c: 1 warning, 0 errors
+compiling top_row_display.c...
+top_row_display.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+top_row_display.c: 1 warning, 0 errors
 compiling adc.c...
 ..\drivers\c\adc.c(54): warning:  #188-D: enumerated type mixed with another type
          return ADC0SS0_IRQn + ss_num;
@@ -77,42 +64,10 @@ compiling adc.c...
 ..\drivers\c\adc.c(29): warning:  #177-D: function "verify_base_addr"  was declared but never referenced
   static bool verify_base_addr(uint32_t baseAddr)
 ..\drivers\c\adc.c: 4 warnings, 0 errors
-compiling top_row_display.c...
-top_row_display.h(8): warning:  #1-D: last line of file ends without a newline
-  #endif
-top_row_display.c: 1 warning, 0 errors
-compiling breathing_led.c...
-top_row_display.h(8): warning:  #1-D: last line of file ends without a newline
-  #endif
-game.h(107): warning:  #1295-D: Deprecated declaration check_game_over - give arg types
-  uint8_t check_game_over();
-breathing_led.h(20): warning:  #1-D: last line of file ends without a newline
-  void breathing_led_init(void);
-breathing_led.h(20): warning:  #1-D: last line of file ends without a newline
-  void breathing_led_init(void);
-breathing_led.c(59): warning:  #1-D: last line of file ends without a newline
-  }
-breathing_led.c: 5 warnings, 0 errors
-compiling main.c...
-top_row_display.h(8): warning:  #1-D: last line of file ends without a newline
-  #endif
-game.h(107): warning:  #1295-D: Deprecated declaration check_game_over - give arg types
-  uint8_t check_game_over();
-breathing_led.h(20): warning:  #1-D: last line of file ends without a newline
-  void breathing_led_init(void);
-main.c: 3 warnings, 0 errors
-compiling project_hardware_init.c...
-top_row_display.h(8): warning:  #1-D: last line of file ends without a newline
-  #endif
-game.h(107): warning:  #1295-D: Deprecated declaration check_game_over - give arg types
-  uint8_t check_game_over();
-breathing_led.h(20): warning:  #1-D: last line of file ends without a newline
-  void breathing_led_init(void);
-project_hardware_init.c: 3 warnings, 0 errors
 compiling staff.c...
 top_row_display.h(8): warning:  #1-D: last line of file ends without a newline
   #endif
-game.h(107): warning:  #1295-D: Deprecated declaration check_game_over - give arg types
+game.h(114): warning:  #1295-D: Deprecated declaration check_game_over - give arg types
   uint8_t check_game_over();
 breathing_led.h(20): warning:  #1-D: last line of file ends without a newline
   void breathing_led_init(void);
@@ -123,14 +78,59 @@ staff.c(84): warning:  #111-D: statement is unreachable
 staff.c(6): warning:  #177-D: variable "MOV_DIR"  was declared but never referenced
   static const PS2_DIR_t  MOV_DIR[] = {PS2_DIR_UP, PS2_DIR_DOWN, PS2_DIR_LEFT, PS2_DIR_RIGHT};
 staff.c: 6 warnings, 0 errors
-compiling project_interrupts.c...
+compiling transition.c...
+compiling game.c...
 top_row_display.h(8): warning:  #1-D: last line of file ends without a newline
   #endif
-game.h(107): warning:  #1295-D: Deprecated declaration check_game_over - give arg types
+game.h(114): warning:  #1295-D: Deprecated declaration check_game_over - give arg types
+  uint8_t check_game_over();
+game.c(391): warning:  #111-D: statement is unreachable
+  			break;
+game.c(443): warning:  #177-D: variable "data"  was declared but never referenced
+  	char data[80];
+game.c(445): warning:  #177-D: variable "game_over"  was declared but never referenced
+  	bool game_over = false;
+game.c(40): warning:  #177-D: function "DisableInterrupts"  was declared but never referenced
+  static void DisableInterrupts(void)
+game.c(49): warning:  #177-D: function "EnableInterrupts"  was declared but never referenced
+  static void EnableInterrupts(void)
+game.c: 7 warnings, 0 errors
+compiling breathing_led.c...
+top_row_display.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+game.h(114): warning:  #1295-D: Deprecated declaration check_game_over - give arg types
   uint8_t check_game_over();
 breathing_led.h(20): warning:  #1-D: last line of file ends without a newline
   void breathing_led_init(void);
-project_interrupts.c(165): warning:  #177-D: variable "test"  was declared but never referenced
+breathing_led.h(20): warning:  #1-D: last line of file ends without a newline
+  void breathing_led_init(void);
+breathing_led.c(59): warning:  #1-D: last line of file ends without a newline
+  }
+breathing_led.c: 5 warnings, 0 errors
+compiling project_hardware_init.c...
+top_row_display.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+game.h(114): warning:  #1295-D: Deprecated declaration check_game_over - give arg types
+  uint8_t check_game_over();
+breathing_led.h(20): warning:  #1-D: last line of file ends without a newline
+  void breathing_led_init(void);
+project_hardware_init.c: 3 warnings, 0 errors
+compiling main.c...
+top_row_display.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+game.h(114): warning:  #1295-D: Deprecated declaration check_game_over - give arg types
+  uint8_t check_game_over();
+breathing_led.h(20): warning:  #1-D: last line of file ends without a newline
+  void breathing_led_init(void);
+main.c: 3 warnings, 0 errors
+compiling project_interrupts.c...
+top_row_display.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+game.h(114): warning:  #1295-D: Deprecated declaration check_game_over - give arg types
+  uint8_t check_game_over();
+breathing_led.h(20): warning:  #1-D: last line of file ends without a newline
+  void breathing_led_init(void);
+project_interrupts.c(166): warning:  #177-D: variable "test"  was declared but never referenced
   	bool test;
 project_interrupts.c: 4 warnings, 0 errors
 compiling uart.c...
@@ -139,20 +139,20 @@ compiling uart.c...
 ..\drivers\c\uart.c: 1 warning, 0 errors
 compiling eeprom.c...
 compiling ft6x06.c...
-assembling startup_TM4C123.s...
 compiling launchpad_io.c...
-compiling system_TM4C123.c...
-compiling serial_debug.c...
+assembling startup_TM4C123.s...
 compiling ps2.c...
+compiling system_TM4C123.c...
+compiling lcd.c...
 compiling io_expander.c...
 ..\peripherals\c\io_expander.c(62): warning:  #550-D: variable "status"  was set but never used
       i2c_status_t status;
 ..\peripherals\c\io_expander.c(77): warning:  #550-D: variable "status"  was set but never used
       i2c_status_t status;
 ..\peripherals\c\io_expander.c: 2 warnings, 0 errors
-compiling lcd.c...
+compiling serial_debug.c...
 linking...
-Program Size: Code=15844 RO-data=60352 RW-data=92 ZI-data=4164  
+Program Size: Code=16144 RO-data=60352 RW-data=92 ZI-data=4164  
 ".\obj\ece353_base_project.axf" - 0 Error(s), 43 Warning(s).
 
 <h2>Software Packages used:</h2>

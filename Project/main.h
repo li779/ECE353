@@ -41,7 +41,7 @@
 #include "project_interrupts.h"
 #include "project_hardware_init.h"
 
-extern volatile bool RESTART;
+
 extern void delay(int cnt);
 
 #endif

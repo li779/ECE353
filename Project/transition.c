@@ -2092,31 +2092,17 @@ void game_transition_success_page(void)
 		
 	// Clear interrupt on MCP23017
 	io_expander_read_reg(MCP23017_INTCAPB_R, &data);
-	
-	if(MAP_SEL < 2)		// If the map is not the last one
-	{
 
-		MAP_SEL ++;
-		lcd_clear_screen(LCD_COLOR_BLACK);
+	MAP_SEL ++;
+	lcd_clear_screen(LCD_COLOR_BLACK);
+	
+	EnableInterrupts();
+	
+	return;
+
+
 		
-		EnableInterrupts();
-		
-		return;
-	}
-	else
-	{
-		// Draw victory screen
-		lcd_draw_image(120, final_pageWidthPixels, 160, final_pageHeightPixels, final_pageBitmaps, LCD_COLOR_WHITE, LCD_COLOR_BLACK);
-		
-		// Wait for LEFT to be pressed
-		while((data & 0x0F) != 0x0B){io_expander_read_reg(MCP23017_GPIOB_R, &data);};
-		
-		game_start_page();
-		
-		EnableInterrupts();
-		
-		return;
-	}
+
 }
 
 void game_transition_fail_page(void)
@@ -2135,16 +2121,43 @@ void game_transition_fail_page(void)
 	// Wait for LEFT to be pressed
 	while((data & 0x0F) != 0x0B){io_expander_read_reg(MCP23017_GPIOB_R, &data);};
 	
+	MAP_SEL = 0;
+	
 	delay_cnt = 1000000;
 	while(delay_cnt > 1) {delay_cnt--;}
 		
 	// Clear interrupt on MCP23017
 	io_expander_read_reg(MCP23017_INTCAPB_R, &data);
 	
-	game_start_page();
-	
 	EnableInterrupts();
 		
 	return;
 	
+}
+
+void game_transition_victory_page(void)
+{
+
+	uint8_t data;
+	uint32_t delay_cnt;
+	
+	DisableInterrupts();
+	
+	// Draw victory screen
+	lcd_draw_image(120, final_pageWidthPixels, 160, final_pageHeightPixels, final_pageBitmaps, LCD_COLOR_WHITE, LCD_COLOR_BLACK);
+	
+	// Wait for LEFT to be pressed
+	while((data & 0x0F) != 0x0B){io_expander_read_reg(MCP23017_GPIOB_R, &data);};
+	
+	delay_cnt = 1000000;
+	while(delay_cnt > 1) {delay_cnt--;}
+		
+	// Clear interrupt on MCP23017
+	io_expander_read_reg(MCP23017_INTCAPB_R, &data);
+	
+	MAP_SEL = 0;
+	
+	EnableInterrupts();
+	
+	return;
 }

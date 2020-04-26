@@ -72,6 +72,13 @@ extern volatile const uint8_t shell_size;
 extern volatile bool PS2_MOVE;
 extern volatile bool BUTTON_PRESSED;
 extern volatile BUTTON_t button;
+
+extern volatile bool IN_PROGRESS;
+extern volatile bool RESTART;
+extern volatile bool CONTINUE;
+extern volatile bool EXIT;
+extern volatile bool GAME_OVER;
+
 //*****************************************************************************
 // Determines if any part of the image would be off the screen if the image
 // is moved in the specified direction.
@@ -126,14 +133,10 @@ bool check_moveable(
     uint8_t image_width
 );
 		
-		void clear_image(uint16_t x, uint16_t y);
-		bool check_shot_on_target(volatile bullet * i);
-		void fire(uint16_t x, uint16_t y, PS2_DIR_t dir);
-//*****************************************************************************
-// Initializes all of the peripherls used in HW3
-//*****************************************************************************
-void init_hardware(void);
-        
+void clear_image(uint16_t x, uint16_t y);
+bool check_shot_on_target(volatile bullet * i);
+void fire(uint16_t x, uint16_t y, PS2_DIR_t dir);
+
 //*****************************************************************************
 // Main application for Game
 //*****************************************************************************

@@ -65,6 +65,7 @@ void GPIOF_Handler(void)
 					break;
 			case 0x0D	:
 					button = BUTTON_DOWN;
+					EXIT = true;
 					break;
 			case 0x0B	:
 					button = BUTTON_LEFT;
@@ -266,6 +267,33 @@ void TIMER2A_Handler(void)
 		}
 	SHELL_MOVE = false;
 	}	
+	
+	if(IN_PROGRESS)
+	{
+		// Check game over status
+		switch(check_game_over())
+		{
+			case 1:
+				game_transition_fail_page();
+				GAME_OVER = true;
+				break;
+			
+			case 2:
+				
+				if(MAP_SEL < 2)
+				{
+					CONTINUE = true;
+					game_transition_success_page();
+				}
+				
+				else
+				{
+					RESTART = true;
+					game_transition_victory_page();
+				}
+				break;
+		}
+	}
 	
 	// Clear the button status in case anything jams
 	BUTTON_PRESSED = false;

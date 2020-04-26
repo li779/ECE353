@@ -6,6 +6,13 @@ volatile bool ALERT_INVADER = true;
 volatile bool BUTTON_PRESSED = false;
 volatile bool SHELL_MOVE = false;
 volatile bool PS2_MOVE = false;
+
+volatile bool RESTART = false;
+volatile bool CONTINUE = false;
+volatile bool EXIT = false;
+volatile bool GAME_OVER = false;
+volatile bool IN_PROGRESS = false;
+
 char STUDENT_NAME[] = "Yichen Li and Marvin Zhang";
 int i;
 
@@ -27,6 +34,25 @@ volatile const uint8_t enermy_size = 2;
 void set_dir(volatile tanks* tank, PS2_DIR_t dir){tank->dir = dir;set_image(tank);}
 void set_x(uint16_t x){player->x = x;}
 void set_y(uint16_t y){player->y = y;}
+
+//*****************************************************************************
+//*****************************************************************************
+static void DisableInterrupts(void)
+{
+  __asm {
+         CPSID  I
+  }
+}
+
+//*****************************************************************************
+//*****************************************************************************
+static void EnableInterrupts(void)
+{
+  __asm {
+    CPSIE  I
+  }
+}
+
 void set_image(volatile tanks* tank){
 	switch(tank->dir){
 		case PS2_DIR_UP: 
@@ -200,20 +226,24 @@ void clear_image(uint16_t x, uint16_t y){
 //*****************************************************************************
 uint8_t check_game_over()
 {
-		int count = 0;
-		int i;
-    if(player->health == 0){
+	int count = 0;
+	int i;
+    if(player->health == 0 || player->health > 100){
 			printf("Game lost\n");
 			return 1;
-		}
-		for(i=0;i<enermy_size;i++){
-			count += enermy[i]->health;
-		}
-		if (count==0){
-			printf("Game Win\n");
-			return 2;
-		}
-		return 0;
+	}
+	
+	for(i=0;i<enermy_size;i++){
+		if(enermy[i]->health == 0 || enermy[i]->health > 100)
+			count++;
+	}
+		
+	if (count == enermy_size){
+		printf("Game Win\n");
+		return 2;
+	}
+	
+	return 0;
 }
 
 bool check_bump(
@@ -299,23 +329,34 @@ bool check_shot_on_target(volatile bullet * i){
 			//printf("Error! Bullet direction not defined!\n");
 			break;
 	}
+	
 	for(index = 0; index < enermy_size; index++){
 		if(check_bump(&(i->dir),i->x,i->y,shell_objHeightPixels, shell_objWidthPixels,
-													enermy[index]->x,enermy[index]->y,enermy[index]->height, enermy[index]->width)){
-					if (enermy[index]->health >0)
-					enermy[index]->health -= 20;
-					printf("enermy %d health",enermy[index]->health);
-					printf("hit at enermy %d pos: (%d,%d)\n",index, i->x, i->y);
-					return true;
-													}
+			enermy[index]->x,enermy[index]->y,enermy[index]->height, enermy[index]->width))
+		{
+			
+			if (enermy[index]->health > 0 && enermy[index] -> health < 100)
+				enermy[index]->health -= 20;
+			else 
+				enermy[index]->health = 0;
+			
+			printf("enermy %d health",enermy[index]->health);
+			printf("hit at enermy %d pos: (%d,%d)\n",index, i->x, i->y);
+			return true;
+		}
 	}
+	
 	if(check_bump(&(i->dir),i->x,i->y,shell_objHeightPixels, shell_objWidthPixels,
-													player->x,player->y,player->height, player->width)){
-					if (player->health >0)
-					player->health -= 5;
-					printf("hit at player pos: (%d,%d)\n", i->x, i->y);
-					return true;
-													}
+			player->x,player->y,player->height, player->width))
+	{
+		
+		if (player->health >0)
+			player->health -= 5;
+		
+		printf("hit at player pos: (%d,%d)\n", i->x, i->y);			
+		return true;
+	}
+	
 	if(!check_moveable(i->dir, i->x, i->y, 20, 20))
 	{
 		//printf("Bullet hit the wall.");
@@ -409,8 +450,11 @@ void game(void)
 	initialize_obj();
 	
 	printf("Drawing map...\n");
-	MAP_SEL = 0;
+
+	lcd_clear_screen(LCD_COLOR_BLACK);
 	drawMap(getMap());
+	
+	IN_PROGRESS = true;
 	
 	while(true)
 	{	
@@ -422,7 +466,7 @@ void game(void)
 			if(ALERT_SPACE_SHIP[index])
 			{
 				ALERT_SPACE_SHIP[index] = false;
-				if (enermy[index]->health > 0){
+				if (enermy[index]->health > 0 && enermy[index]->health < 101){
 				lcd_draw_image(
 					enermy[index]->x,       // X Center Point
 					enermy[index]->width,   // Image Horizontal Width
@@ -452,21 +496,15 @@ void game(void)
 					LCD_COLOR_BLACK     // Background Color
 				);
 			}
-			
-
-			
-			switch(check_game_over())
-			{
-				case 1:
-					game_transition_fail_page();
-					return;
-					break;
-				case 2:
-					game_transition_success_page();
-					return;
-					break;
-			}
 
 		}   
+		
+		if(GAME_OVER | CONTINUE | RESTART)
+		{
+			IN_PROGRESS = false;
+			break;
+		}	
+		
 	}
+	
 }
