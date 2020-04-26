@@ -31,6 +31,7 @@ static bool bump [10];
 volatile BUTTON_t button = BUTTON_NONE;
 
 uint8_t data;
+uint8_t led_control = 0;
 
 // PF0 Interrupt 
 void GPIOF_Handler(void)
@@ -325,6 +326,14 @@ void TIMER3A_Handler(void)
 		}
 		
 	}
+	
+	// 8 red leds controlled to flow through
+	io_expander_write_reg(MCP23017_GPIOA_R, (1<<led_control));
+	if(led_control > 6)
+		led_control = 0;
+	else
+		led_control++;
+	
 	// Clear the interrupt
 	TIMER3->ICR |= TIMER_ICR_TATOCINT;  
 }
