@@ -49,5 +49,5 @@ void hardwareInit(void)
 	EnableInterrupts();
 	
 	// This thing is bright, don't use for now.
-	// breathing_led_init();
+	 //breathing_led_init();
 }

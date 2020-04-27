@@ -591,3 +591,8 @@ const uint8_t shell_objBitmaps[] =
 // Bitmap sizes for shell_obj
 const uint8_t shell_objWidthPixels = 4;
 const uint8_t shell_objHeightPixels = 4;
+
+const uint8_t* tanks_direction[4][4]= {{easytank_upBitmaps, easytank_downBitmaps, easytank_leftBitmaps, easytank_rightBitmaps},
+																		 {panzer_II_upBitmaps,panzer_II_downBitmaps,panzer_II_leftBitmaps, panzer_II_rightBitmaps},
+																		 {panzer_IV_upBitmaps,panzer_IV_downBitmaps,panzer_IV_leftBitmaps, panzer_IV_rightBitmaps},
+																		 {panzer_VI_upBitmaps,panzer_VI_downBitmaps,panzer_VI_leftBitmaps, panzer_VI_rightBitmaps}};

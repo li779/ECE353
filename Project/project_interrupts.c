@@ -318,7 +318,7 @@ void TIMER3A_Handler(void)
 	for (i=0; i<shell_size; i++){
 		if (shells[i]->valid)
 		{
-			printf("Shell index: %d, (%d, %d)\n",i, shells[i]->x, shells[i]->y);
+			//printf("Shell index: %d, (%d, %d)\n",i, shells[i]->x, shells[i]->y);
 			if (check_shot_on_target(shells[i]))
 				shells[i]->valid = false;
 			else 

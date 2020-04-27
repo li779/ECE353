@@ -59,5 +59,5 @@ extern const uint8_t shell_objBitmaps[];
 extern const uint8_t shell_objWidthPixels;
 extern const uint8_t shell_objHeightPixels;
 
-
+extern const uint8_t* tanks_direction[4][4];
 #endif

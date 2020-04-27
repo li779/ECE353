@@ -34,25 +34,8 @@ typedef enum BUTTON_t{
 	BUTTON_NONE
 } BUTTON_t;
 
-typedef struct 
-{
-	PS2_DIR_t dir;
-	uint16_t x;
-	uint16_t y;
-	uint8_t* image;
-	uint8_t width;
-	uint8_t height;
-	uint8_t health;
-} tanks;
 
-typedef struct
-{
-	bool valid;
-   PS2_DIR_t dir;
-	uint16_t x;
-	uint16_t y;
-    bool player;
-} bullet;
+
 
 extern void initialize_serial_debug(void);
 extern void put_string(char *data);
@@ -63,11 +46,7 @@ extern volatile bool ALERT_INVADER;
 extern volatile bool SHELL_MOVE;
 
 extern char STUDENT_NAME[];
-extern volatile tanks* player;
-extern volatile const uint8_t enermy_size;
-extern volatile tanks** enermy;
-extern volatile bullet** shells;
-extern volatile const uint8_t shell_size;
+
 
 extern volatile bool PS2_MOVE;
 extern volatile bool BUTTON_PRESSED;
@@ -134,18 +113,14 @@ bool check_moveable(
 );
 		
 void clear_image(uint16_t x, uint16_t y);
-bool check_shot_on_target(volatile bullet * i);
-void fire(uint16_t x, uint16_t y, PS2_DIR_t dir);
+
 
 //*****************************************************************************
 // Main application for Game
 //*****************************************************************************
 void game(void);
 				
-void set_dir(volatile tanks* tank, PS2_DIR_t dir);
-void set_x(uint16_t x);
-void set_y(uint16_t y);
-void set_image(volatile tanks* tank);
+
 #endif
 
 

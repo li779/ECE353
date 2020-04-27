@@ -1,5 +1,5 @@
 #include "game.h"
-
+#include "tanks.h"
 
 volatile bool ALERT_SPACE_SHIP[10];
 volatile bool ALERT_INVADER = true;
@@ -25,15 +25,7 @@ typedef struct
     int right;
 } Rectangle;
 
-volatile tanks* player;
-volatile tanks** enermy;
-volatile bullet** shells;
-volatile const uint8_t shell_size = 10;
-volatile const uint8_t enermy_size = 2;
 
-void set_dir(volatile tanks* tank, PS2_DIR_t dir){tank->dir = dir;set_image(tank);}
-void set_x(uint16_t x){player->x = x;}
-void set_y(uint16_t y){player->y = y;}
 
 //*****************************************************************************
 //*****************************************************************************
@@ -53,40 +45,6 @@ static void EnableInterrupts(void)
   }
 }
 
-void set_image(volatile tanks* tank){
-	switch(tank->dir){
-		case PS2_DIR_UP: 
-		{
-			tank->image = (uint8_t*)easytank_upBitmaps;
-			tank->height = easytank_upHeightPixels;
-			tank->width = easytank_upWidthPixels;
-			break;
-		}
-		case PS2_DIR_DOWN: 
-		{
-			tank->image = (uint8_t*)&easytank_downBitmaps;
-			tank->height = easytank_downHeightPixels;
-			tank->width = easytank_downWidthPixels;
-			break;
-		}
-		case PS2_DIR_LEFT: 
-		{
-			tank->image = (uint8_t*)&easytank_leftBitmaps;
-			tank->height = easytank_leftHeightPixels;
-			tank->width = easytank_leftWidthPixels;
-			break;
-		}
-		case PS2_DIR_RIGHT: 
-		{
-			tank->image = (uint8_t*)&easytank_rightBitmaps;
-			tank->height = easytank_rightHeightPixels;
-			tank->width = easytank_rightWidthPixels;
-			break;
-		}
-		default: return; 
-	}
-	return;
-}
 
 
 //*****************************************************************************
@@ -300,122 +258,15 @@ bool check_bump(
 		return false;
 }
 
-/*
-** Check if the bullet has hit an object or a wall
-*/
-bool check_shot_on_target(volatile bullet * i){
-	uint16_t x_temp = i->x, y_temp = i->y;
-	int index;
-	
-	if(!(i->valid))
-		return false;
-	
-	// Check if hit wall
-	switch(i->dir)
-	{
-		case PS2_DIR_UP:
-			y_temp -= 20;
-			break;
-		case PS2_DIR_DOWN:
-			y_temp += 20;
-			break;
-		case PS2_DIR_LEFT:
-			x_temp -= 20;
-			break;
-		case PS2_DIR_RIGHT:
-			x_temp += 20;
-			break;
-		default:
-			//printf("Error! Bullet direction not defined!\n");
-			break;
-	}
-	
-	for(index = 0; index < enermy_size; index++){
-		if(check_bump(&(i->dir),i->x,i->y,shell_objHeightPixels, shell_objWidthPixels,
-			enermy[index]->x,enermy[index]->y,enermy[index]->height, enermy[index]->width))
-		{
-			
-			if (enermy[index]->health > 0 && enermy[index] -> health < 100)
-				enermy[index]->health -= 20;
-			else 
-				enermy[index]->health = 0;
-			
-			printf("enermy %d health",enermy[index]->health);
-			printf("hit at enermy %d pos: (%d,%d)\n",index, i->x, i->y);
-			return true;
-		}
-	}
-	
-	if(check_bump(&(i->dir),i->x,i->y,shell_objHeightPixels, shell_objWidthPixels,
-			player->x,player->y,player->height, player->width))
-	{
-		
-		if (player->health >0)
-			player->health -= 5;
-		
-		printf("hit at player pos: (%d,%d)\n", i->x, i->y);			
-		return true;
-	}
-	
-	if(!check_moveable(i->dir, i->x, i->y, 20, 20))
-	{
-		//printf("Bullet hit the wall.");
-		printf("hit at wall pos: (%d,%d)\n", i->x, i->y);
-		return true;
-	}
-	
-	return false;
-}
 
-void fire(uint16_t x, uint16_t y, PS2_DIR_t dir){
-	
-	int i;
-	
-	switch(dir)
-	{
-		case PS2_DIR_UP:
-			y -= 20;
-			break;
-		case PS2_DIR_DOWN:
-			y += 20;
-			break;
-		case PS2_DIR_LEFT:
-			x -= 20;
-			break;
-		case PS2_DIR_RIGHT:
-			x += 20;
-			break;
-		default:
-			printf("Error: shell direction not detected!\n Failed to fire!");
-			return;
-			break;
-	}
-	
-	printf("fired x:%d, y:%d\n", x,y);
-	
-	for (i = 0; i<shell_size; i++){
-		if(!(shells[i]->valid)){
-			shells[i]->valid = true;
-			shells[i]->x = x;
-			shells[i]->y = y;
-			shells[i]->dir = dir;
-			break;
-		}
-		else
-		{
-			printf("Shell Slot: %d Already in USE\n", i);
-		}
-	}
-}
 
 void initialize_obj(){
 	int index;
 	player = malloc(sizeof(tanks));
 	set_pos(1,&(player->x),&(player->y));
 	player->dir = PS2_DIR_CENTER;
-	player->image = (uint8_t*)easytank_downBitmaps;
-	player->height = easytank_downHeightPixels;
-	player->width = easytank_downWidthPixels;
+	player->type = 0;
+	set_image(player);
 	player->health = 100;
 	enermy = malloc(sizeof(tanks*)*enermy_size);
 	
@@ -423,9 +274,8 @@ void initialize_obj(){
 		enermy[index] = malloc(sizeof(tanks));
 		set_pos(179-2*index, &(enermy[index]->x), &(enermy[index]->y));
 		enermy[index]->dir = PS2_DIR_CENTER;
-		enermy[index]->image = (uint8_t*)easytank_downBitmaps;
-		enermy[index]->height = easytank_downHeightPixels;
-		enermy[index]->width = easytank_downWidthPixels;
+		enermy[index]->type = MAP_SEL+1;
+		set_image(enermy[index]);
 		enermy[index]->health = 100;
 	}
 	shells = malloc(sizeof(bullet*)*shell_size);
