@@ -266,7 +266,7 @@ void TIMER2A_Handler(void)
 					LCD_COLOR_BLACK           // Background Color
 				);
 		}
-	SHELL_MOVE = false;
+		SHELL_MOVE = false;
 	}	
 	
 	if(IN_PROGRESS)

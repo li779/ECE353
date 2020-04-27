@@ -81,12 +81,12 @@ bool check_shot_on_target(volatile bullet * i){
 			enermy[index]->x,enermy[index]->y,enermy[index]->height, enermy[index]->width))
 		{
 			
-			if (enermy[index]->health > 0 && enermy[index] -> health < 100)
+			if (enermy[index]->health > 0 /*&& enermy[index] -> health < 101*/)
 				enermy[index]->health -= 20;
 			else 
 				enermy[index]->health = 0;
 			
-			printf("enermy %d health",enermy[index]->health);
+			printf("Enermy [%d] Health: %d", index, enermy[index]->health);
 			//printf("hit at enermy %d pos: (%d,%d)\n",index, i->x, i->y);
 			return true;
 		}

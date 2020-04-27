@@ -314,7 +314,7 @@ void game(void)
 			if(ALERT_SPACE_SHIP[index])
 			{
 				ALERT_SPACE_SHIP[index] = false;
-				if (enermy[index]->health > 0 && enermy[index]->health < 101){
+				if (enermy[index]->health > 0/* && enermy[index]->health < 101*/){
 				lcd_draw_image(
 					enermy[index]->x,       // X Center Point
 					enermy[index]->width,   // Image Horizontal Width
