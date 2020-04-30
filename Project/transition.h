@@ -14,6 +14,7 @@
 #include "lcd.h"
 #include "io_expander.h"
 #include "map.h"
+#include "ft6x06.h"
 
 extern const uint8_t start_pageBitmaps[];
 extern const uint16_t start_pageWidthPixels;

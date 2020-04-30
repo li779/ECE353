@@ -33,6 +33,9 @@ void hardwareInit(void)
 	lcd_config_gpio();
 	lcd_config_screen();
 	lcd_clear_screen(LCD_COLOR_BLACK);
+	
+	// touch screen
+	ft6x06_init();
 		
 	// PS2 joystick initialization
 	ps2_initialize();

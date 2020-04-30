@@ -2688,8 +2688,9 @@ void game_start_page(void)
 	// Draw initial screen
 	lcd_draw_image(120, start_pageWidthPixels, 160, start_pageHeightPixels, start_pageBitmaps, LCD_COLOR_WHITE, LCD_COLOR_BLACK);
 	
-	// Wait for LEFT to be pressed
-	while((data & 0x0F) != 0x0B){io_expander_read_reg(MCP23017_GPIOB_R, &data);};
+	// Wait for touch screen
+	while(ft6x06_read_td_status()==0){};
+		//while((data & 0x0F) != 0x0B){io_expander_read_reg(MCP23017_GPIOB_R, &data);};
 	
 //================================Tutorial Screen========================================
 	
@@ -2700,16 +2701,18 @@ void game_start_page(void)
 	while(delay_cnt > 1) {delay_cnt--;}
 	
 	// Clear interrupt on MCP23017
-	io_expander_read_reg(MCP23017_INTCAPB_R, &data);
+	//io_expander_read_reg(MCP23017_INTCAPB_R, &data);
 	
 	// Wait for LEFT to be pressed
-	while((data & 0x0F) != 0x0B){io_expander_read_reg(MCP23017_INTCAPB_R, &data);};
+	//while((data & 0x0F) != 0x0B){io_expander_read_reg(MCP23017_INTCAPB_R, &data);};
+	// Wait for touch screen
+	while(ft6x06_read_td_status()==0){};
 	
 	delay_cnt = 5000000;
 	while(delay_cnt > 1) {delay_cnt--;}
 	
 	// Clear interrupt on MCP23017
-	io_expander_read_reg(MCP23017_INTCAPB_R, &data);
+	//io_expander_read_reg(MCP23017_INTCAPB_R, &data);
 	
 	// Clear screen
 	lcd_clear_screen(LCD_COLOR_BLACK);
@@ -2740,12 +2743,14 @@ void game_story_page(void)
 	}
 	
 	// Wait for LEFT to be pressed
-	while((data & 0x0F) != 0x0B){io_expander_read_reg(MCP23017_INTCAPB_R, &data);};
+	//while((data & 0x0F) != 0x0B){io_expander_read_reg(MCP23017_INTCAPB_R, &data);};
+	// Wait for touch screen
+	while(ft6x06_read_td_status()==0){};
 	
 	delay_cnt = 5000000;
 	while(delay_cnt > 1) {delay_cnt--;}
 	// Clear interrupt on MCP23017
-	io_expander_read_reg(MCP23017_INTCAPB_R, &data);
+	//io_expander_read_reg(MCP23017_INTCAPB_R, &data);
 	
 	// Clear screen
 	lcd_clear_screen(LCD_COLOR_BLACK);
@@ -2767,13 +2772,15 @@ void game_transition_success_page(void)
 	lcd_draw_image(120, success_pageWidthPixels, 160, success_pageHeightPixels, success_pageBitmaps, LCD_COLOR_WHITE, LCD_COLOR_BLACK);
 	
 	// Wait for LEFT to be pressed
-	while((data & 0x0F) != 0x0B){io_expander_read_reg(MCP23017_GPIOB_R, &data);};
+	//while((data & 0x0F) != 0x0B){io_expander_read_reg(MCP23017_GPIOB_R, &data);};
+	// Wait for touch screen
+	while(ft6x06_read_td_status()==0){};
 	
 	delay_cnt = 1000000;
 	while(delay_cnt > 1) {delay_cnt--;}
 		
 	// Clear interrupt on MCP23017
-	io_expander_read_reg(MCP23017_INTCAPB_R, &data);
+	//io_expander_read_reg(MCP23017_INTCAPB_R, &data);
 
 	MAP_SEL ++;
 	lcd_clear_screen(LCD_COLOR_BLACK);
@@ -2797,7 +2804,9 @@ void game_transition_fail_page(void)
 	lcd_draw_image(120, fail_pageWidthPixels, 160, fail_pageHeightPixels, fail_pageBitmaps, LCD_COLOR_WHITE, LCD_COLOR_BLACK);
 	
 	// Wait for LEFT to be pressed
-	while((data & 0x0F) != 0x0B){io_expander_read_reg(MCP23017_GPIOB_R, &data);};
+	//while((data & 0x0F) != 0x0B){io_expander_read_reg(MCP23017_GPIOB_R, &data);};
+	// Wait for touch screen
+	while(ft6x06_read_td_status()==0){};
 	
 	MAP_SEL = 0;
 	
@@ -2805,7 +2814,7 @@ void game_transition_fail_page(void)
 	while(delay_cnt > 1) {delay_cnt--;}
 		
 	// Clear interrupt on MCP23017
-	io_expander_read_reg(MCP23017_INTCAPB_R, &data);
+	//io_expander_read_reg(MCP23017_INTCAPB_R, &data);
 	
 	EnableInterrupts();
 		
@@ -2825,13 +2834,15 @@ void game_transition_victory_page(void)
 	lcd_draw_image(120, final_pageWidthPixels, 160, final_pageHeightPixels, final_pageBitmaps, LCD_COLOR_WHITE, LCD_COLOR_BLACK);
 	
 	// Wait for LEFT to be pressed
-	while((data & 0x0F) != 0x0B){io_expander_read_reg(MCP23017_GPIOB_R, &data);};
+	//while((data & 0x0F) != 0x0B){io_expander_read_reg(MCP23017_GPIOB_R, &data);};
+	// Wait for touch screen
+	while(ft6x06_read_td_status()==0){};
 	
 	delay_cnt = 1000000;
 	while(delay_cnt > 1) {delay_cnt--;}
 		
 	// Clear interrupt on MCP23017
-	io_expander_read_reg(MCP23017_INTCAPB_R, &data);
+	//io_expander_read_reg(MCP23017_INTCAPB_R, &data);
 	
 	MAP_SEL = 0;
 	
