@@ -41,15 +41,6 @@ map.c(169): warning:  #940-D: missing return statement at end of non-void functi
 map.c(194): warning:  #1-D: last line of file ends without a newline
   );*/
 map.c: 5 warnings, 0 errors
-compiling top_row_display.c...
-top_row_display.h(8): warning:  #1-D: last line of file ends without a newline
-  #endif
-top_row_display.c: 1 warning, 0 errors
-compiling gpio_port.c...
-..\drivers\c\gpio_port.c(82): warning:  #188-D: enumerated type mixed with another type
-         return 0;
-..\drivers\c\gpio_port.c: 1 warning, 0 errors
-compiling i2c.c...
 compiling adc.c...
 ..\drivers\c\adc.c(54): warning:  #188-D: enumerated type mixed with another type
          return ADC0SS0_IRQn + ss_num;
@@ -60,6 +51,21 @@ compiling adc.c...
 ..\drivers\c\adc.c(29): warning:  #177-D: function "verify_base_addr"  was declared but never referenced
   static bool verify_base_addr(uint32_t baseAddr)
 ..\drivers\c\adc.c: 4 warnings, 0 errors
+compiling i2c.c...
+compiling gpio_port.c...
+..\drivers\c\gpio_port.c(82): warning:  #188-D: enumerated type mixed with another type
+         return 0;
+..\drivers\c\gpio_port.c: 1 warning, 0 errors
+compiling top_row_display.c...
+top_row_display.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+top_row_display.c: 1 warning, 0 errors
+compiling tanks.c...
+top_row_display.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+game.h(93): warning:  #1295-D: Deprecated declaration check_game_over - give arg types
+  uint8_t check_game_over();
+tanks.c: 2 warnings, 0 errors
 compiling transition.c...
 transition.c(2680): warning:  #177-D: variable "data"  was declared but never referenced
   	uint8_t data;
@@ -82,12 +88,20 @@ breathing_led.h(20): warning:  #1-D: last line of file ends without a newline
 project_interrupts.c(167): warning:  #177-D: variable "test"  was declared but never referenced
   	bool test;
 project_interrupts.c: 4 warnings, 0 errors
-compiling tanks.c...
+compiling staff.c...
 top_row_display.h(8): warning:  #1-D: last line of file ends without a newline
   #endif
 game.h(93): warning:  #1295-D: Deprecated declaration check_game_over - give arg types
   uint8_t check_game_over();
-tanks.c: 2 warnings, 0 errors
+breathing_led.h(20): warning:  #1-D: last line of file ends without a newline
+  void breathing_led_init(void);
+staff.c(34): warning:  #188-D: enumerated type mixed with another type
+  		new_direction = (curr_direction+1)%4;
+staff.c(84): warning:  #111-D: statement is unreachable
+  			break;
+staff.c(6): warning:  #177-D: variable "MOV_DIR"  was declared but never referenced
+  static const PS2_DIR_t  MOV_DIR[] = {PS2_DIR_UP, PS2_DIR_DOWN, PS2_DIR_LEFT, PS2_DIR_RIGHT};
+staff.c: 6 warnings, 0 errors
 compiling game.c...
 top_row_display.h(8): warning:  #1-D: last line of file ends without a newline
   #endif
@@ -118,20 +132,6 @@ game.h(93): warning:  #1295-D: Deprecated declaration check_game_over - give arg
 breathing_led.h(20): warning:  #1-D: last line of file ends without a newline
   void breathing_led_init(void);
 main.c: 3 warnings, 0 errors
-compiling staff.c...
-top_row_display.h(8): warning:  #1-D: last line of file ends without a newline
-  #endif
-game.h(93): warning:  #1295-D: Deprecated declaration check_game_over - give arg types
-  uint8_t check_game_over();
-breathing_led.h(20): warning:  #1-D: last line of file ends without a newline
-  void breathing_led_init(void);
-staff.c(34): warning:  #188-D: enumerated type mixed with another type
-  		new_direction = (curr_direction+1)%4;
-staff.c(84): warning:  #111-D: statement is unreachable
-  			break;
-staff.c(6): warning:  #177-D: variable "MOV_DIR"  was declared but never referenced
-  static const PS2_DIR_t  MOV_DIR[] = {PS2_DIR_UP, PS2_DIR_DOWN, PS2_DIR_LEFT, PS2_DIR_RIGHT};
-staff.c: 6 warnings, 0 errors
 compiling breathing_led.c...
 top_row_display.h(8): warning:  #1-D: last line of file ends without a newline
   #endif
@@ -153,21 +153,21 @@ compiling uart.c...
          return 0;
 ..\drivers\c\uart.c: 1 warning, 0 errors
 compiling eeprom.c...
-compiling ft6x06.c...
-compiling launchpad_io.c...
 assembling startup_TM4C123.s...
+compiling launchpad_io.c...
+compiling ft6x06.c...
+compiling system_TM4C123.c...
 compiling ps2.c...
-compiling serial_debug.c...
 compiling lcd.c...
+compiling serial_debug.c...
 compiling io_expander.c...
 ..\peripherals\c\io_expander.c(62): warning:  #550-D: variable "status"  was set but never used
       i2c_status_t status;
 ..\peripherals\c\io_expander.c(77): warning:  #550-D: variable "status"  was set but never used
       i2c_status_t status;
 ..\peripherals\c\io_expander.c: 2 warnings, 0 errors
-compiling system_TM4C123.c...
 linking...
-Program Size: Code=16384 RO-data=79560 RW-data=156 ZI-data=4164  
+Program Size: Code=17088 RO-data=79560 RW-data=156 ZI-data=4164  
 ".\obj\ece353_base_project.axf" - 0 Error(s), 49 Warning(s).
 
 <h2>Software Packages used:</h2>
@@ -194,10 +194,10 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.3.0
 
    * Component: Keil::Device:Startup:1.0.1
-      Source file:   Device\Source\system_TM4C123.c
-      Source file:   Device\Source\ARM\startup_TM4C123.s
       Include file:  Device\Include\TM4C123\TM4C123.h
-Build Time Elapsed:  00:00:07
+      Source file:   Device\Source\ARM\startup_TM4C123.s
+      Source file:   Device\Source\system_TM4C123.c
+Build Time Elapsed:  00:00:05
 </pre>
 </body>
 </html>

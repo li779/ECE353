@@ -121,7 +121,7 @@ void ps2_get_direction(void)
 //*****************************************************************************
 // TIMER1 ISR is used to determine when to update breathing effect
 //*****************************************************************************
-void TIMER1A_Handler(void)
+void TIMER5A_Handler(void)
 {
 	// Check if need to update RGB values, if not, just change RGB_temp values
 	if(RGB_update)
@@ -152,7 +152,7 @@ void TIMER1A_Handler(void)
 	
 	
 	// Clear the interrupt
-	TIMER1->ICR |= TIMER_ICR_TATOCINT;
+	TIMER5->ICR |= TIMER_ICR_TATOCINT;
 }
 
 //*****************************************************************************
