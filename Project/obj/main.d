@@ -34,6 +34,7 @@
 .\obj\main.o: top_row_display.h
 .\obj\main.o: transition.h
 .\obj\main.o: map.h
+.\obj\main.o: ..\peripherals\include\ft6x06.h
 .\obj\main.o: project_interrupts.h
 .\obj\main.o: main.h
 .\obj\main.o: staff.h
