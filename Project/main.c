@@ -108,6 +108,14 @@ main(void)
 				delay(50);
 			}
 			DisableInterrupts();
-	}
+		}
+		
+		if(EXIT)
+		{
+			printf("Game ends.");
+			delay(10);
+			break;
+		}
+		
 	}
 }

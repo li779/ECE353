@@ -66,7 +66,6 @@ void GPIOF_Handler(void)
 					break;
 			case 0x0D	:
 					button = BUTTON_DOWN;
-					EXIT = true;
 					break;
 			case 0x0B	:
 					button = BUTTON_LEFT;
@@ -119,9 +118,9 @@ void ps2_get_direction(void)
 }
 
 //*****************************************************************************
-// TIMER5 ISR is used to determine when to update breathing effect
+// TIMER1 ISR is used to determine when to update breathing effect
 //*****************************************************************************
-void TIMER5A_Handler(void)
+void TIMER1A_Handler(void)
 {
 	// Check if need to update RGB values, if not, just change RGB_temp values
 	if(RGB_update)
@@ -152,7 +151,7 @@ void TIMER5A_Handler(void)
 	
 	
 	// Clear the interrupt
-	TIMER5->ICR |= TIMER_ICR_TATOCINT;
+	TIMER1->ICR |= TIMER_ICR_TATOCINT;
 }
 
 //*****************************************************************************
@@ -237,6 +236,7 @@ void TIMER2A_Handler(void)
 				break;
 			}
 			case(BUTTON_DOWN):
+				EXIT = true;
 				break;
 			case(BUTTON_LEFT):
 				break;

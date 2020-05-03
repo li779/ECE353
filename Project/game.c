@@ -350,7 +350,7 @@ void game(void)
 
 		}   
 		
-		if(GAME_OVER | CONTINUE | RESTART)
+		if(GAME_OVER | CONTINUE | RESTART | EXIT)
 		{
 			IN_PROGRESS = false;
 			SCORE -= (100 - player->health);
