@@ -344,6 +344,16 @@ void TIMER3A_Handler(void)
 //*****************************************************************************
 void TIMER4A_Handler(void)
 {	
+		char input[80];
+		bool pause = false;
+				memset(input,0,80);
+		printf("into debug mode");
+		input[0] = getchar();
+		//printf("%s\n",input);
+		if ( input[0] == ' ')
+			PAUSE = !PAUSE;
+		
+		printf("resume...\n");
     ADC0->PSSI |= ADC_PSSI_SS2;
 	// Clear the interrupt
     TIMER4->ICR |= TIMER_ICR_TATOCINT;

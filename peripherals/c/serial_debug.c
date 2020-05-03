@@ -90,7 +90,7 @@ int fgetc(FILE* stream)
    
    if ( Rx_Interrupts_Enabled)
    {
-    c = serial_debug_rx(SERIAL_DEBUG_RX_BUF_PTR, true);
+    c = serial_debug_rx(SERIAL_DEBUG_RX_BUF_PTR, false);
    }
    else
    {

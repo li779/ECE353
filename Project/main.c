@@ -60,6 +60,7 @@ main(void)
 	uint8_t *data = (uint8_t *)malloc(sizeof(uint8_t));
 	
 	uint16_t EEPROM_SCORE_ADDR = 0x0000;
+	
 
 	RESTART = true;		// For 1st-time
 	
@@ -81,6 +82,7 @@ main(void)
 			eeprom_byte_read(EEPROM_I2C_BASE, EEPROM_SCORE_ADDR, &LAST_SCORE);
 			printf("Last Score (%d / 255) read from EEPROM. \n", LAST_SCORE);
 			delay(50);
+			
 			if(RESTART | GAME_OVER)
 			{
 				RESTART = false;
@@ -105,7 +107,6 @@ main(void)
 				delay(50);
 			}
 			DisableInterrupts();
-		}
-		
+	}
 	}
 }

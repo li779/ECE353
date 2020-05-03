@@ -55,6 +55,7 @@ extern volatile bool RESTART;
 extern volatile bool CONTINUE;
 extern volatile bool EXIT;
 extern volatile bool GAME_OVER;
+extern volatile bool PAUSE;
 
 //*****************************************************************************
 // Determines if any part of the image would be off the screen if the image
