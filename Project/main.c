@@ -95,6 +95,7 @@ main(void)
 			
 			game_story_page();
 			EnableInterrupts();
+			printf("Press SPACE to pause the game. Another press will continue the game. \n");
 			drawSCORE(LAST_SCORE);
 			delay(10);
 			game();
