@@ -5,4 +5,6 @@
 
 void drawHP(int HP);
 
+void drawSCORE(int score);
+
 #endif

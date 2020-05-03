@@ -29,5 +29,6 @@
 #include "staff.h"
 #include "breathing_led.h"
 #include "tanks.h"
+#include "score.h"
 
 #endif

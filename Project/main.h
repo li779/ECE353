@@ -41,7 +41,8 @@
 #include "project_interrupts.h"
 #include "project_hardware_init.h"
 #include "ft6x06.h"
-
+#include "eeprom.h"
+#include "score.h"
 
 extern void delay(int cnt);
 

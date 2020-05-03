@@ -36,6 +36,8 @@
 .\obj\breathing_led.o: transition.h
 .\obj\breathing_led.o: map.h
 .\obj\breathing_led.o: ..\peripherals\include\ft6x06.h
+.\obj\breathing_led.o: ..\peripherals\include\eeprom.h
+.\obj\breathing_led.o: score.h
 .\obj\breathing_led.o: project_interrupts.h
 .\obj\breathing_led.o: main.h
 .\obj\breathing_led.o: staff.h
@@ -43,4 +45,6 @@
 .\obj\breathing_led.o: project_interrupts.h
 .\obj\breathing_led.o: breathing_led.h
 .\obj\breathing_led.o: tanks.h
+.\obj\breathing_led.o: score.h
 .\obj\breathing_led.o: project_hardware_init.h
+.\obj\breathing_led.o: score.h

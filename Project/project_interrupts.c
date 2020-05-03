@@ -119,7 +119,7 @@ void ps2_get_direction(void)
 }
 
 //*****************************************************************************
-// TIMER1 ISR is used to determine when to update breathing effect
+// TIMER5 ISR is used to determine when to update breathing effect
 //*****************************************************************************
 void TIMER5A_Handler(void)
 {
@@ -233,6 +233,7 @@ void TIMER2A_Handler(void)
 			case(BUTTON_UP)	:	
 			{
 				fire(player->x,player->y,player->dir);
+				SCORE--;
 				break;
 			}
 			case(BUTTON_DOWN):

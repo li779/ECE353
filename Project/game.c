@@ -16,7 +16,6 @@ volatile bool IN_PROGRESS = false;
 char STUDENT_NAME[] = "Yichen Li and Marvin Zhang";
 int i;
 
-
 typedef struct
 {
     int top;
@@ -299,8 +298,10 @@ void game(void)
 	
 	printf("Drawing map...\n");
 
-	lcd_clear_screen(LCD_COLOR_BLACK);
+	//lcd_clear_screen(LCD_COLOR_BLACK);
 	drawMap(getMap());
+	
+	SCORE = 255;
 	
 	IN_PROGRESS = true;
 	
@@ -350,6 +351,7 @@ void game(void)
 		if(GAME_OVER | CONTINUE | RESTART)
 		{
 			IN_PROGRESS = false;
+			SCORE -= (100 - player->health);
 			break;
 		}	
 		

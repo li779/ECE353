@@ -35,6 +35,8 @@
 .\obj\main.o: transition.h
 .\obj\main.o: map.h
 .\obj\main.o: ..\peripherals\include\ft6x06.h
+.\obj\main.o: ..\peripherals\include\eeprom.h
+.\obj\main.o: score.h
 .\obj\main.o: project_interrupts.h
 .\obj\main.o: main.h
 .\obj\main.o: staff.h
@@ -42,4 +44,6 @@
 .\obj\main.o: project_interrupts.h
 .\obj\main.o: breathing_led.h
 .\obj\main.o: tanks.h
+.\obj\main.o: score.h
 .\obj\main.o: project_hardware_init.h
+.\obj\main.o: score.h

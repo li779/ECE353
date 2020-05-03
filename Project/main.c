@@ -59,6 +59,8 @@ main(void)
 {
 	uint8_t *data = (uint8_t *)malloc(sizeof(uint8_t));
 	
+	uint16_t EEPROM_SCORE_ADDR = 0x0000;
+
 	RESTART = true;		// For 1st-time
 	
 	hardwareInit();		// Initialize all hardware
@@ -70,12 +72,15 @@ main(void)
 	MAP_SEL = 0;
 	
 	DisableInterrupts();
-	
+
 	while(1)
 	{
 		if(RESTART | CONTINUE)
 		{
 			
+			eeprom_byte_read(EEPROM_I2C_BASE, EEPROM_SCORE_ADDR, &LAST_SCORE);
+			printf("Last Score (%d / 255) read from EEPROM. \n", LAST_SCORE);
+			delay(50);
 			if(RESTART | GAME_OVER)
 			{
 				RESTART = false;
@@ -88,7 +93,17 @@ main(void)
 			
 			game_story_page();
 			EnableInterrupts();
+			drawSCORE(LAST_SCORE);
+			delay(10);
 			game();
+			
+			if(SCORE > LAST_SCORE)
+			{
+				eeprom_byte_write(EEPROM_I2C_BASE, EEPROM_SCORE_ADDR, SCORE);
+				delay(50);
+				printf("Score: (%d / 255) saved into EEPROM. \n", SCORE);
+				delay(50);
+			}
 			DisableInterrupts();
 		}
 		

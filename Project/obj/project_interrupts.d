@@ -36,10 +36,14 @@
 .\obj\project_interrupts.o: transition.h
 .\obj\project_interrupts.o: map.h
 .\obj\project_interrupts.o: ..\peripherals\include\ft6x06.h
+.\obj\project_interrupts.o: ..\peripherals\include\eeprom.h
+.\obj\project_interrupts.o: score.h
 .\obj\project_interrupts.o: project_interrupts.h
 .\obj\project_interrupts.o: project_hardware_init.h
 .\obj\project_interrupts.o: main.h
+.\obj\project_interrupts.o: score.h
 .\obj\project_interrupts.o: staff.h
 .\obj\project_interrupts.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 .\obj\project_interrupts.o: breathing_led.h
 .\obj\project_interrupts.o: tanks.h
+.\obj\project_interrupts.o: score.h

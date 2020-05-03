@@ -30,4 +30,6 @@
 .\obj\game.o: ..\peripherals\include\launchpad_io.h
 .\obj\game.o: map.h
 .\obj\game.o: ..\peripherals\include\ft6x06.h
+.\obj\game.o: ..\peripherals\include\eeprom.h
+.\obj\game.o: score.h
 .\obj\game.o: tanks.h

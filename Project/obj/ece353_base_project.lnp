@@ -10,6 +10,7 @@
 ".\obj\breathing_led.o"
 ".\obj\transition.o"
 ".\obj\tanks.o"
+".\obj\score.o"
 ".\obj\adc.o"
 ".\obj\gpio_port.o"
 ".\obj\i2c.o"

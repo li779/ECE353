@@ -16,6 +16,8 @@
 #include "map.h"
 #include "top_row_display.h"
 #include "transition.h"
+#include "eeprom.h"
+#include "score.h"
 
 typedef enum{
   PS2_DIR_UP,
@@ -34,12 +36,8 @@ typedef enum BUTTON_t{
 	BUTTON_NONE
 } BUTTON_t;
 
-
-
-
 extern void initialize_serial_debug(void);
 extern void put_string(char *data);
-
 
 extern volatile bool ALERT_SPACE_SHIP[10];
 extern volatile bool ALERT_INVADER;
