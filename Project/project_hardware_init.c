@@ -47,12 +47,12 @@ void hardwareInit(void)
 	gp_timer_config_32(TIMER5_BASE,TIMER_TAMR_TAMR_PERIOD, 1000, false, true);			// Used to update RGB
 	gp_timer_config_32(TIMER2_BASE,TIMER_TAMR_TAMR_PERIOD, 10000000, false, true);		// Used to move player's tank
 	gp_timer_config_32(TIMER3_BASE,TIMER_TAMR_TAMR_PERIOD, 5000000, false, true);		// Used to move enemy's tanks
-	gp_timer_config_32(TIMER4_BASE,TIMER_TAMR_TAMR_PERIOD, 500000, false, true);		// Used to check PS2 and button
+	gp_timer_config_16(TIMER4_BASE,TIMER_TAMR_TAMR_PERIOD, 500000, false, true);		// Used to check PS2 and button
 
 	EnableInterrupts();
 
 	// This thing is bright, don't use for now.
-	breathing_led_init();
+	//breathing_led_init();
 
 	// EEPROM initilization
 	eeprom_init();

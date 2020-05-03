@@ -12,6 +12,7 @@ volatile bool CONTINUE = false;
 volatile bool EXIT = false;
 volatile bool GAME_OVER = false;
 volatile bool IN_PROGRESS = false;
+volatile bool PAUSE = false;
 
 char STUDENT_NAME[] = "Yichen Li and Marvin Zhang";
 int i;
@@ -293,6 +294,7 @@ void game(void)
 	int index;
 	bool game_over = false;
 	
+	
 	for (i = 0; i<10;i++){ ALERT_SPACE_SHIP[i] = true;}
 	initialize_obj();
 	
@@ -353,7 +355,10 @@ void game(void)
 			IN_PROGRESS = false;
 			SCORE -= (100 - player->health);
 			break;
-		}	
+		}
+		
+		while(PAUSE){}
+		
 		
 	}
 	
