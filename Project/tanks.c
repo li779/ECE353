@@ -11,6 +11,7 @@ void set_dir(volatile tanks* tank, PS2_DIR_t dir){tank->dir = dir;set_image(tank
 void set_x(uint16_t x){player->x = x;}
 void set_y(uint16_t y){player->y = y;}
 
+// set image for different type of tank
 void set_image(volatile tanks* tank){
 	switch(tank->dir){
 		case PS2_DIR_UP: 
@@ -113,6 +114,7 @@ bool check_shot_on_target(volatile bullet * i){
 	return false;
 }
 
+// fire function for any tank
 void fire(uint16_t x, uint16_t y, PS2_DIR_t dir){
 	
 	int i;

@@ -1,8 +1,8 @@
 #include "game.h"
 #include "tanks.h"
 
-volatile bool ALERT_SPACE_SHIP[10];
-volatile bool ALERT_INVADER = true;
+volatile bool ALERT_ENERMY_TANKS[10];
+volatile bool ALERT_PLAYER_TANK = true;
 volatile bool BUTTON_PRESSED = false;
 volatile bool SHELL_MOVE = false;
 volatile bool PS2_MOVE = false;
@@ -86,8 +86,7 @@ bool contact_edge(
 }
 
 //*****************************************************************************
-// Determines if any part of the image would be off the screen or hit wall 
-// if the image is moved in the specified direction.
+// check if the object can move in this direction in the map. Applicable to all objs 
 //*****************************************************************************
 bool check_moveable(
     volatile PS2_DIR_t direction,
@@ -128,9 +127,7 @@ bool check_moveable(
 }
 
 //*****************************************************************************
-// Moves the image by one pixel in the provided direction.  The second and 
-// third parameter should modify the current location of the image (pass by
-// reference)
+// update image in certain direction, once a square
 //*****************************************************************************
 void move_image(
     volatile PS2_DIR_t direction,
@@ -162,6 +159,10 @@ void move_image(
     return;
 }
 
+//*****************************************************************************
+// draw a black box to cover objs' old position after they move
+//*****************************************************************************
+
 void clear_image(uint16_t x, uint16_t y){
 	lcd_draw_image(
 			x,          // X Center Point
@@ -176,11 +177,10 @@ void clear_image(uint16_t x, uint16_t y){
 }
 
 //*****************************************************************************
+// check if the game is won or not
 // 1: game lost
 // 2 : game win
 // 0: game continue
-// 
-// 
 //*****************************************************************************
 uint8_t check_game_over()
 {
@@ -204,6 +204,9 @@ uint8_t check_game_over()
 	return 0;
 }
 
+//*****************************************************************************
+// check whether the two objs collide.
+//*****************************************************************************
 bool check_bump(
 	volatile PS2_DIR_t* contact_dir,
     volatile uint16_t ship_x_coord, 
@@ -258,8 +261,9 @@ bool check_bump(
 		return false;
 }
 
-
-
+//*****************************************************************************
+// initialize all the objects, including player, enermy and bullets
+//*****************************************************************************
 void initialize_obj(){
 	int index;
 	player = malloc(sizeof(tanks));
@@ -295,7 +299,7 @@ void game(void)
 	bool game_over = false;
 	
 	
-	for (i = 0; i<10;i++){ ALERT_SPACE_SHIP[i] = true;}
+	for (i = 0; i<10;i++){ ALERT_ENERMY_TANKS[i] = true;}
 	initialize_obj();
 	
 	printf("Drawing map...\n");
@@ -309,14 +313,12 @@ void game(void)
 	
 	while(true)
 	{	
-	//				put_string("player statistics\n\r");
-	//				sprintf(data,"%d\n\r",player->x);
-	//				put_string(data);
-
+	
+		// display enermy tanks after update
 		for (index = 0; index < enermy_size; index++){
-			if(ALERT_SPACE_SHIP[index])
+			if(ALERT_ENERMY_TANKS[index])
 			{
-				ALERT_SPACE_SHIP[index] = false;
+				ALERT_ENERMY_TANKS[index] = false;
 				if (enermy[index]->health > 0/* && enermy[index]->health < 101*/){
 				lcd_draw_image(
 					enermy[index]->x,       // X Center Point
@@ -333,9 +335,10 @@ void game(void)
 			}
 		}
 
-		if(ALERT_INVADER)
+		// display player tank after update
+		if(ALERT_PLAYER_TANK)
 		{
-			ALERT_INVADER = false;
+			ALERT_PLAYER_TANK = false;
 			if (player->health > 0){
 				lcd_draw_image(
 					player->x,          // X Center Point
@@ -347,9 +350,9 @@ void game(void)
 					LCD_COLOR_BLACK     // Background Color
 				);
 			}
-
 		}   
 		
+		// update game score
 		if(GAME_OVER | CONTINUE | RESTART | EXIT)
 		{
 			IN_PROGRESS = false;
@@ -357,6 +360,7 @@ void game(void)
 			break;
 		}
 		
+		// to pause the game
 		while(PAUSE){}
 		
 		

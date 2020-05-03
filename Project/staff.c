@@ -20,7 +20,7 @@ uint16_t generate_random_number(
 }
 
 //*****************************************************************************
-// Generates the the new direction and number of pixels  -- DO NOT MODIFY
+// Generates the the new direction of enermy tank based on player and map: basically, avoid map and chase player
 //*****************************************************************************
 PS2_DIR_t get_new_direction(bool* bump, int tank_index, PS2_DIR_t curr_direction)
 {	
@@ -54,6 +54,9 @@ PS2_DIR_t get_new_direction(bool* bump, int tank_index, PS2_DIR_t curr_direction
     return new_direction;
 }
 
+//*****************************************************************************
+// detect player and shoot on it when they on same line
+//*****************************************************************************
 void auto_shoot(int index){
 	switch(enermy[index]->dir)
 	{

@@ -83,6 +83,7 @@ main(void)
 			printf("Last Score (%d / 255) read from EEPROM. \n", LAST_SCORE);
 			delay(50);
 			
+			// restart at start page
 			if(RESTART | GAME_OVER)
 			{
 				RESTART = false;
@@ -93,6 +94,7 @@ main(void)
 			if(CONTINUE)
 				CONTINUE = false;
 			
+			// continue on next game
 			game_story_page();
 			EnableInterrupts();
 			printf("Press SPACE to pause the game. Another press will continue the game. \n");
@@ -100,6 +102,7 @@ main(void)
 			delay(10);
 			game();
 			
+			// updating the highest score
 			if(SCORE > LAST_SCORE)
 			{
 				eeprom_byte_write(EEPROM_I2C_BASE, EEPROM_SCORE_ADDR, SCORE);

@@ -39,8 +39,8 @@ typedef enum BUTTON_t{
 extern void initialize_serial_debug(void);
 extern void put_string(char *data);
 
-extern volatile bool ALERT_SPACE_SHIP[10];
-extern volatile bool ALERT_INVADER;
+extern volatile bool ALERT_ENERMY_TANKS[10];
+extern volatile bool ALERT_PLAYER_TANK;
 extern volatile bool SHELL_MOVE;
 
 extern char STUDENT_NAME[];

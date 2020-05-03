@@ -2826,6 +2826,7 @@ void game_transition_fail_page(void)
 	
 }
 
+
 void game_transition_victory_page(void)
 {
 

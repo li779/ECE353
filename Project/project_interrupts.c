@@ -59,6 +59,7 @@ void GPIOF_Handler(void)
 			}
 		}
 	
+		// detect which button pressed
 		switch((data & 0x0F))
 		{
 			case 0x0E	:
@@ -87,7 +88,7 @@ void GPIOF_Handler(void)
 }
 
 //*****************************************************************************
-// Returns the most current direction that was pressed.
+// Returns the most current direction of ps2.
 //*****************************************************************************
 void ps2_get_direction(void)
 {
@@ -165,6 +166,8 @@ void TIMER2A_Handler(void)
 	int index;
 	bool test;
 	bool not_moveable;
+	
+	// check if player is moveable: not bump into enermy and map
 	for(i = 0; i < enermy_size; i++){
 		if (enermy[i]->health > 0){
 				enermy_bump = check_bump(&(player->dir),player->x,player->y,player->height, player->width,
@@ -178,7 +181,7 @@ void TIMER2A_Handler(void)
 		if (check_moveable(player->dir, player->x, player->y, player->height, player->width) && (!player_bump))
 		{
 			move_image(player->dir, &player->x, &player->y, player->height, player->width);
-			ALERT_INVADER = true;
+			ALERT_PLAYER_TANK = true;
 		}
 		PS2_MOVE = false;
 	}
@@ -186,6 +189,7 @@ void TIMER2A_Handler(void)
 	player_bump = false;
 	enermy_bump = false;
 	
+	// check every enermy is moveable: not bump into enermy and map
 	for (index = 0; index < enermy_size; index++){
 		if (enermy[index]->health>0){
 	
@@ -213,7 +217,7 @@ void TIMER2A_Handler(void)
 			if(!bump[index])
 			{
 				move_image(enermy[index]->dir, &(enermy[index]->x), &(enermy[index]->y), enermy[index]->height, enermy[index]->width);
-				ALERT_SPACE_SHIP[index] = true;
+				ALERT_ENERMY_TANKS[index] = true;
 			}
 				auto_shoot(index);
 			// Decrement MOVE_COUNT
@@ -270,6 +274,7 @@ void TIMER2A_Handler(void)
 		SHELL_MOVE = false;
 	}	
 	
+	// update next game
 	if(IN_PROGRESS)
 	{
 		// Check game over status
@@ -307,7 +312,7 @@ void TIMER2A_Handler(void)
 }
 
 //*****************************************************************************
-// TIMER3 ISR is used to determine when to move the shell
+// TIMER3 ISR is used to determine when to move the shell and refresh map
 //*****************************************************************************
 void TIMER3A_Handler(void)
 {	
@@ -346,7 +351,7 @@ void TIMER4A_Handler(void)
 {	
 		char input[80];
 		bool pause = false;
-				memset(input,0,80);
+			memset(input,0,80);
 		//printf("into debug mode");
 		input[0] = getchar();
 		//printf("%s\n",input);
