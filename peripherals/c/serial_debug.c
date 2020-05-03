@@ -100,7 +100,7 @@ int fgetc(FILE* stream)
    if (c == '\r')
       c = '\n';
 
-   fputc(c, stdout);
+   //fputc(c, stdout);
 
    return c;
 }
