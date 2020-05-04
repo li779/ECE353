@@ -126,29 +126,27 @@ void TIMER1A_Handler(void)
 	// Check if need to update RGB values, if not, just change RGB_temp values
 	if(RGB_update)
 	{
-		if(R > 254)
+		if(R > 255)
 			RGB_direction = true;
 		else if (R < 1)
 			RGB_direction = false;
 		
-		if(RGB_direction){R--, G--, B--;}
-		else {R++, G++, B++;}
+		if(RGB_direction){R--;}
+		else {R++;}
 		
-		R_temp = 0, G_temp = 0, B_temp = 0;
+		R_temp = 0;
 		
 		RGB_update = false;
 	}
 	else
 	{
 		R_temp ++;
-		G_temp ++;
-		B_temp ++;
-		if(R_temp == 255)
+		if(R_temp > 255)
 			RGB_update = 1;
 	}
 	
 	// Write value into GPIOF based on whether the RGB_temp has been larger than pre-set value
-	GPIOF->DATA = (((R_temp > R) << 1 ) | ((G_temp > G) << 3) | ((B_temp > B) << 2) );
+	GPIOF->DATA = ((R_temp < R)) << 1 | ((R_temp < R)) << 2 | ((R_temp < R)) << 3;
 	
 	
 	// Clear the interrupt

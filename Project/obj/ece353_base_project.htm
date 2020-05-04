@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\obj\ece353_base_project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\obj\ece353_base_project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Sun May 03 18:17:07 2020
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Sun May 03 21:00:55 2020
 <BR><P>
 <H3>Maximum Stack Usage =        200 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -322,8 +322,8 @@ Global Symbols
 <LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_clear_screen
 <LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;io_expander_init
 <LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_serial_debug
-<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gp_timer_config_32
-<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gp_timer_config_16
+<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gp_timer_config_32
+<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gp_timer_config_16
 <LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ft6x06_init
 <LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;eeprom_init
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;breathing_led_init
@@ -352,10 +352,10 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC0SS2_Handler
 </UL>
 
-<P><STRONG><a name="[1f]"></a>TIMER1A_Handler</STRONG> (Thumb, 254 bytes, Stack size 0 bytes, project_interrupts.o(.text))
+<P><STRONG><a name="[1f]"></a>TIMER1A_Handler</STRONG> (Thumb, 184 bytes, Stack size 0 bytes, project_interrupts.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_tm4c123.o(RESET)
 </UL>
-<P><STRONG><a name="[21]"></a>TIMER2A_Handler</STRONG> (Thumb, 1264 bytes, Stack size 48 bytes, project_interrupts.o(.text))
+<P><STRONG><a name="[21]"></a>TIMER2A_Handler</STRONG> (Thumb, 1248 bytes, Stack size 48 bytes, project_interrupts.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 200<LI>Call Chain = TIMER2A_Handler &rArr; move_image &rArr; clear_image &rArr; lcd_draw_image &rArr; lcd_set_pos &rArr; lcd_write_data_u16
 </UL>
 <BR>[Calls]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;set_dir
@@ -884,15 +884,15 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[d2]"></a>timer_get_irq_num</STRONG> (Thumb, 74 bytes, Stack size 0 bytes, timers.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gp_timer_config_32
-<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gp_timer_config_16
+<BR><BR>[Called By]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gp_timer_config_32
+<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gp_timer_config_16
 </UL>
 
 <P><STRONG><a name="[cf]"></a>gp_timer_wait</STRONG> (Thumb, 64 bytes, Stack size 16 bytes, timers.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;verify_base_addr
 </UL>
 
-<P><STRONG><a name="[90]"></a>gp_timer_config_32</STRONG> (Thumb, 190 bytes, Stack size 40 bytes, timers.o(.text))
+<P><STRONG><a name="[91]"></a>gp_timer_config_32</STRONG> (Thumb, 190 bytes, Stack size 40 bytes, timers.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = gp_timer_config_32 &rArr; get_clock_masks
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_get_irq_num
@@ -904,7 +904,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;hardwareInit
 </UL>
 
-<P><STRONG><a name="[91]"></a>gp_timer_config_16</STRONG> (Thumb, 190 bytes, Stack size 40 bytes, timers.o(.text))
+<P><STRONG><a name="[90]"></a>gp_timer_config_16</STRONG> (Thumb, 190 bytes, Stack size 40 bytes, timers.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = gp_timer_config_16 &rArr; get_clock_masks
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_get_irq_num
@@ -2256,28 +2256,28 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[d4]"></a>__NVIC_EnableIRQ</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, timers.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gp_timer_config_32
-<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gp_timer_config_16
+<BR><BR>[Called By]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gp_timer_config_32
+<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gp_timer_config_16
 </UL>
 
 <P><STRONG><a name="[d3]"></a>__NVIC_SetPriority</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, timers.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = __NVIC_SetPriority
 </UL>
-<BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gp_timer_config_32
-<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gp_timer_config_16
+<BR>[Called By]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gp_timer_config_32
+<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gp_timer_config_16
 </UL>
 
 <P><STRONG><a name="[d0]"></a>verify_base_addr</STRONG> (Thumb, 64 bytes, Stack size 0 bytes, timers.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gp_timer_config_32
-<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gp_timer_config_16
+<BR><BR>[Called By]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gp_timer_config_32
+<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gp_timer_config_16
 <LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gp_timer_wait
 </UL>
 
 <P><STRONG><a name="[d1]"></a>get_clock_masks</STRONG> (Thumb, 106 bytes, Stack size 8 bytes, timers.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = get_clock_masks
 </UL>
-<BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gp_timer_config_32
-<LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gp_timer_config_16
+<BR>[Called By]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gp_timer_config_32
+<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gp_timer_config_16
 </UL>
 
 <P><STRONG><a name="[dd]"></a>eeprom_wait_for_write</STRONG> (Thumb, 68 bytes, Stack size 16 bytes, eeprom.o(.text))

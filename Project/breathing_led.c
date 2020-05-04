@@ -1,9 +1,9 @@
   
 #include "breathing_led.h"
 
-uint8_t R = 0, G = 0, B = 0;
+uint16_t R = 0, G = 0, B = 0;
 
-uint8_t R_temp = 0, G_temp = 0, B_temp = 0;
+uint16_t R_temp = 0, G_temp = 0, B_temp = 0;
 
 bool RGB_direction = false, RGB_update = false;
 
